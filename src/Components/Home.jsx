@@ -1,6 +1,4 @@
 import React from 'react'
-import { Form } from 'react-bootstrap';
-import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import landingImage from '../assets/images/landingimg-music-headphone.png'
@@ -10,6 +8,7 @@ import PopularItems from './PopularItems';
 import SpotlightedItems from './SpotlightedItems';
 import { Link } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
+import Footer from './Footer';
 
 function Home() {
     return (
@@ -106,6 +105,9 @@ function Home() {
                         <SpotlightedItems />
                     </div>
                 </div>
+
+                {/* footer */}
+                <Footer/>
             </div>
         </>
     )

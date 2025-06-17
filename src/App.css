@@ -200,7 +200,7 @@ body {
 .Deals-of-week {
   font-weight: bold;
   font-size: 52px;
-  margin-top: 180px;
+  margin-top: 150px;
   margin-bottom: 30px;
 }
 
@@ -334,6 +334,114 @@ body {
 .popularItemsCard {
   background-color: rgb(249, 248, 248);
   border-color: rgb(241, 238, 238);
+}
+
+/* footer */
+.section-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.newsletter {
+  background-color: rgb(136, 60, 249);
+  padding: 40px 20px;
+}
+
+.newsletter-icon {
+  font-size: 55px;
+  margin-top: 12px;
+}
+
+.newsletter-input {
+  border-radius: 5px 0 0 5px;
+  padding: 10px;
+  border: none;
+  width: 350px;
+  max-width: 100%;
+}
+
+.btn-join {
+  position: absolute;
+  border-radius: 5px;
+  background-color: #222;
+  color: white;
+  border: none;
+  top:6px; 
+  left: 85%;
+  transform: translateX(-50%);
+  z-index: 2;
+  padding: 15px 30px;
+  font-size: 14px;
+}
+
+.brandname {
+  box-shadow: #ddd;
+}
+
+.footer-container {
+  padding: 0 100px;
+}
+
+.footer {
+  background-color: #f8f9fa;
+  padding: 40px 0;
+}
+
+.footer h5 {
+  font-weight: bolder;
+  margin-bottom: 15px;
+}
+
+.footer ul li {
+  margin-bottom: 10px;
+  color: rgb(111, 111, 111);
+}
+
+.footer p {
+  color: rgb(111, 111, 111);
+}
+
+.fonticon {
+  color: rgb(136, 60, 249);
+}
+
+.socialMedia-icons {
+  display: flex;
+  gap: 10px;
+  font-size: 25px;
+}
+
+.icon-instagram {
+  color: rgb(255, 255, 255);
+  background-color: rgb(136, 60, 249);
+  border: 1px solid;
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.icon-twitter {
+  color: rgb(255, 255, 255);
+  background-color: rgb(136, 60, 249);
+  border: 1px solid;
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.icon-facebook {
+  color: rgb(255, 255, 255);
+  background-color: rgb(136, 60, 249);
+  border: 1px solid;
+  border-radius: 6px;
+  padding: 8px;
+
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgb(176, 176, 176);
+  padding-top: 20px;
+  font-size: 14px;
 }
 
 
@@ -495,4 +603,29 @@ body {
     font-size: 34px;
     text-align: center;
   }
+
+  /* footer */
+
+  .newsletter {
+    margin-top: 20px;
+  }
+
+  .newsletter-icon {
+    font-size: 40px;
+    padding-left: 0px;
+    margin-top: 12px;
+  }
+
+  .section-container {
+    display: block;
+  }
+  .btn-join { 
+  top:6px; 
+  left: 85%;
+  padding: 6px 20px;  
+  }
+  .footer-container{
+    
+  }
+
 }
