@@ -11,7 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 function DealsOfTheWeek() {
   const sliderRef = useRef(null);
-  const [deals, setWeekDeals] = useState([]);
+  const [deal, setWeekDeal] = useState([]);
   const CustomNextArrow = ({ onClick }) => (
     <div className="custom-arrow new-next" onClick={onClick}>
       <i class="fa-solid fa-arrow-right"></i>
@@ -24,7 +24,7 @@ function DealsOfTheWeek() {
     </div>
   );
   useEffect(() => {
-    const WeekDeals = [
+    const WeekDeal = [
       {
         id: 1,
         title: "Smart Watch Lorem sit ipsum sit amet ectetur",
@@ -74,7 +74,7 @@ function DealsOfTheWeek() {
         image: speakerImg,
       },
     ];
-    setWeekDeals(WeekDeals);
+    setWeekDeal(WeekDeal);
   }, []);
 
 
@@ -121,7 +121,7 @@ function DealsOfTheWeek() {
   return (
     <>
       <Slider ref={sliderRef} {...settings}>
-        {deals.map((item, index) => {
+        {deal.map((item, index) => {
           return (
             <div key={index}>
               <Card className='cardcss' style={{ width: "15.5 rem" }}>

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import Slider from 'react-slick';
 import shoes from '../assets/images/dealsOfDay-shoes.jpg';
 import haedphone from '../assets/images/dealsOfDay-headphone.jpg';
@@ -91,7 +91,7 @@ function DealsOfTheDay() {
                 {deals.map((item, index) => {
                     return (
                         <div key={index}>
-                            <Card className='cardImg' style={{ width: "15.5 rem" }}>
+                            <Card  className='cardImg' style={{ width: "15.5 rem" }}>
                                 <Card.Img className='image' variant="top" src={item.image} />
                                 <Card.Body className='cardsText'>
                                     <div className="row">

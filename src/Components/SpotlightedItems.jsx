@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import {  Card } from 'react-bootstrap';
 import Slider from 'react-slick';
 import watchSaleImg from '../assets/images/watchSaleImg.jpg';
 import watch from '../assets/images/spotlighted-watch.jpg';
@@ -11,7 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 function SpotlightedItems() {
         const sliderRef = useRef(null);
-        const [deals, setDeals] = useState([]);
+        const [spotlightedItems, setspotlightedItems] = useState([]);
         const CustomNextArrow = ({ onClick }) => (
             <div className="custom-arrow new-next ms-4" onClick={onClick}>
                 <i class="fa-solid fa-arrow-right"></i>
@@ -24,7 +24,7 @@ function SpotlightedItems() {
             </div>
         );
         useEffect(() => {
-            const WeekDeals = [
+            const spotlightedDeals = [
                 {
                     id: 1,
                     title: "Shoes orem sit ipsum sit ipsum sit ament ectetur",
@@ -74,7 +74,7 @@ function SpotlightedItems() {
                     image: Gagets,
                 },
             ];
-            setDeals(WeekDeals);
+            setspotlightedItems(spotlightedDeals);
         }, []);
     
     
@@ -91,7 +91,7 @@ function SpotlightedItems() {
   return (
     <>
      <Slider ref={sliderRef} {...settings}>
-                {deals.map((item, index) => {
+                {spotlightedItems.map((item, index) => {
                     return (
                         <div key={index}>
                             <Card className='cardImg'>
