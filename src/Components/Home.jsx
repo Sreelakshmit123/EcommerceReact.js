@@ -14,7 +14,7 @@ import { FaSearch } from 'react-icons/fa';
 function Home() {
     return (
         <>
-            <Container id='Container'>
+            <div className='container-fluid' id='Container'>
                 {/* Navbar */}
                 <Navbar collapseOnSelect expand="lg">
 
@@ -106,7 +106,7 @@ function Home() {
                         <SpotlightedItems />
                     </div>
                 </div>
-            </Container>
+            </div>
         </>
     )
 }

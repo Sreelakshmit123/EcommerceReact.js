@@ -5,8 +5,7 @@ body {
 }
 
 #Container {
-  padding: 0px;
-
+  padding: 0 80px;
 }
 
 .navsection {
@@ -154,11 +153,11 @@ body {
   overflow: hidden;
   max-width: 100%;
   min-width: 80%;
-  height: 75vh;
+  height: 77vh;
   background: linear-gradient(160deg, rgb(133, 2, 255), rgb(162, 65, 252), rgb(248, 125, 244), rgb(255, 0, 247));
   border-radius: 50%;
   position: absolute;
-  top: -35px;
+  top: -20px;
   left: 100px;
   z-index: 0;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -187,13 +186,13 @@ body {
 }
 
 .top-left {
-  top: 10px;
+  top: 30px;
   left: 50px;
 }
 
 .bottom-right {
-  bottom: -85px;
-  left: 80px;
+  bottom: -80px;
+  left: 90px;
 }
 
 /* deals of week */
@@ -405,7 +404,7 @@ body {
 
   /* landing image col-6  */
   #Container {
-    padding: 20px;
+    padding: 28px;
 
   }
 
