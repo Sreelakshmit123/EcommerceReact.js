@@ -350,19 +350,25 @@ body {
 
   /* NAVBAR desgin */
   .categoryButton {
-    display: block;
-    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     text-decoration: none;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .category-buttons {
+    flex-direction: column;
+    align-items: center;
   }
 
   .Categorybtn {
+    flex: 0 0 45%;
     padding-left: 40px;
     padding-right: 40px;
     border-radius: 10px;
-    margin-top: 5px;
-    margin-left: 12px;
-    text-decoration: none;
-
+    text-align: center;
   }
 
   .search-wrapper {
@@ -370,7 +376,6 @@ body {
     width: 94%;
     border-radius: 15px;
     height: 40px;
-    margin-left: 11px;
     padding: 20px;
     box-shadow: 0px 0px 8px rgb(241, 241, 241);
     display: flex;
@@ -423,7 +428,7 @@ body {
 
   .circle-gradient {
     width: 75%;
-    height: 270px;
+    height: 285px;
     background: linear-gradient(160deg, rgb(133, 2, 255), rgb(162, 65, 252), rgb(248, 125, 244), rgb(255, 0, 247));
     border-radius: 50%;
     position: absolute;
@@ -478,6 +483,8 @@ body {
     font-weight: bolder;
     font-size: 37px;
     line-height: 46px;
+    margin-top: 0px;
+
   }
 
   .landingparagraph {

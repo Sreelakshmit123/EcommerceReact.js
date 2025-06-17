@@ -57,14 +57,14 @@ function Home() {
                 {/* category button */}
 
                 <div className='row'>
-                    <div className='categoryButton col-lg-6'>
+                    <div className='categoryButton  col-lg-6 '>
                         <Link to={"/category1"}><button className='Categorybtn btn btn-outline-dark'>category</button></Link>
                         <Link to={"/category2"}><button className='Categorybtn btn btn-outline-dark'>category</button></Link>
-
                         <Link to={"/category3"}><button className='Categorybtn btn btn-outline-dark'>category</button></Link>
                         <Link to={"/category4"}><button className='Categorybtn btn btn-outline-dark'>category</button></Link>
                     </div>
                 </div>
+                
 
                 {/* landing page */}
 
