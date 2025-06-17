@@ -9,6 +9,7 @@ import DealsOfTheDay from './DealsOfTheDay';
 import PopularItems from './PopularItems';
 import SpotlightedItems from './SpotlightedItems';
 import { Link } from 'react-router-dom';
+import { FaSearch } from 'react-icons/fa';
 
 function Home() {
     return (
@@ -39,12 +40,12 @@ function Home() {
                 {/* search bar */}
 
                 <div className='row'>
-                    <div className='col-lg-6'>
-                        <Form.Control
+                    <div className='search-wrapper col-lg-6'>
+                        <FaSearch id="search-icon" />
+                        <input
                             type="text"
                             placeholder="Search"
-                            className="searchbar mr-sm-2"
-                        />
+                            className="searchbar mr-sm-2" />
                     </div>
                     <div className="desginbox col-lg-1">
                     </div>

@@ -23,11 +23,13 @@ body {
   color: white;
   font-weight: bold;
 }
+
 .signUp-btn:hover {
   background-color: rgb(255, 2, 247);
   color: white;
   text-decoration: none;
 }
+
 .Whishlistbtn {
   padding-left: 40px;
   padding-right: 40px;
@@ -44,8 +46,36 @@ body {
   margin-top: 20px;
 }
 
+/* search bar */
+
+.search-wrapper {
+  background-color: rgb(238, 237, 237);
+  width: 50%;
+  border-radius: 15px;
+  height: 40px;
+  margin-left: 11px;
+  padding: 20px;
+  box-shadow: 0px 0px 8px rgb(241, 241, 241);
+  display: flex;
+  align-items: center;
+}
+
+.searchbar {
+  background-color: transparent;
+  border: none;
+  height: 40px;
+  font-size: 15px;
+  width: 100%;
+  margin-left: 10px;
+}
+
+.searchbar:focus {
+  outline: none;
+}
+
 .desginbox {
   box-sizing: border-box;
+  margin-left: 12px;
   border: 1px solid;
   border-radius: 15px;
   border-color: rgb(241, 241, 241);
@@ -64,18 +94,6 @@ body {
 .cartbtn:hover {
   background-color: rgb(133, 2, 255);
   border-color: rgb(133, 2, 255)
-}
-
-.searchbar {
-  background-color: rgb(241, 241, 241);
-  border-color: rgb(241, 241, 241);
-  border-radius: 15px;
-  padding: 7px 4px 7px 40px;
-}
-
-.searchbar1 {
-  background-color: rgb(241, 241, 241);
-  border-color: rgb(241, 241, 241);
 }
 
 .Categorybtn {
@@ -114,8 +132,9 @@ body {
   font-weight: bold;
   text-decoration: none;
 }
-.shopnow-btn:hover{
-  background-color:rgb(255, 2, 247);
+
+.shopnow-btn:hover {
+  background-color: rgb(255, 2, 247);
   color: rgb(255, 255, 255);
   text-decoration: none;
 
@@ -294,14 +313,16 @@ body {
   width: 20%;
   background-color: rgb(255, 2, 247);
 }
-.offer-bar{
+
+.offer-bar {
   border: 1px solid;
   border-radius: 0px 0px 5px 5px;
-  background-color:rgb(133, 2, 255);
+  background-color: rgb(133, 2, 255);
   color: white;
-    width: 100px;
-    margin-left: 20px;
+  width: 100px;
+  margin-left: 20px;
 }
+
 /* popular items */
 
 .popularItems {
@@ -316,10 +337,17 @@ body {
   border-color: rgb(241, 238, 238);
 }
 
+
+
+
+/* moblie view  */
+
+
 @media (max-width: 768px) {
   body {
     overflow-x: hidden;
   }
+
   /* NAVBAR desgin */
   .categoryButton {
     display: block;
@@ -334,7 +362,32 @@ body {
     margin-top: 5px;
     margin-left: 12px;
     text-decoration: none;
-    
+
+  }
+
+  .search-wrapper {
+    background-color: rgb(238, 237, 237);
+    width: 94%;
+    border-radius: 15px;
+    height: 40px;
+    margin-left: 11px;
+    padding: 20px;
+    box-shadow: 0px 0px 8px rgb(241, 241, 241);
+    display: flex;
+    align-items: center;
+  }
+
+  .searchbar {
+    background-color: transparent;
+    border: none;
+    height: 40px;
+    font-size: 15px;
+    width: 100%;
+    margin-left: 10px;
+  }
+
+  .searchbar:focus {
+    outline: none;
   }
 
   .desginbox1 {
@@ -437,16 +490,3 @@ body {
     text-align: center;
   }
 }
-
-@media (min-width: 768px) {
-  .desginbox1 {
-    display: none;
-  }
-
-  .desginbox {
-    display: none;
-  }
-
-
-}
-
