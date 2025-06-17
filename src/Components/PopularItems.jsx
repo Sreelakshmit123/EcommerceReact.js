@@ -6,9 +6,9 @@ import img3 from '../assets/images/earbuds.png';
 import img4 from '../assets/images/speaker.png';
 function PopularItems() {
     const popularItems = [
-        { id: 1, title: "Bluetooth Speaker", price: "$59.99", image: img4 },
-        { id: 2, title: "BenQ Monitor", price: "$199.99", image: img2 },
-        { id: 3, title: "Earbuds", price: "$29.99", image: img3 },
+        { id: 1, title: "Bluetooth Speaker", price: "$59.99", image: img4 ,offer:"50% off"},
+        { id: 2, title: "BenQ Monitor", price: "$199.99", image: img2,offer:"50% off" },
+        { id: 3, title: "Earbuds", price: "$29.99", image: img3,offer:"50% off" },
 
         { id: 4, title: "BenQ Monitor", price: "$199.99", image: img2 },
         { id: 5, title: "Smart Watch", price: "$49.99", image: img1 },
@@ -25,6 +25,7 @@ function PopularItems() {
                 {popularItems.map((item) => (
                     <Col xs={12} sm={7} md={5} lg={4} key={item.id} className="mb-4">
                         <Card className="popularItemsCard h-100 text-center">
+                            <div className='offer-bar'>{item.offer}</div>
                             <Card.Img
                                 variant="top"
                                 src={item.image}

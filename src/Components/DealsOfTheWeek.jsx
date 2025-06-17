@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import Slider from 'react-slick';
 import watchImg from '../assets/images/watch.png';
 import monitorImg from '../assets/images/monitor.png';
@@ -45,7 +45,7 @@ function DealsOfTheWeek() {
       },
       {
         id: 4,
-        title: "Bluetooth Speaker Lorem sit ipsum amet ectetur",
+        title: "Bluetooth Speaker Lorem sit amet ectetur",
         price: "$49.99",
         image: speakerImg,
       },
@@ -69,7 +69,7 @@ function DealsOfTheWeek() {
       },
       {
         id: 8,
-        title: "Bluetooth Speaker Lorem sit ipsum sit amet ectetur",
+        title: "Bluetooth Speaker Lorem sit amet ectetur",
         price: "$49.99",
         image: speakerImg,
       },

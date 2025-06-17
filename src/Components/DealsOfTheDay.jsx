@@ -2,9 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import Slider from 'react-slick';
 import shoes from '../assets/images/dealsOfDay-shoes.jpg';
-import monitorImg from '../assets/images/monitor.png';
-import speakerImg from '../assets/images/speaker.png';
-import earbudsImg from '../assets/images/earbuds.png';
+import haedphone from '../assets/images/dealsOfDay-headphone.jpg';
+import WashingMachine from '../assets/images/dealsOfDay-machinejpg.jpg';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -34,19 +33,19 @@ function DealsOfTheDay() {
                 id: 2,
                 title: "BenQ Monitor Lorem sit ipsum sit amet ectetur",
                 price: "$199.99",
-                image: monitorImg,
+                image: haedphone,
             },
             {
                 id: 3,
                 title: "Earbuds  Lorem sit ipsum sit amet ectetur",
                 price: "$29.99",
-                image: earbudsImg,
+                image: WashingMachine,
             },
             {
                 id: 4,
                 title: "Bluetooth Speaker Lorem sit ipsum amet ectetur",
                 price: "$49.99",
-                image: speakerImg,
+                image: haedphone,
             },
             {
                 id: 5,
@@ -58,19 +57,19 @@ function DealsOfTheDay() {
                 id: 6,
                 title: "BenQ Monitor Lorem sit ipsum sit amet ectetur",
                 price: "$199.99",
-                image: monitorImg,
+                image: WashingMachine,
             },
             {
                 id: 7,
                 title: "Earbuds Lorem sit ipsum sit amet ectetur",
                 price: "$29.99",
-                image: earbudsImg,
+                image: haedphone,
             },
             {
                 id: 8,
                 title: "Bluetooth Speaker Lorem sit ipsum sit amet ectetur",
                 price: "$49.99",
-                image: speakerImg,
+                image: WashingMachine,
             },
         ];
         setdayDeals(DayDeals);
@@ -98,7 +97,7 @@ function DealsOfTheDay() {
                                     <div className="row">
                                         <div className="col-lg-8 bar">
                                             <div className="base-bar"></div>
-                                            <div className="base-bar calories-bar"></div>
+                                            <div className="base-bar sold-bar"></div>
 
                                         </div>
                                         <div className="col-lg-4 ">

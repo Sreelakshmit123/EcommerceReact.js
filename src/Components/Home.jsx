@@ -8,6 +8,7 @@ import DealsOfTheWeek from './DealsOfTheWeek';
 import DealsOfTheDay from './DealsOfTheDay';
 import PopularItems from './PopularItems';
 import SpotlightedItems from './SpotlightedItems';
+import { Link } from 'react-router-dom';
 
 function Home() {
     return (
@@ -20,17 +21,17 @@ function Home() {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="navsection  me-auto ">
-                            <Nav.Link className='navsection active' href="#features">Home</Nav.Link>
-                            <Nav.Link className='navsection' href="#pricing">Collection</Nav.Link>
-                            <Nav.Link className='navsection' href="#pricing">Sale</Nav.Link>
-                            <Nav.Link className='navsection' href="#pricing">FAQ</Nav.Link>
+                            <Nav.Link><Link to={"/"} className='navsection'>Home</Link></Nav.Link>
+                            <Nav.Link> <Link to={"/collection"} className='navsection'>Collection</Link></Nav.Link>
+                            <Nav.Link><Link to={"/sale"} className='navsection'>Sale</Link></Nav.Link>
+                            <Nav.Link><Link to={"/faq"} className='navsection'>FAQ</Link></Nav.Link>
                         </Nav>
                         <Nav className=''>
-                            <Nav.Link href="#deets"><button className='cartbtn btn btn-outline-dark '><i className="fa-solid fa-cart-shopping me-2"></i>ShoppingCart</button></Nav.Link>
-                            <Nav.Link href="#deets"><button className='Whishlistbtn btn btn-outline-dark '>Wishlist</button></Nav.Link>
+                            <Nav.Link><Link to={"/shoppingCart"}><button className='cartbtn btn btn-outline-dark '><i className="fa-solid fa-cart-shopping me-2"></i>ShoppingCart</button></Link></Nav.Link>
+                            <Nav.Link><Link to={"/wishlist"}><button className='Whishlistbtn btn btn-outline-dark '>Wishlist</button></Link></Nav.Link>
                         </Nav>
                         <Nav>
-                            <Nav.Link href="#deets"><button className='signUp-btn btn '>Sign in <i class="fa-solid fa-arrow-right"></i></button></Nav.Link>
+                            <Nav.Link><Link to={"/signin"}><button className='signUp-btn btn '>Sign in <i class="fa-solid fa-arrow-right"></i></button></Link></Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
 
@@ -56,11 +57,11 @@ function Home() {
 
                 <div className='row'>
                     <div className='categoryButton col-lg-6'>
-                        <button className='Categorybtn btn btn-outline-dark'>category</button>
-                        <button className='Categorybtn btn btn-outline-dark'>category</button>
-                        
-                        <button className='Categorybtn btn btn-outline-dark'>category</button>
-                        <button className='Categorybtn btn btn-outline-dark'>category</button>
+                        <Link to={"/category1"}><button className='Categorybtn btn btn-outline-dark'>category</button></Link>
+                        <Link to={"/category2"}><button className='Categorybtn btn btn-outline-dark'>category</button></Link>
+
+                        <Link to={"/category3"}><button className='Categorybtn btn btn-outline-dark'>category</button></Link>
+                        <Link to={"/category4"}><button className='Categorybtn btn btn-outline-dark'>category</button></Link>
                     </div>
                 </div>
 
@@ -73,7 +74,7 @@ function Home() {
                             Product Available <br />
                             Here.</h1>
                         <p className='landingparagraph'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. <br /> Magnam, cumque delectus placeat aut nulla con <br /> rem! Obcaecati<br /></p>
-                        <button className='shopnow-btn btn'>Shop Now</button>
+                        <Link to={"/shopNow"}><button className='shopnow-btn btn'>Shop Now</button></Link>
                     </div>
                     <div className="circle-container col-lg-6 col-md-6 col-sm-12 position-relative d-flex justify-content-center">
                         <div className='circle-gradient'></div>
@@ -95,13 +96,13 @@ function Home() {
                 <div className="row">
                     <div className=" col-lg-9">
                         <DealsOfTheWeek />
-                        <PopularItems/>
+                        <PopularItems />
                     </div>
                     <div className="col-lg-3">
                         <h4 className='deal-of-day'>DEAL OF THE DAY</h4>
                         <DealsOfTheDay />
                         <h4 className='deal-of-day mt-5'>SPOTLIGHTED ITEMS</h4>
-                        <SpotlightedItems/>
+                        <SpotlightedItems />
                     </div>
                 </div>
             </Container>

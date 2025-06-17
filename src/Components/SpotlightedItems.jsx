@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import Slider from 'react-slick';
-import watch from '../assets/images/spotlighted-watch.jpg';
 import watchSaleImg from '../assets/images/watchSaleImg.jpg';
-import speakerImg from '../assets/images/speaker.png';
-import earbudsImg from '../assets/images/earbuds.png';
+import watch from '../assets/images/spotlighted-watch.jpg';
+import Gagets from '../assets/images/fridayGagets.jpg';
+import SaleOffer from '../assets/images/fridaySale.avif';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -35,25 +35,25 @@ function SpotlightedItems() {
                     id: 2,
                     title: "BenQ Monitor Lorem sit ipsum sit amet ectetur",
                     price: "$199.99",
-                    image: watch,
+                    image: Gagets,
                 },
                 {
                     id: 3,
                     title: "Earbuds  Lorem sit ipsum sit amet ectetur",
                     price: "$29.99",
-                    image: earbudsImg,
+                    image: watch,
                 },
                 {
                     id: 4,
                     title: "Bluetooth Speaker Lorem sit ipsum amet ectetur",
                     price: "$49.99",
-                    image: speakerImg,
+                    image: SaleOffer,
                 },
                 {
                     id: 5,
                     title: "Smart Watch Lorem sit ipsum sit amet ectetur",
                     price: "$9.99",
-                    image: watchSaleImg,
+                    image: Gagets,
                 },
                 {
                     id: 6,
@@ -65,13 +65,13 @@ function SpotlightedItems() {
                     id: 7,
                     title: "Earbuds Lorem sit ipsum sit amet ectetur",
                     price: "$29.99",
-                    image: earbudsImg,
+                    image: SaleOffer,
                 },
                 {
                     id: 8,
                     title: "Bluetooth Speaker Lorem sit ipsum sit amet ectetur",
                     price: "$49.99",
-                    image: speakerImg,
+                    image: Gagets,
                 },
             ];
             setDeals(WeekDeals);
@@ -100,7 +100,7 @@ function SpotlightedItems() {
                                     <div className="row">
                                         <div className="col-lg-8 bar">
                                             <div className="base-bar"></div>
-                                            <div className="base-bar calories-bar"></div>
+                                            <div className="base-bar sold-bar"></div>
 
                                         </div>
                                         <div className="col-lg-4 ">
