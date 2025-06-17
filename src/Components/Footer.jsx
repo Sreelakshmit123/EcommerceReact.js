@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Footer() {
     return (
@@ -33,8 +34,8 @@ function Footer() {
                             <div className="col-lg-3 col-md-3 mb-4">
                                 <h5 className='brandname'>EBrands</h5>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-                                <p><i className="fonticon me-2 fa-solid fa-phone"></i> +1234567890</p>
-                                <p><i className="fonticon me-2 fa-solid fa-envelope"></i>lovia@support.com</p>
+                                <p><Link to={"/"}><i className="fonticon me-2 fa-solid fa-phone"></i></Link> +1234567890</p>
+                                <p><Link to={"/"}><i className="fonticon me-2 fa-solid fa-envelope"></i></Link>lovia@support.com</p>
                             </div>
                             <div className="col-lg-2 col-md-2 mb-4"></div>
                             {/* Column 2 */}
@@ -64,9 +65,9 @@ function Footer() {
                             <div className="col-lg-2 col-md-2 mb-4">
                                 <h5>Follow Us</h5>
                                 <div className="socialMedia-icons">
-                                    <i className="icon-instagram fa-brands fa-instagram"></i>
-                                    <i className="icon-twitter fa-brands fa-twitter"></i>
-                                    <i className="icon-facebook fa-brands fa-square-facebook"></i>
+                                    <Link to={"/"}><i className="icon-instagram fa-brands fa-instagram"></i></Link>
+                                    <Link to={"/"}><i className="icon-twitter fa-brands fa-twitter"></i></Link>
+                                    <Link to={"/"}><i className="icon-facebook fa-brands fa-square-facebook"></i></Link>
                                 </div>
                             </div>
                         </div>
@@ -74,10 +75,10 @@ function Footer() {
                         {/* Bottom */}
                         <div className="footer-bottom text-center mt-4">
                             <p>Copyright &copy; 2021 Tronix.All Rights Reserved</p>
-                            <div className="mt-2">
-                                <i className="me-2 fa-solid fa-infinity"></i>
-                                <i className="me-2 fa-brands fa-paypal"></i>
-                                <i className="me-2 fa-brands fa-cc-visa"></i>
+                            <div>
+                              <Link to={"/"}><i className="pay-icon me-2 fa-solid fa-infinity"></i></Link>
+                              <Link to={"/"}><i className="pay-icon me-2 fa-brands fa-paypal"></i></Link>
+                              <Link to={"/"}><i className="pay-icon me-2 fa-brands fa-cc-visa"></i></Link>
                             </div>
                         </div>
                     </div>
