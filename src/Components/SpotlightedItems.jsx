@@ -98,12 +98,12 @@ function SpotlightedItems() {
                                 <Card.Img className='image' variant="top" src={item.image} />
                                 <Card.Body className='cardsText'>
                                     <div className="row">
-                                        <div className="col-lg-8 bar">
+                                        <div className="col-lg-9 bar">
                                             <div className="base-bar"></div>
                                             <div className="base-bar sold-bar"></div>
 
                                         </div>
-                                        <div className="col-lg-4 ">
+                                        <div className="col-lg-3 ">
                                             <span className='spantext ms-3'>sold: 12/20</span>
                                         </div>
                                     </div>
@@ -125,7 +125,7 @@ function SpotlightedItems() {
                     )
                 })}
             </Slider>
-            <div className="arrow-control">
+            <div className="arrow-control mb-5">
                 <CustomPrevArrow onClick={() => sliderRef.current?.slickPrev()} />
                 <CustomNextArrow onClick={() => sliderRef.current?.slickNext()} />
             </div>

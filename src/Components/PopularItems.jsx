@@ -22,7 +22,7 @@ function PopularItems() {
     ];
     setpopularDeals(popularItems);
     },[])
-  
+
     return (
         <>
             <h3 className='popularItems'>Popular Items</h3>
@@ -30,7 +30,7 @@ function PopularItems() {
                 {popularDeals.map((item) => {
                     return(
                         <Col xs={12} sm={7} md={5} lg={4} key={item.id} className="mb-4">
-                            <Card className="popularItemsCard h-100 text-center">
+                            <Card className="popularItemsCard text-center">
                                 <div className='offer-bar'>{item.offer}</div>
                                 <Card.Img
                                     variant="top"
@@ -39,18 +39,20 @@ function PopularItems() {
                                 />
                                 <Card.Body>
                                     
-                                    <div className="d-flex justify-content-between">
-                                        <p>{item.title}</p>
-                                        <p className='text-danger'>{item.price}</p>
-                                    </div>
-                                     <div className="d-flex justify-content-between">
-                                            <p>Shop</p>
-                                            <p>125482</p>
-                                    </div>
-                                     <div className="d-flex justify-content-between">
-                                            <p>Review</p>
-                                            <p className='bottomtag-para'><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> </p>
-                                    </div>
+                                        <div className="d-flex justify-content-between ">
+                                            <p className='popularitems-text'>{item.title}</p>
+                                            <p className='popularitems-text text-danger'>{item.price}</p>
+                                        </div>
+                                         <div className="d-flex justify-content-between">
+                                                <p className='popularitems-text'>Shop</p>
+                                                <p className='popularitems-text'>125482</p>
+                                        </div>
+                                         <div className="d-flex justify-content-between">
+                                                <p className='popularitems-text'>Review</p>
+                                                <p className='bottomtag-para'><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> </p>
+                                        </div>
+                              
+                                    
                                 </Card.Body>
                             </Card>
                         </Col>

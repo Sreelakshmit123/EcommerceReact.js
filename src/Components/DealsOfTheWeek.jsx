@@ -27,49 +27,49 @@ function DealsOfTheWeek() {
     const WeekDeal = [
       {
         id: 1,
-        title: "Smart Watch Lorem sit ipsum sit amet ectetur",
+        title: "Smart Watch Lorem sit lorem ectetur",
         price: "$9.99",
         image: watchImg,
       },
       {
         id: 2,
-        title: "BenQ Monitor Lorem sit ipsum sit amet ectetur",
+        title: "BenQ Monitor Lorem sit lorem ectetur",
         price: "$199.99",
         image: monitorImg,
       },
       {
         id: 3,
-        title: "Earbuds  Lorem sit ipsum sit amet ectetur",
+        title: "Earbuds  Lorem sit lorem ectetur",
         price: "$29.99",
         image: earbudsImg,
       },
       {
         id: 4,
-        title: "Bluetooth Speaker Lorem sit amet ectetur",
+        title: "Bluetooth Speaker lorem ectetur",
         price: "$49.99",
         image: speakerImg,
       },
       {
         id: 5,
-        title: "Smart Watch Lorem sit ipsum sit amet ectetur",
+        title: "Smart Watch Lorem sit lorem ectetur",
         price: "$9.99",
         image: watchImg,
       },
       {
         id: 6,
-        title: "BenQ Monitor Lorem sit ipsum sit amet ectetur",
+        title: "BenQ Monitor Lorem sit lorem ectetur",
         price: "$199.99",
         image: monitorImg,
       },
       {
         id: 7,
-        title: "Earbuds Lorem sit ipsum sit amet ectetur",
+        title: "Earbuds Lorem sit loremectetur",
         price: "$29.99",
         image: earbudsImg,
       },
       {
         id: 8,
-        title: "Bluetooth Speaker Lorem sit amet ectetur",
+        title: "Bluetooth Speaker lorem ectetur",
         price: "$49.99",
         image: speakerImg,
       },
@@ -124,18 +124,18 @@ function DealsOfTheWeek() {
         {deal.map((item, index) => {
           return (
             <div key={index}>
-              <Card className='cardcss' style={{ width: "15.5 rem" }}>
+              <Card className='cardcss'>
                 <Card.Img className='imgbackground' variant="top" src={item.image} />
                 <Card.Body className='cardbody'>
                   <Card.Text >
                     {item.title}
                   </Card.Text>
-                  <div className='d-flex '>
+                  <div className='d-flex'>
                     <p className='bottomtag-para'><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </p>
-                    <p className='ps-2 text-secondary'>|5.0|</p>
+                    <p className='text-rating ps-2 text-secondary'>|5.0|</p>
                   </div>
-                  <div className='d-flex justify-content-between align-items-start'>
+                  <div className='d-flex mt-1 justify-content-between align-items-start'>
                     <p>{item.price}</p>
                     <button className='shoppingcartbtn btn '><i class="fa-solid fa-cart-shopping"></i></button>
                   </div>

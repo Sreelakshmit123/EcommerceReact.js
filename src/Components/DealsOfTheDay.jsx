@@ -91,16 +91,16 @@ function DealsOfTheDay() {
                 {deals.map((item, index) => {
                     return (
                         <div key={index}>
-                            <Card  className='cardImg' style={{ width: "15.5 rem" }}>
+                            <Card  className='cardImg'>
                                 <Card.Img className='image' variant="top" src={item.image} />
                                 <Card.Body className='cardsText'>
                                     <div className="row">
-                                        <div className="col-lg-8 bar">
+                                        <div className="col-lg-9 bar">
                                             <div className="base-bar"></div>
                                             <div className="base-bar sold-bar"></div>
 
                                         </div>
-                                        <div className="col-lg-4 ">
+                                        <div className="col-lg-3 ">
                                             <span className='spantext ms-3'>sold: 12/20</span>
                                         </div>
                                     </div>
