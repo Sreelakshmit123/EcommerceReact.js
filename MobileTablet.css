@@ -408,92 +408,61 @@
 
 /* filter by price  */
 
-
+.priceSelector{
+    padding: 2px;
+    font-size: 11px;
+    border-radius: 5px;
+}
+   
 .slider {
-    position: relative;
+  height: 5px;
+  position: relative;
+  background: #ddd;
+  border-radius: 5px;
+}
+.slider .progress {
+  height: 100%;
+  left: 25%;
+  right: 25%;
+  position: absolute;
+  border-radius: 5px;
+  background: rgb(136, 60, 249);
+}
+.range-input {
+  position: relative;
+}
+.range-input input {
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  pointer-events: all;
+  top: -5px;
+  background: none;
+  pointer-events: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  height: 17px;
+  width: 17px;
+  border-radius: 50%;
+  cursor: pointer;
+  background: rgb(207, 2, 200);
+  pointer-events: all;
+  -webkit-appearance: none;
+}
+input[type="range"]::-moz-range-thumb {
+  height: 17px;
+  width: 17px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  background:rgb(207, 2, 200);
+  pointer-events: auto;
+  -moz-appearance: none;
 }
 
-.track-slider,
-.range-slider,
-.slider-left-val,
-.slider-right-value {
-    position: absolute;
-}
-
-.track-slider,
-.range-slider {
-    border-radius: 4px;
-    height: 6px;
-}
-
-.track-slider {
-    /* background-color: #022140; */
-    width:100%;
-    z-index: 1;
-}
-
-.range-slider {
-    z-index: 2;
-    background-color: rgb(136, 60, 249) !important;
-}
-
-.slider-left-value {
-    left: 6px;
-}
-
-.slider-right-value {
-    right: -4px;
-}
-
-.thumb,
-.thumb::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.thumb {
-    pointer-events: none;
-    position: absolute;
-    height: 0;
-    outline: none;
-}
-
-.thumb-left {
-    z-index: 3;
-}
-
-.thumb-right {
-    z-index: 4;
-}
-
-.thumb::-webkit-slider-thumb {
-    background-color:rgb(207, 2, 200);
-    border-radius: 50%;
-    /* box-shadow: 0 0 1px 1px #f50707; */
-    cursor: pointer;
-    height: 18px;
-    width: 18px;
-    margin-top: 4.5px;
-    pointer-events: all;
-    position: relative;
-    transition: transform 0.3s ease-in-out;
-}
-
-.thumb::-webkit-slider-thumb:hover {
-    transform: scale(1.2);
-}
-
-.thumb::-moz-range-thumb {
-    background-color: rgb(207, 2, 200);
-    border-radius: 50%;
-    /* box-shadow: 0 0 1px 1px #f50707; */
-    cursor: pointer;
-    height: 18px;
-    width: 18px;
-    margin-top: 4.5px;
-    pointer-events: all;
-    position: relative;
-}
 
 /* mobile view */
 

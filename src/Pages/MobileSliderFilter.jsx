@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Accordion, Dropdown } from 'react-bootstrap'
+import { Accordion } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import PriceFilter from './PriceFilter'
 
 function MobileSliderFilter() {
 
-    const [rangeValues, setRangeValues] = useState({ min: 0, max: 1000 });
-
-    const handleRangeChange = (values) => {
-        setRangeValues(values);
-    };
+  
     return (
         <>
             <p className='fw-bolder mb-4'>All Categories</p>
@@ -35,13 +31,7 @@ function MobileSliderFilter() {
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>Filter by Price</Accordion.Header>
                     <Accordion.Body>
-                        <PriceFilter
-                            min={100}
-                            max={100000}
-                            onChange={handleRangeChange}
-                        />
-
-                       
+                        <PriceFilter/>
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
