@@ -464,6 +464,40 @@ input[type="range"]::-moz-range-thumb {
 }
 
 
+/* demo */
+
+
+.price-filter-box {
+  padding: 20px;
+  background: #fff;
+  max-width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.range-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.price-dropdowns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+.price-dropdowns select {
+  width: 100%;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+
+
+
 /* mobile view */
 
 @media (max-width: 768px) {

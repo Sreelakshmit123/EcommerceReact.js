@@ -5,7 +5,19 @@ import PriceFilter from './PriceFilter'
 
 function MobileSliderFilter() {
 
-  
+    const locations = ['Jagarta', 'Yogyakarta', 'Bandung', 'Semarang', 'Sarabaya'];
+    const [checkedLocations, setCheckedLocations] = useState({});
+
+    const handleCheckboxChange = (location) => {
+        setCheckedLocations((prev) => ({
+            ...prev,
+            [location]: !prev[location],
+        }));
+    }
+
+    const handleSubmitFilter = () =>{
+        
+    }
     return (
         <>
             <p className='fw-bolder mb-4'>All Categories</p>
@@ -31,21 +43,28 @@ function MobileSliderFilter() {
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>Filter by Price</Accordion.Header>
                     <Accordion.Body>
-                        <PriceFilter/>
+                        <PriceFilter />
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
+
             <p className='horizontal-line1' />
+
             <Accordion defaultActiveKey={['0']} alwaysOpen>
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>Filter by Location</Accordion.Header>
                     <Accordion.Body>
                         <div className='filter-input'>
-                            <div className='filter-input pb-3'> <input className='checkbox-filter ' type="checkbox" /><span className='ms-3 align-items-center'>Jagarta</span></div>
-                            <div className='filter-input pb-3'><input className='checkbox-filter' type="checkbox" /><span className='ms-3'>Yogyakarta</span></div>
-                            <div className='filter-input pb-3'><input className='checkbox-filter' type="checkbox" /><span className='ms-3'>Bandung</span></div>
-                            <div className='filter-input pb-3'><input className='checkbox-filter' type="checkbox" /><span className='ms-3'>Semarang</span></div>
-                            <div className='filter-input pb-3'><input className='checkbox-filter' type="checkbox" /><span className='ms-3'>Sarabaya</span></div>
+                            {locations.map((location) => (
+                                <div className='filter-input pb-3' key={location}>
+                                    <input className='checkbox-filter' type="checkbox" checked={!!checkedLocations[location]}
+                                        onChange={() => handleCheckboxChange(location)}
+                                    />
+                                    <span className='ms-3' style={{ color: checkedLocations[location] ? ' rgb(136, 60, 249)' : 'black' }}>
+                                        {location}
+                                    </span>
+                                </div>
+                            ))}
                         </div>
                     </Accordion.Body>
                 </Accordion.Item>
@@ -86,7 +105,9 @@ function MobileSliderFilter() {
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
-            <div className='filter-button-div'><button className='filter-button btn'>Filter</button></div>
+            <div className='filter-button-div'>
+                <button onClick={handleSubmitFilter()} className='filter-button btn'>Filter</button>
+                </div>
             <p className='filter-EndPara'>Lorem ipsum</p>
         </>
     )
