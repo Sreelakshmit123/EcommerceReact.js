@@ -11,7 +11,7 @@ function Header() {
             {/* Navbar */}
             <Navbar collapseOnSelect expand="lg">
 
-                <Navbar.Brand className='home fw-bold' href="#home"><b>EBrands</b></Navbar.Brand>
+                <Navbar.Brand className='brandname fw-bold' href="#home"><b>EBrands</b></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="navsection  me-auto ">
@@ -44,19 +44,17 @@ function Header() {
             </Navbar>
             {/* search bar */}
 
-            <div className='row'>
-                <div className='search-wrapper col-lg-6'>
+            <div className='searchbarSection '>
+                <div className='search-wrapper '>
                     <FaSearch id="search-icon" />
                     <input
                         type="text"
                         placeholder="Search"
                         className="searchbar mr-sm-2" />
                 </div>
-                <div className="desginbox col-lg-1">
-                </div>
-                <div className="desginbox1 col-lg-1">
-                </div>
-                <div className="col-lg-4"></div>
+                <button className='navbarbtns btn'><i className="fontBtnPopular fa-solid fa-fire me-2"></i> Most Popular</button>
+                <button className='navbarbtns btn'><i class="fontBtnfilter fa-solid fa-sliders me-2"></i> Filters</button>
+
             </div>
 
             {/* category button */}

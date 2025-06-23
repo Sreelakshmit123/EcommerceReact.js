@@ -6,7 +6,14 @@ import MobileSliderFilter from './MobileSliderFilter'
 import FavoriteBrands from './FavoriteBrands'
 import RelatedProducts from './RelatedProducts'
 function MobileTablet() {
-    
+    const [filters, setFilters] = useState({
+        priceRange: [0, 2000],
+        locations: []
+    });
+
+    const handleApplyFilter = (priceRange, locations) => {
+        setFilters({ priceRange, locations });
+    };
     return (
         <>
             <div className='container-fluid' id='Container'>
@@ -14,16 +21,16 @@ function MobileTablet() {
                 {/* side categories || side bar*/}
                 <div className="row mobile-tablet">
                     <div className="sidebar-categories col-lg-2">
-                        <MobileSliderFilter/>
+                        <MobileSliderFilter onApplyFilter={handleApplyFilter} />
                     </div>
                     <div className="col-lg-10">
-                      <MobileProductCard/>
+                        <MobileProductCard  filters={filters}/>
                     </div>
                 </div>
-                <FavoriteBrands/>
-                <RelatedProducts/>
+                <FavoriteBrands />
+                <RelatedProducts />
             </div>
-            <Footer/>
+            <Footer />
         </>
     )
 }

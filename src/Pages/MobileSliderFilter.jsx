@@ -3,10 +3,12 @@ import { Accordion } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import PriceFilter from './PriceFilter'
 
-function MobileSliderFilter() {
+function MobileSliderFilter({ onApplyFilter }) {
 
+    const [values, setValues] = useState([0, 2000])
     const locations = ['Jagarta', 'Yogyakarta', 'Bandung', 'Semarang', 'Sarabaya'];
     const [checkedLocations, setCheckedLocations] = useState({});
+
 
     const handleCheckboxChange = (location) => {
         setCheckedLocations((prev) => ({
@@ -15,8 +17,15 @@ function MobileSliderFilter() {
         }));
     }
 
-    const handleSubmitFilter = () =>{
-        
+    const handleSubmitFilter = () => {
+        const selectedLocations = Object.keys(checkedLocations).filter(loc => checkedLocations[loc]);
+        onApplyFilter(values, selectedLocations);
+    }
+    const handleResetFilter = () => {
+        const resetValues = [0,2000];
+        setCheckedLocations({});
+        setValues(resetValues);
+        onApplyFilter(resetValues,[]);
     }
     return (
         <>
@@ -43,7 +52,7 @@ function MobileSliderFilter() {
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>Filter by Price</Accordion.Header>
                     <Accordion.Body>
-                        <PriceFilter />
+                        <PriceFilter values={values} setValues={setValues} />
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
@@ -106,9 +115,11 @@ function MobileSliderFilter() {
                 </Accordion.Item>
             </Accordion>
             <div className='filter-button-div'>
-                <button onClick={handleSubmitFilter()} className='filter-button btn'>Filter</button>
-                </div>
-            <p className='filter-EndPara'>Lorem ipsum</p>
+                <button className='filter-button btn' onClick={handleSubmitFilter}>Filter</button>
+            </div>
+            <div className='filter-button-div'>
+                <button className='reset-button btn mt-3' onClick={handleResetFilter}>Reset Filter</button>
+            </div>
         </>
     )
 }

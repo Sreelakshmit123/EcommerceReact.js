@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { getTrackBackground, Range } from 'react-range';
 
 
 function PriceFilter({
     min = 0,
     max = 2000,
-    step = 100
+    step = 100,
+    values,
+    setValues
 }) {
-    const [values, setValues] = useState([min, max]);
 
 
     const handleSelect = (index, e) => {
@@ -76,7 +77,7 @@ function PriceFilter({
                                 backgroundColor: "rgb(207, 2, 200)",
                                 border: '1px soild',
                                 borderRadius: '50%',
-                                cursor:'pointer'
+                                cursor: 'pointer'
                             }}
                         />
                     )}

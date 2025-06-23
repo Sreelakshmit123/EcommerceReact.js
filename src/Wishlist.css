@@ -1,0 +1,66 @@
+.selectAllOption {
+    display: flex;
+    border: 1px solid;
+    border-color: gainsboro;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    margin-top: 30px;
+    height: fit-content;
+}
+
+.checkboxes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    word-wrap: break-word;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.checkbox-wishlist {
+
+    vertical-align: middle;
+    width: 16px;
+    height: 16px;
+    accent-color: rgb(136, 60, 249);
+}
+
+.wishlist-btns {
+    color: rgb(136, 60, 249) !important;
+    font-size: 13px;
+}
+
+.card {
+    margin-top: 40px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.card-image {
+    border: 1px solid;
+    border-radius: 10px;
+}
+
+.wishlistCard-Add-to-card {
+    border: 1px solid;
+    border-radius: 3px;
+    border-color: rgb(136, 60, 249);
+    color: white;
+    background-color: rgb(136, 60, 249);
+    padding: 7px 25px;
+}
+
+.discount-price {
+    font-size: 25px;
+}
+
+.wishlistRemove-button {
+    background: none;
+    border: none;
+    font-size: 13px;
+}
+
+.wishlist-icon {
+    color: rgb(4, 4, 124);
+}
