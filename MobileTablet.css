@@ -42,7 +42,6 @@
 .mobiletablet-wishlist {
     border: 1px solid;
     border-radius: 30px;
-    border-color: black;
     color: rgb(255, 255, 255);
     background-color: black;
     margin-right: 85px;
@@ -53,9 +52,6 @@
 
 }
 
-.mobiletablet-wishlist:hover {
-    border-color: black;
-}
 
 .mobiletablet-productname {
     display: flex;
@@ -79,6 +75,7 @@
     height: fit-content;
     margin-left: 10px;
     margin-bottom: 35px;
+    margin-top: 0px !important;
 
 }
 

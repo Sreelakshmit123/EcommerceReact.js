@@ -40,6 +40,12 @@
 .card-image {
     border: 1px solid;
     border-radius: 10px;
+    /* max-width: 200px; */
+}
+
+.text-end {
+    margin-right: 22px;
+    margin-bottom: -80px;
 }
 
 .wishlistCard-Add-to-card {
@@ -52,7 +58,8 @@
 }
 
 .discount-price {
-    font-size: 25px;
+    font-size: 29px;
+    margin-right: 10px;
 }
 
 .wishlistRemove-button {
@@ -63,4 +70,19 @@
 
 .wishlist-icon {
     color: rgb(4, 4, 124);
+}
+
+.original-price {
+    color: rgb(162, 162, 162);
+}
+
+/* mobile view */
+
+
+
+@media (max-width: 768px) {
+    .text-end {
+        margin-right: 0px;
+        margin-bottom: 0px;
+    }
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
@@ -6,6 +6,26 @@ import { NavDropdown } from 'react-bootstrap';
 import WishlistCard from '../Pages/WishlistCard';
 
 function Wishlist() {
+    const [wishlistedItems, setWishlistedItems] = useState([]);
+
+    useEffect(() => {
+        const stored = localStorage.getItem("wishlist")
+        if (stored) {
+            setWishlistedItems(JSON.parse(stored))
+        }
+    }, []);
+
+    const handleWishlistRemove = (id) =>{
+        const updated = wishlistedItems.filter(item => item.id !== id)
+        setWishlistedItems(updated)
+        localStorage.setItem("wishlist", JSON.stringify(updated)) 
+    }
+
+    const handleRemoveAll = () =>{
+        setWishlistedItems([]),
+        localStorage.setItem("wishlist", JSON.stringify([]))
+    }
+
     return (
         <>
             {/* Navbar */}
@@ -52,14 +72,20 @@ function Wishlist() {
 
                     <div className='col-lg-5 pt-2'>
                         <button className='btn wishlist-btns'>ADD TO CART(ALL)</button>
-                        <button className='btn wishlist-btns ms-5'>REMOVE ALL</button>
+                        <button onClick={handleRemoveAll} className='btn wishlist-btns ms-5'>REMOVE ALL</button>
                     </div>
                     <div className="col-lg-3"></div>
                 </div>
 
                 {/* wishlist cards */}
 
-               <WishlistCard/>
+                {wishlistedItems.length === 0 ? (
+                    <p className="text-center fs-1 text-danger mt-5">No items in wishlist.</p>
+                ) : (
+                    wishlistedItems.map(item => (
+                        <WishlistCard key={item.id} product={item} onClick={handleWishlistRemove}/>
+                    ))
+                )}
             </div>
         </>
 

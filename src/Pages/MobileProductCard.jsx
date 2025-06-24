@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Card, Col, Row } from 'react-bootstrap'
+import { Card, Col, Row } from 'react-bootstrap'
 import mobiletabletoneplus from "../assets/images/mobiletablet-oneplus.webp"
 import mobiletabletoneplus2 from "../assets/images/mobiletablet-oneplus2.webp"
 import mobiletabletoneplus3 from "../assets/images/mobiletablet-oneplus3.webp"
@@ -7,17 +7,26 @@ import mobiletabletoppo from "../assets/images/mobiletablet-oppo.png"
 import mobiletabletiphone from "../assets/images/mobiletablet-iphone.avif"
 
 
-function MobileProductCard({filters}) {
-   
+function MobileProductCard({ filters }) {
+
     const [mobileCategory, setmobileCategory] = useState([])
-    const [filteredProducts ,setfilteredProducts] = useState([])
+    const [filteredProducts, setfilteredProducts] = useState([])
+
+    const [wishlist, setWishlist] = useState(() => {
+        try {
+            const stored = JSON.parse(localStorage.getItem("wishlist"));
+            return Array.isArray(stored) ? stored : [];
+        } catch (e) {
+            return [];
+        }
+    });
     useEffect(() => {
         const CategoryItems = [
             {
                 id: 1,
                 title: "Apple Headphone max",
                 price: "$175.00",
-                location:"Jagarta",
+                location: "Jagarta",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus,
             },
@@ -25,7 +34,7 @@ function MobileProductCard({filters}) {
                 id: 2,
                 title: "Apple Headphone max",
                 price: "$175.00",
-                location:"Yogyakarta",
+                location: "Yogyakarta",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoppo,
             },
@@ -33,7 +42,7 @@ function MobileProductCard({filters}) {
                 id: 3,
                 title: "Apple Headphone max",
                 price: "$175.00",
-                location:"Bandung",
+                location: "Bandung",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletiphone,
             },
@@ -41,7 +50,7 @@ function MobileProductCard({filters}) {
                 id: 4,
                 title: "Apple Headphone max",
                 price: "$175.00",
-                location:"Semarang",
+                location: "Semarang",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus3,
             },
@@ -49,7 +58,7 @@ function MobileProductCard({filters}) {
                 id: 5,
                 title: "Apple Headphone max",
                 price: "$175.00",
-                location:"Sarabaya",
+                location: "Sarabaya",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus2,
             },
@@ -57,7 +66,7 @@ function MobileProductCard({filters}) {
                 id: 6,
                 title: "Apple Headphone max",
                 price: "$175.00",
-                location:'Sarabaya',
+                location: 'Sarabaya',
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus3,
             },
@@ -65,7 +74,7 @@ function MobileProductCard({filters}) {
                 id: 7,
                 title: "Apple Headphone max",
                 price: "$175.00",
-                location:"Jagarta",
+                location: "Jagarta",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletiphone,
             },
@@ -73,7 +82,7 @@ function MobileProductCard({filters}) {
                 id: 8,
                 title: "Apple Headphone max",
                 price: "$175.00",
-                location:"Yogyakarta",
+                location: "Yogyakarta",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus,
             },
@@ -81,7 +90,7 @@ function MobileProductCard({filters}) {
                 id: 9,
                 title: "Apple Headphone max",
                 price: "$175.00",
-                location:'Bandung',
+                location: 'Bandung',
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus3,
             },
@@ -89,7 +98,7 @@ function MobileProductCard({filters}) {
                 id: 10,
                 title: "Apple Headphone max",
                 price: "$175.00",
-                location:'Semarang',
+                location: 'Semarang',
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus2,
             },
@@ -97,7 +106,7 @@ function MobileProductCard({filters}) {
                 id: 11,
                 title: "Apple Headphone max",
                 price: "$175.00",
-                location:'Bandung',
+                location: 'Bandung',
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoppo,
             },
@@ -105,7 +114,7 @@ function MobileProductCard({filters}) {
                 id: 12,
                 title: "Apple Headphone max",
                 price: "$175.00",
-                location:"Jagarta",
+                location: "Jagarta",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletiphone,
             },
@@ -113,14 +122,14 @@ function MobileProductCard({filters}) {
                 id: 13,
                 title: "Apple Headphone max",
                 price: "$175.00",
-                location:"Yogyakarta",
+                location: "Yogyakarta",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus3,
             }, {
                 id: 14,
                 title: "Apple Headphone max",
                 price: "$575.00",
-                location:"Bandung",
+                location: "Bandung",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus,
             },
@@ -128,7 +137,7 @@ function MobileProductCard({filters}) {
                 id: 15,
                 title: "Apple Headphone max",
                 price: "$975.00",
-                location:"Semarang",
+                location: "Semarang",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus2,
             },
@@ -136,7 +145,7 @@ function MobileProductCard({filters}) {
                 id: 16,
                 title: "Apple Headphone max",
                 price: "$175.00",
-                location:"Sarabaya",
+                location: "Sarabaya",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletiphone,
             },
@@ -146,8 +155,8 @@ function MobileProductCard({filters}) {
         setmobileCategory(CategoryItems)
     }, [])
 
-       useEffect(() => {
-        const [min, max] = filters?.priceRange || [0,2000];
+    useEffect(() => {
+        const [min, max] = filters?.priceRange || [0, 2000];
         const hasLocationFilter = filters.locations && filters.locations.length > 0;
 
         const result = mobileCategory.filter(item => {
@@ -161,8 +170,17 @@ function MobileProductCard({filters}) {
     }, [filters, mobileCategory]);
 
 
-    const handleWishlistClick = () =>{
-        
+    const handleWishlistClick = (product) => {
+        const inWishlist = wishlist.find(item => item.id === product.id)
+        let updated;
+
+        if (inWishlist) {
+            updated = wishlist.filter(item => item.id !== product.id)
+        } else {
+            updated = [...wishlist, product]
+        }
+        setWishlist(updated)
+        localStorage.setItem("wishlist", JSON.stringify(updated))
     }
     return (
         <>
@@ -173,7 +191,7 @@ function MobileProductCard({filters}) {
                             <Card className='mobiletablet-card'>
                                 <div className='image-wishlist'>
                                     <Card.Img className='mobiletablet-image' variant="top" src={item.image} />
-                                    <button onClick={handleWishlistClick} className='mobiletablet-wishlist btn '><i class="fa-solid fa-heart"></i></button>
+                                    <button onClick={() => handleWishlistClick(item)} className={`mobiletablet-wishlist btn ${wishlist.find(wishlist => wishlist.id === item.id) ? 'bg-danger' : 'bg-dark'}`}><i className={`fa-solid fa-heart text-light`}></i></button>
                                 </div>
                                 <Card.Body>
                                     <div className="mobiletablet-productname">
