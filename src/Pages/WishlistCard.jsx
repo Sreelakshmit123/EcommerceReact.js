@@ -1,8 +1,9 @@
 import React from 'react';
 import { Card, Row, Col } from 'react-bootstrap';
 
-function WishlistCard({product, onClick, checked , checkBoxChange}) {
-
+function WishlistCard({product, onClick}) {
+    
+    console.log("data",product)
 
     return (
         <>
@@ -11,7 +12,7 @@ function WishlistCard({product, onClick, checked , checkBoxChange}) {
                 <Card.Body>
                     <Row className="align-items-center wishlist-row">
                         <Col xs="auto">
-                            <input type="checkbox" className='checkbox-wishlist' checked={checked} onClick={()=> checkBoxChange(product.id)}  />
+                            <input type="checkbox" className='checkbox-wishlist'   />
                         </Col>
                         <Col xs={5} lg={2} >
                             <img src={product.image} alt="" className="card-image img-fluid" />
@@ -38,7 +39,7 @@ function WishlistCard({product, onClick, checked , checkBoxChange}) {
                             <div className="text-muted">
                                 <del className='original-price'>{product.price}</del>
                             </div>
-                            <div className="discount-price fw-bold text-success">$165</div>
+                            <div className="discount-price fw-bold text-success">{product.discountPrice}</div>
                             <button onClick={()=> onClick(product.id)} className='btn wishlistRemove-button'>
                                 <i class="wishlist-icon fa-solid fa-heart me-1"></i>  Remove from Wishlist
                             </button>

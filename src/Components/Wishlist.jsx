@@ -8,6 +8,7 @@ import WishlistCard from '../Pages/WishlistCard';
 function Wishlist() {
     const [wishlistedItems, setWishlistedItems] = useState([]);
 
+
     useEffect(() => {
         const stored = localStorage.getItem("wishlist")
         if (stored) {
@@ -26,6 +27,7 @@ function Wishlist() {
         localStorage.setItem("wishlist", JSON.stringify([]))
     }
 
+    
     return (
         <>
             {/* Navbar */}
@@ -83,7 +85,7 @@ function Wishlist() {
                     <p className="text-center fs-1 text-danger mt-5">No items in wishlist.</p>
                 ) : (
                     wishlistedItems.map(item => (
-                        <WishlistCard key={item.id} product={item} onClick={handleWishlistRemove}/>
+                        <WishlistCard key={item.id} product={item} onClick={handleWishlistRemove} />
                     ))
                 )}
             </div>

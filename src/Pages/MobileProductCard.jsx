@@ -20,6 +20,7 @@ function MobileProductCard({ filters }) {
             return [];
         }
     });
+    
     useEffect(() => {
         const CategoryItems = [
             {
@@ -29,6 +30,7 @@ function MobileProductCard({ filters }) {
                 location: "Jagarta",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus,
+                discountPrice:"$165.00"
             },
             {
                 id: 2,
@@ -37,6 +39,7 @@ function MobileProductCard({ filters }) {
                 location: "Yogyakarta",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoppo,
+                discountPrice:"$165.00"
             },
             {
                 id: 3,
@@ -45,6 +48,8 @@ function MobileProductCard({ filters }) {
                 location: "Bandung",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletiphone,
+                discountPrice:"$165.00"
+
             },
             {
                 id: 4,
@@ -53,6 +58,7 @@ function MobileProductCard({ filters }) {
                 location: "Semarang",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus3,
+                discountPrice:"$165.00"
             },
             {
                 id: 5,
@@ -61,6 +67,7 @@ function MobileProductCard({ filters }) {
                 location: "Sarabaya",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus2,
+                discountPrice:"$165.00"
             },
             {
                 id: 6,
@@ -69,6 +76,7 @@ function MobileProductCard({ filters }) {
                 location: 'Sarabaya',
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus3,
+                discountPrice:"$165.00"
             },
             {
                 id: 7,
@@ -77,6 +85,7 @@ function MobileProductCard({ filters }) {
                 location: "Jagarta",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletiphone,
+                discountPrice:"$165.00"
             },
             {
                 id: 8,
@@ -85,6 +94,7 @@ function MobileProductCard({ filters }) {
                 location: "Yogyakarta",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus,
+                discountPrice:"$165.00"
             },
             {
                 id: 9,
@@ -93,6 +103,7 @@ function MobileProductCard({ filters }) {
                 location: 'Bandung',
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus3,
+                discountPrice:"$165.00"
             },
             {
                 id: 10,
@@ -101,6 +112,7 @@ function MobileProductCard({ filters }) {
                 location: 'Semarang',
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus2,
+                discountPrice:"$165.00"
             },
             {
                 id: 11,
@@ -109,6 +121,7 @@ function MobileProductCard({ filters }) {
                 location: 'Bandung',
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoppo,
+                discountPrice:"$165.00"
             },
             {
                 id: 12,
@@ -117,6 +130,7 @@ function MobileProductCard({ filters }) {
                 location: "Jagarta",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletiphone,
+                discountPrice:"$165.00"
             },
             {
                 id: 13,
@@ -125,13 +139,16 @@ function MobileProductCard({ filters }) {
                 location: "Yogyakarta",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus3,
-            }, {
+                discountPrice:"$165.00"
+            }, 
+            {
                 id: 14,
                 title: "Apple Headphone max",
                 price: "$575.00",
                 location: "Bandung",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus,
+                discountPrice:"$165.00"
             },
             {
                 id: 15,
@@ -140,6 +157,7 @@ function MobileProductCard({ filters }) {
                 location: "Semarang",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus2,
+                discountPrice:"$165.00"
             },
             {
                 id: 16,
@@ -148,6 +166,7 @@ function MobileProductCard({ filters }) {
                 location: "Sarabaya",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletiphone,
+                discountPrice:"$165.00"
             },
 
         ]
