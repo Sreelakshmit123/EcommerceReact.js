@@ -5,6 +5,7 @@ import mobiletabletoneplus2 from "../assets/images/mobiletablet-oneplus2.webp"
 import mobiletabletoneplus3 from "../assets/images/mobiletablet-oneplus3.webp"
 import mobiletabletoppo from "../assets/images/mobiletablet-oppo.png"
 import mobiletabletiphone from "../assets/images/mobiletablet-iphone.avif"
+import { ToastContainer, toast } from 'react-toastify';
 
 
 function MobileProductCard({ filters }) {
@@ -14,13 +15,16 @@ function MobileProductCard({ filters }) {
 
     const [wishlist, setWishlist] = useState(() => {
         try {
-            const stored = JSON.parse(localStorage.getItem("wishlist"));
-            return Array.isArray(stored) ? stored : [];
+            const stored = JSON.parse(localStorage.getItem("wishlist"))
+            return Array.isArray(stored) ? stored : []
         } catch (e) {
-            return [];
+            return []
         }
-    });
-    
+    })
+    const [cart, setCart] = useState(() => {
+        const stored = JSON.parse(localStorage.getItem("cart"))
+        return Array.isArray(stored) ? stored : []
+    })
     useEffect(() => {
         const CategoryItems = [
             {
@@ -30,7 +34,7 @@ function MobileProductCard({ filters }) {
                 location: "Jagarta",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus,
-                discountPrice:"$165.00"
+                discountPrice: "$165.00"
             },
             {
                 id: 2,
@@ -39,7 +43,7 @@ function MobileProductCard({ filters }) {
                 location: "Yogyakarta",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoppo,
-                discountPrice:"$165.00"
+                discountPrice: "$165.00"
             },
             {
                 id: 3,
@@ -48,7 +52,7 @@ function MobileProductCard({ filters }) {
                 location: "Bandung",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletiphone,
-                discountPrice:"$165.00"
+                discountPrice: "$165.00"
 
             },
             {
@@ -58,7 +62,7 @@ function MobileProductCard({ filters }) {
                 location: "Semarang",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus3,
-                discountPrice:"$165.00"
+                discountPrice: "$165.00"
             },
             {
                 id: 5,
@@ -67,7 +71,7 @@ function MobileProductCard({ filters }) {
                 location: "Sarabaya",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus2,
-                discountPrice:"$165.00"
+                discountPrice: "$165.00"
             },
             {
                 id: 6,
@@ -76,7 +80,7 @@ function MobileProductCard({ filters }) {
                 location: 'Sarabaya',
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus3,
-                discountPrice:"$165.00"
+                discountPrice: "$165.00"
             },
             {
                 id: 7,
@@ -85,7 +89,7 @@ function MobileProductCard({ filters }) {
                 location: "Jagarta",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletiphone,
-                discountPrice:"$165.00"
+                discountPrice: "$165.00"
             },
             {
                 id: 8,
@@ -94,7 +98,7 @@ function MobileProductCard({ filters }) {
                 location: "Yogyakarta",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus,
-                discountPrice:"$165.00"
+                discountPrice: "$165.00"
             },
             {
                 id: 9,
@@ -103,7 +107,7 @@ function MobileProductCard({ filters }) {
                 location: 'Bandung',
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus3,
-                discountPrice:"$165.00"
+                discountPrice: "$165.00"
             },
             {
                 id: 10,
@@ -112,7 +116,7 @@ function MobileProductCard({ filters }) {
                 location: 'Semarang',
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus2,
-                discountPrice:"$165.00"
+                discountPrice: "$165.00"
             },
             {
                 id: 11,
@@ -121,7 +125,7 @@ function MobileProductCard({ filters }) {
                 location: 'Bandung',
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoppo,
-                discountPrice:"$165.00"
+                discountPrice: "$165.00"
             },
             {
                 id: 12,
@@ -130,7 +134,7 @@ function MobileProductCard({ filters }) {
                 location: "Jagarta",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletiphone,
-                discountPrice:"$165.00"
+                discountPrice: "$165.00"
             },
             {
                 id: 13,
@@ -139,8 +143,8 @@ function MobileProductCard({ filters }) {
                 location: "Yogyakarta",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus3,
-                discountPrice:"$165.00"
-            }, 
+                discountPrice: "$165.00"
+            },
             {
                 id: 14,
                 title: "Apple Headphone max",
@@ -148,7 +152,7 @@ function MobileProductCard({ filters }) {
                 location: "Bandung",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus,
-                discountPrice:"$165.00"
+                discountPrice: "$165.00"
             },
             {
                 id: 15,
@@ -157,7 +161,7 @@ function MobileProductCard({ filters }) {
                 location: "Semarang",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletoneplus2,
-                discountPrice:"$165.00"
+                discountPrice: "$165.00"
             },
             {
                 id: 16,
@@ -166,7 +170,7 @@ function MobileProductCard({ filters }) {
                 location: "Sarabaya",
                 subTitle: "Lorem ipsum, dolor sit amet cdsatur adipisicing quis odio",
                 image: mobiletabletiphone,
-                discountPrice:"$165.00"
+                discountPrice: "$165.00"
             },
 
         ]
@@ -201,6 +205,20 @@ function MobileProductCard({ filters }) {
         setWishlist(updated)
         localStorage.setItem("wishlist", JSON.stringify(updated))
     }
+
+    const handleAddtocartClick = (product) => {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const alreadyInCart = cart.some(item => item.id === product.id);
+        if (alreadyInCart) {
+            toast.warning("Item is already in the cart.");
+            return;
+        }
+        const updated = [...cart, product];
+        setCart(updated)
+        localStorage.setItem("cart", JSON.stringify(updated));
+    };
+    console.log("cart", cart);
+
     return (
         <>
             <Row id='style-3' className='overflow-content'>
@@ -222,13 +240,14 @@ function MobileProductCard({ filters }) {
                                         <i class="fa-solid fa-star me-1"></i><i class="fa-solid fa-star me-1"></i><i class="fa-solid fa-star me-1"></i><i class="fa-solid fa-star me-1"></i><i class="fa-solid fa-star me-1"></i>
                                         <span className='text-dark'> (121)</span>
                                     </p>
-                                    <button className='mobiletablet-btn btn btn-outline-dark'><i class="fa-solid fa-cart-shopping"></i> Add to Cart</button>
+                                    <button onClick={() => handleAddtocartClick(item)} className='mobiletablet-btn btn btn-outline-dark'><i class="fa-solid fa-cart-shopping"></i> Add to Cart</button>
                                 </Card.Body>
                             </Card>
                         </Col>
                     )
                 })}
             </Row>
+            <ToastContainer />
         </>
     )
 }

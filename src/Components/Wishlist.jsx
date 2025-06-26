@@ -66,7 +66,7 @@ function Wishlist() {
                 </Navbar>
 
                 {/* whishlist */}
-                <div className='selectAllOption row'>
+                <div className='row selectAllOption'>
                     <div className='col-lg-4 checkboxes '>
                         <label for="checkbox1" class="checkboxes gap-3 "><input type="checkbox" id="checkbox1" name="checked" value="yes" class="checkbox-wishlist" />
                             Select All</label>
@@ -74,7 +74,7 @@ function Wishlist() {
 
                     <div className='col-lg-5 pt-2'>
                         <button className='btn wishlist-btns'>ADD TO CART(ALL)</button>
-                        <button onClick={handleRemoveAll} className='btn wishlist-btns ms-5'>REMOVE ALL</button>
+                        <button onClick={handleRemoveAll} className='btn wishlist-btns ms-5 '>REMOVE ALL</button>
                     </div>
                     <div className="col-lg-3"></div>
                 </div>
