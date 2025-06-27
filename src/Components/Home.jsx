@@ -1,5 +1,5 @@
 import React from 'react'
-import landingImage from '../assets/images/landingImg-music-headphone.png'
+import landingImage from '../assets/images/landingImg.png'
 import DealsOfTheWeek from './DealsOfTheWeek';
 import DealsOfTheDay from './DealsOfTheDay';
 import PopularItems from './PopularItems';
