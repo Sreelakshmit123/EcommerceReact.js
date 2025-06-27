@@ -8,11 +8,7 @@ import Footer from './Footer';
 function ProductView() {
 
     const [count , setCount] = useState(1)
-    const [cart, setCart] = useState(() => {
-        const stored = JSON.parse(localStorage.getItem("cart"))
-        return Array.isArray(stored) ? stored : []
-    })
-
+ 
     const handleIncrement = () => {
         setCount(prev => prev + 1)
     }
@@ -21,19 +17,6 @@ function ProductView() {
             setCount(prev => prev - 1)
         }
     }
-    const handleAddtocartClick = (product) => {
-        const cart = JSON.parse(localStorage.getItem("cart")) || [];
-        const alreadyInCart = cart.some(item => item.id === product.id);
-        if (alreadyInCart) {
-            toast.warning("Item is already in the cart.");
-            return;
-        }
-        const updated = [...cart, product];
-        setCart(updated)
-        localStorage.setItem("cart", JSON.stringify(updated));
-    };
-    console.log("cart", cart);
-    
 
     return (
         <>
@@ -144,7 +127,7 @@ function ProductView() {
                                     <p className='amount fs-4 '>$3,200</p>
                                 </div>
 
-                                <button onClick={() => handleAddtocartClick(item)} className='add-to-cart-viewpage-btn btn '>Add to Cart <i class="fa-solid fa-arrow-right ps-2"></i></button>
+                                <button className='add-to-cart-viewpage-btn btn '>Add to Cart <i class="fa-solid fa-arrow-right ps-2"></i></button>
                                 <button className='shop-now-btn btn'>Shop Now <i class="fa-solid fa-arrow-right ps-2"></i></button>
                             </div>
                             <div className="price-section-2 ">
