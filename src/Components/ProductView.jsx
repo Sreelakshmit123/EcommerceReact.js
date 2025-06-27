@@ -7,8 +7,6 @@ import Footer from './Footer';
 
 function ProductView() {
 
-  
-
     return (
         <>
             <div className='container-fluid' id='Container'>
@@ -126,7 +124,7 @@ function ProductView() {
                                     <p className='pt-2 pe-2'>Quantity </p>
                                     <div className='d-flex mt-2'>
                                         <button  className='decrese-btn btn fw-bolder '><i class="fa-solid fa-minus"></i></button>
-                                        <input className='quantity-form form-control' type="text" value="" readOnly />
+                                        <input className='quantity-form form-control' type="text" value="1" readOnly />
                                         <button  className='increse-btn btn fw-bolder '><i class="fa-solid fa-plus"></i></button>
                                     </div>
 
