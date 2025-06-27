@@ -6,7 +6,7 @@ import SimilarProducts from '../Pages/SimilarProducts';
 import Footer from './Footer';
 
 function ProductView() {
-    
+
     const [count , setCount] = useState(1)
     const [cart, setCart] = useState(() => {
         const stored = JSON.parse(localStorage.getItem("cart"))
@@ -33,6 +33,7 @@ function ProductView() {
         localStorage.setItem("cart", JSON.stringify(updated));
     };
     console.log("cart", cart);
+    
 
     return (
         <>
