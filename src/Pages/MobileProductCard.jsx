@@ -6,6 +6,7 @@ import mobiletabletoneplus3 from "../assets/images/mobiletablet-oneplus3.webp"
 import mobiletabletoppo from "../assets/images/mobiletablet-oppo.png"
 import mobiletabletiphone from "../assets/images/mobiletablet-iphone.avif"
 import { ToastContainer, toast } from 'react-toastify';
+import { Link } from 'react-router-dom'
 
 
 function MobileProductCard({ filters }) {
@@ -227,7 +228,7 @@ function MobileProductCard({ filters }) {
                         <Col xs={12} sm={6} md={5} lg={3} key={item.id}>
                             <Card className='mobiletablet-card'>
                                 <div className='image-wishlist'>
-                                    <Card.Img className='mobiletablet-image' variant="top" src={item.image} />
+                                    <Link to={'/product-view'}><Card.Img className='mobiletablet-image' variant="top" src={item.image} /></Link>
                                     <button onClick={() => handleWishlistClick(item)} className={`mobiletablet-wishlist btn ${wishlist.find(wishlist => wishlist.id === item.id) ? 'bg-danger' : 'bg-dark'}`}><i className={`fa-solid fa-heart text-light`}></i></button>
                                 </div>
                                 <Card.Body>

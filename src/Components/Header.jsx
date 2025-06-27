@@ -10,8 +10,7 @@ function Header() {
         <>
             {/* Navbar */}
             <Navbar collapseOnSelect expand="lg">
-
-                <Navbar.Brand className='brandname fw-bold' href="#home"><b>EBrands</b></Navbar.Brand>
+             <Navbar.Brand className='brandname fw-bold' href="#home"><b>EBrands</b></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="navsection  me-auto ">

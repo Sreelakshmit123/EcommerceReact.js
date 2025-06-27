@@ -7,7 +7,7 @@ import Footer from './Footer';
 
 
 function AddToCart() {
-    const [count, setCount] = useState("0")
+    const [count, setCount] = useState(1)
     const [cartItems, setCartItems] = useState([]);
     const [showNote, setshowNote] = useState(false);
     const [note, setNote] = useState('');
@@ -33,7 +33,7 @@ function AddToCart() {
     const handleIncrement = () => {
         setCount(prev => prev + 1)
     }
-    const handleDecrement = (product) => {
+    const handleDecrement = () => {
         if (count > 1) {
            setCount(prev => prev - 1)
         }
@@ -85,8 +85,9 @@ function AddToCart() {
                             </div>
 
                             <div className='col-lg-6 pt-2'>
-                                <button className='btn wishlist-btns'>SAVE FOR LATER</button>
-
+                               <Link to={'/wishlist'}>
+                                    <button className='btn wishlist-btns'>SAVE FOR LATER</button>
+                               </Link>
                                 <button onClick={handleRemoveAll} className='btn wishlist-btns'>REMOVE</button>
                             </div>
                             <div className="col-lg-2"></div>
@@ -122,9 +123,9 @@ function AddToCart() {
                                                 </div>
                                                 <div className="d-flex justify-content-end gap-3 fw-bold text-success">
                                                     <div className='d-flex count-cart'>
-                                                        <button onClick={()=>handleDecrement(item)} className='btn decrement-btn fw-bolder'><i class="decrement-btn fa-solid fa-minus"></i></button>
+                                                        <button onClick={handleDecrement} className='btn decrement-btn fw-bolder'><i class="decrement-btn fa-solid fa-minus"></i></button>
                                                         <input className='form-control' type="text" value={count} readOnly />
-                                                        <button onClick={()=>handleIncrement(item)} className='btn increment-btn fw-bolder'><i class="increment-btn fa-solid fa-plus"></i></button>
+                                                        <button onClick={handleIncrement} className='btn increment-btn fw-bolder'><i class="increment-btn fa-solid fa-plus"></i></button>
                                                     </div>
                                                     <button onClick={() => handleCartRemove(item.id)} className='btn delete-btn'><i class="fa-solid fa-trash"></i></button>
                                                     <Link to={'/wishlist'} className='continueShopping'> <button className='btn wishlist-btn'><i class="fa-solid fa-heart"></i></button></Link>
@@ -147,7 +148,7 @@ function AddToCart() {
                                     </Col>
                                 </Row>
                                 <div className='d-flex justify-content-between p-2'>
-                                    <p>Total</p>
+                                    <p className='total'>Total</p>
                                     <p>$568.00</p>
                                 </div>
                                 <Link to={''} className='continueShopping'>

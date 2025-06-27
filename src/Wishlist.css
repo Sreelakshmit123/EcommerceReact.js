@@ -76,6 +76,15 @@
     color: rgb(162, 162, 162);
 }
 
+.sub-title{
+    font-size: 13px;
+    font-weight: 500;
+}
+.review-span{
+    font-size: 14px;  
+    font-weight: 500;
+}
+
 /* mobile view */
 
 

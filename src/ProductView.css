@@ -1,0 +1,318 @@
+.details-btn {
+    border: 1px soild;
+    border-color: black;
+    border-radius: 15px;
+    font-size: 12px;
+}
+
+.product-flex {
+    font-weight: 600;
+    font-size: 15px;
+    color: rgb(141, 140, 140);
+}
+
+.product-ViewImg {
+    border: 1px solid;
+    border-color: black;
+    border-radius: 25px;
+    width: 100%;
+    height: auto;
+    padding-bottom: 40px;
+}
+
+.product-subImg {
+    width: 120px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.productview-title {
+    font-weight: bolder;
+}
+
+.stock {
+    color: rgb(0, 255, 13);
+}
+
+.rating {
+    font-size: 13px;
+}
+
+.rating-color {
+    color: rgb(255, 208, 0);
+}
+
+.product-shortnote {
+    font-weight: 500;
+    min-width: none;
+    max-width: 480px;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    background: none !important;
+    color: black !important;
+}
+
+.nav {
+    --bs-nav-link-color: var(--bs-body-color);
+    --bs-nav-link-hover-color: var(--bs-body-color);
+}
+
+.product-view-details {
+    padding-left: 45px;
+}
+
+.description-heading {
+    border-bottom: 1px solid;
+    border-radius: 0% !important;
+}
+
+.description {
+    font-weight: 500;
+    min-width: none;
+    max-width: 480px;
+}
+
+.list-of-description {
+    font-weight: 500;
+    min-width: none;
+    max-width: 480px;
+}
+
+.specification-heading:hover {
+    border-bottom: 1px solid;
+    border-radius: 0% !important;
+}
+
+.addi-info {
+    font-weight: 500;
+}
+
+/* .border-color-1{
+    color:  rgb(119, 81, 81);
+       border: 1px solid;
+    border-radius: 250px;
+    width: 37px;
+    height:37px;
+    padding-top: 2.5px;
+    padding-left: 3px;
+    border-color:rgb(119, 81, 81);
+} */
+.color-1 {
+    color: rgb(119, 81, 81);
+    background-color: rgb(119, 81, 81);
+    border: 1px solid;
+    border-radius: 250px;
+    width: 30px;
+    height: 30px;
+}
+
+/* .border-color-2{
+    color:  rgb(119, 81, 81);
+       border: 1px solid;
+    border-radius: 250px;
+    width: 37px;
+    height:37px;
+    padding-top: 2.5px;
+    padding-left: 3px;
+    border-color:rgb(119, 81, 81);
+} */
+.color-2 {
+    color: rgb(70, 113, 123);
+    background-color: rgb(70, 113, 123);
+    border: 1px solid;
+    border-radius: 250px;
+    width: 30px;
+    height: 30px;
+}
+
+/* .border-color-3{
+    color:  rgb(119, 81, 81);
+       border: 1px solid;
+    border-radius: 250px;
+    width: 37px;
+    height:37px;
+    padding-top: 2.5px;
+    padding-left: 3px;
+    border-color:rgb(119, 81, 81);
+} */
+.color-3 {
+    color: rgb(148, 147, 147);
+    background-color: rgb(148, 147, 147);
+    border: 1px solid;
+    border-radius: 250px;
+    width: 30px;
+    height: 30px;
+}
+
+.size-button {
+    color: rgb(0, 0, 0);
+    background-color: white;
+    border-radius: 5px;
+}
+
+.amount {
+    margin-bottom: 1px !important;
+}
+
+.add-to-cart-viewpage-btn {
+    border-radius: 25px;
+    font-weight: bold;
+    padding: 7px 55px;
+    margin-bottom: 15px;
+    background-color: rgb(133, 2, 255);
+    color: white;
+}
+
+.shop-now-btn {
+    border-radius: 25px;
+    font-weight: bold;
+    padding: 7px 55px;
+    margin-bottom: 15px;
+    background-color: rgb(133, 2, 255);
+    color: white;
+}
+
+.favourities {
+    border-radius: 25px;
+    font-weight: bold;
+    padding: 7px 45px;
+    margin-bottom: 15px;
+    background-color: rgb(245, 245, 245);
+}
+
+.price-section {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 20px;
+    display: block;
+}
+
+.price-section-1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.price-section-2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.share {
+    border-radius: 25px;
+    font-weight: bold;
+    padding: 7px 45px;
+    margin-bottom: 15px;
+    background-color: rgb(245, 245, 245);
+}
+
+.quantity {
+    border-radius: 25px;
+    font-weight: bold;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-right: 15px;
+    margin-bottom: 15px;
+    background-color: rgb(245, 245, 245);
+}
+
+.quantity-form {
+    background-color: rgb(245, 245, 245);
+    height: fit-content;
+    font-size: 12px;
+
+}
+
+.decrese-btn {
+    font-size: 10px;
+    height: fit-content;
+    background-color: rgb(215, 215, 215);
+}
+
+.increse-btn {
+    font-size: 10px;
+    height: fit-content;
+    background-color: rgb(133, 2, 255);
+    color: white;
+}
+
+.faq-head {
+    color: rgb(0, 155, 216);
+    font-weight: bolder;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.faq-sub-title {
+    text-align: center;
+    font-weight: 500;
+}
+
+.accordion-body {
+    padding: 2% 0% !important;
+}
+
+.faq-answers {
+    max-width: 700px;
+    width: auto;
+}
+
+.accordion-button:not(.collapsed) {
+    color: black !important;
+}
+
+.accordion-button {
+    font-size: 17px !important;
+}
+
+.active-faq .accordion-button {
+    font-size: 30px !important;
+}
+
+@media (max-width: 768px) {
+
+    .price-section-1 {
+        display: block;
+    }
+
+    .price-section-2 {
+        display: block;
+    }
+
+    .add-to-cart-viewpage-btn {
+
+        padding: 12px 82px;
+
+    }
+
+    .shop-now-btn {
+        padding: 12px 87px;
+    }
+
+    .favourities {
+        padding: 12px 89px;
+
+    }
+
+    .share {
+        padding: 12px 106px;
+
+    }
+
+    .quantity {
+
+        padding-left: 42px;
+        padding-right: 0px;
+    }
+
+    .product-subImg {
+        width: 60px;
+        height: 50px;
+        cursor: pointer;
+        margin-bottom: 30px;
+    }
+   .product-view-details {
+    padding-left: 15px;
+}
+}

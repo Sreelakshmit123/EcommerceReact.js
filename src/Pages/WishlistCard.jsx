@@ -49,9 +49,9 @@ function WishlistCard({ product, onClick }) {
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
                             </small>
-                            <small className="text-muted ms-3">Review (12)</small>
+                            <span className="text-muted ms-3 review-span">Review (12)</span>
                             <h5 className='mt-3'>{product.title}</h5>
-                            <p className="text-muted mt-4">
+                            <p className="text-muted mt-4 sub-title">
                                 {product.subTitle}
                             </p>
                             <button onClick={() => handleAddtocartClick(product)} className='wishlistCard-Add-to-card mt-3' size="sm" >
