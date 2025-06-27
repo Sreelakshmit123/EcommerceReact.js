@@ -7,16 +7,7 @@ import Footer from './Footer';
 
 function ProductView() {
 
-    const [count , setCount] = useState(1)
- 
-    const handleIncrement = () => {
-        setCount(prev => prev + 1)
-    }
-    const handleDecrement = () => {
-        if (count > 1) {
-            setCount(prev => prev - 1)
-        }
-    }
+  
 
     return (
         <>
@@ -134,9 +125,9 @@ function ProductView() {
                                 <div className='quantity d-flex'>
                                     <p className='pt-2 pe-2'>Quantity </p>
                                     <div className='d-flex mt-2'>
-                                        <button onClick={handleDecrement} className='decrese-btn btn fw-bolder '><i class="fa-solid fa-minus"></i></button>
-                                        <input className='quantity-form form-control' type="text" value={count} readOnly />
-                                        <button onClick={handleIncrement} className='increse-btn btn fw-bolder '><i class="fa-solid fa-plus"></i></button>
+                                        <button  className='decrese-btn btn fw-bolder '><i class="fa-solid fa-minus"></i></button>
+                                        <input className='quantity-form form-control' type="text" value="" readOnly />
+                                        <button  className='increse-btn btn fw-bolder '><i class="fa-solid fa-plus"></i></button>
                                     </div>
 
                                 </div>
