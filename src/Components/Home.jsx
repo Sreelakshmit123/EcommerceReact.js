@@ -1,18 +1,18 @@
 import React from 'react'
 import landingImage from '../assets/images/landingImg.png'
-import DealsOfTheWeek from './DealsOfTheWeek';
-import DealsOfTheDay from './DealsOfTheDay';
-import PopularItems from './PopularItems';
-import SpotlightedItems from './SpotlightedItems';
-import { Link } from 'react-router-dom';
-import Footer from './Footer';
-import Header from './Header';
+import DealsOfTheWeek from './DealsOfTheWeek'
+import DealsOfTheDay from './DealsOfTheDay'
+import PopularItems from './PopularItems'
+import SpotlightedItems from './SpotlightedItems'
+import { Link } from 'react-router-dom'
+import Footer from './Footer'
+import Header from './Header'
 
 function Home() {
     return (
         <>
             <div className='container-fluid' id='Container'>
-                <Header/>
+                <Header />
                 {/* landing page */}
 
                 <div className="row mt-3">
@@ -26,7 +26,7 @@ function Home() {
                     </div>
                     <div className="circle-container col-lg-6 col-md-6 col-sm-12 position-relative d-flex justify-content-center">
                         <div className='circle-gradient'></div>
-                        <img className='landingImg' src={landingImage} alt="" />
+                        <img className='landingImg' src={landingImage} alt="landingImage" />
 
 
                         <div class="tag top-left">Get Up to 30% Off
@@ -39,6 +39,7 @@ function Home() {
                     </div>
                 </div>
 
+                {/* highlighted deals */}
 
                 <h1 className='Deals-of-week'>Highlighted Deals of the Week</h1>
                 <div className="row">
@@ -53,9 +54,9 @@ function Home() {
                         <SpotlightedItems />
                     </div>
                 </div>
-                {/* footer */}
-
             </div>
+            {/* footer */}
+
             <Footer />
         </>
     )

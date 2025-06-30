@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Card, Row, Col } from 'react-bootstrap';
 import { toast, ToastContainer } from 'react-toastify';
 

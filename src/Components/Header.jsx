@@ -10,7 +10,7 @@ function Header() {
         <>
             {/* Navbar */}
             <Navbar collapseOnSelect expand="lg">
-             <Navbar.Brand className='brandname fw-bold' href="#home"><b>EBrands</b></Navbar.Brand>
+                <Navbar.Brand className='brandname fw-bold' href="#home"><b>EBrands</b></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="navsection  me-auto ">
@@ -26,7 +26,6 @@ function Header() {
                             <NavDropdown.Item><Link to={"/gaming"} className='navsection-dropdown'>Gaming</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to={"/printer"} className='navsection-dropdown'>Printer</Link></NavDropdown.Item>
                             <NavDropdown.Item><Link to={"/accessories"} className='navsection-dropdown'>Accessories</Link></NavDropdown.Item>
-
                         </NavDropdown>
                         <Nav.Link><Link to={"/sale"} className='navsection'>Sale</Link></Nav.Link>
                         <Nav.Link><Link to={"/faq"} className='navsection'>FAQ</Link></Nav.Link>

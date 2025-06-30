@@ -30,15 +30,15 @@ function Footer() {
                 <footer className="footer">
                     <div className="footer-container container">
                         <div className="row">
-                            {/* Column 1 */}
+                            {/* Col 1 */}
                             <div className="col-lg-3 col-md-3 mb-4">
-                                <h5 className='brandname'>EBrands</h5>
+                                <Link className='brandname' to={'/'}><h5 className='brandname'>EBrands</h5></Link>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
                                 <p><Link to={"/"}><i className="fonticon me-2 fa-solid fa-phone"></i></Link> +1234567890</p>
                                 <p><Link to={"/"}><i className="fonticon me-2 fa-solid fa-envelope"></i></Link>lovia@support.com</p>
                             </div>
                             <div className="col-lg-2 col-md-2 mb-4"></div>
-                            {/* Column 2 */}
+                            {/* Col 2 */}
                             <div className="col-lg-2 col-md-2 mb-4">
                                 <h5>Company</h5>
                                 <ul className="list-unstyled">
@@ -50,7 +50,7 @@ function Footer() {
                                 </ul>
                             </div>
 
-                            {/* Column 3 */}
+                            {/* Col 3 */}
                             <div className="col-lg-2 col-md-2 mb-4">
                                 <h5>Information</h5>
                                 <ul className="list-unstyled">
@@ -61,7 +61,7 @@ function Footer() {
                                 </ul>
                             </div>
 
-                            {/* Column 4 */}
+                            {/* Col 4 */}
                             <div className="col-lg-2 col-md-2 mb-4">
                                 <h5>Follow Us</h5>
                                 <div className="socialMedia-icons">

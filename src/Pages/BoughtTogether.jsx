@@ -9,7 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 
-function RelatedProducts() {
+function BoughtTogether() {
     const sliderRef = useRef(null);
     const [relatedProduct, setrelatedProduct] = useState([])
     useEffect(() => {
@@ -72,7 +72,6 @@ function RelatedProducts() {
     };
     return (
         <>
-            <h4 className='related-products'><span>RELATED PRODUCTS</span></h4>
             <div className="relatedProduct-slider">
                 <Slider ref={sliderRef} {...settings} className='mb-5 '>
                     {relatedProduct.map((item, index) => {
@@ -97,5 +96,4 @@ function RelatedProducts() {
         </>
     )
 }
-
-export default RelatedProducts
+export default BoughtTogether

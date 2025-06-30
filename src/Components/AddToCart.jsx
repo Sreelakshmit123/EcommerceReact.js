@@ -9,8 +9,8 @@ import Footer from './Footer';
 function AddToCart() {
     const [count, setCount] = useState(1)
     const [cartItems, setCartItems] = useState([]);
-    const [showNote, setshowNote] = useState(false);
-    const [note, setNote] = useState('');
+    const [showNote, setshowNote] = useState({});
+    const [note, setNote] = useState({});
 
     useEffect(() => {
         const stored = localStorage.getItem("cart")
@@ -35,7 +35,7 @@ function AddToCart() {
     }
     const handleDecrement = () => {
         if (count > 1) {
-           setCount(prev => prev - 1)
+            setCount(prev => prev - 1)
         }
     }
     return (
@@ -85,9 +85,9 @@ function AddToCart() {
                             </div>
 
                             <div className='col-lg-6 pt-2'>
-                               <Link to={'/wishlist'}>
+                                <Link to={'/wishlist'}>
                                     <button className='btn wishlist-btns'>SAVE FOR LATER</button>
-                               </Link>
+                                </Link>
                                 <button onClick={handleRemoveAll} className='btn wishlist-btns'>REMOVE</button>
                             </div>
                             <div className="col-lg-2"></div>
@@ -109,13 +109,12 @@ function AddToCart() {
                                             <Col>
                                                 <h5>{item.title}</h5>
                                                 <h4 className='mt-3'>{item.discountPrice}</h4>
-                                                <button className="add-to-cart-btn mt-3" onClick={() => setshowNote(!showNote)}>
-                                                    {showNote ? 'Hide note' : '+ Add note'}
+                                                <button className="add-to-cart-btn mt-3" onClick={() =>
+                                                    setshowNote((prev) => ({ ...prev, [item.id]: !prev[item.id], }))}>{showNote[item.id] ? 'Hide note' : '+ Add note'}
                                                 </button>
 
-                                                {showNote && (
-                                                    <textarea placeholder="Write your note here..." value={note} onChange={(e) => setNote(e.target.value)} className="note-input" />
-                                                )}
+                                                {showNote[item.id] && (
+                                                    <textarea placeholder="Write your note here..." value={note[item.id] || ""} onChange={(e) => setNote((prev) => ({ ...prev, [item.id]: e.target.value, }))} className="note-input" />)}
                                             </Col>
                                             <Col className="cart-cardEnd text-end">
                                                 <div className="d-block">

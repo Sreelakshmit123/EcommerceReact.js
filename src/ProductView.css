@@ -21,9 +21,10 @@
 }
 
 .product-subImg {
-    width: 120px;
+    width: 110px;
     height: 100px;
     cursor: pointer;
+    border-radius: 0px;
 }
 
 .productview-title {
@@ -63,7 +64,7 @@
     padding-left: 45px;
 }
 
-.description-heading {
+.description-heading:active {
     border-bottom: 1px solid;
     border-radius: 0% !important;
 }
@@ -80,77 +81,20 @@
     max-width: 480px;
 }
 
-.specification-heading:hover {
+.specification-heading:active {
     border-bottom: 1px solid;
     border-radius: 0% !important;
+}
+
+.review-heading:active {
+    border-bottom: 1px solid;
+    border-radius: 0% !important
 }
 
 .addi-info {
     font-weight: 500;
 }
 
-/* .border-color-1{
-    color:  rgb(119, 81, 81);
-       border: 1px solid;
-    border-radius: 250px;
-    width: 37px;
-    height:37px;
-    padding-top: 2.5px;
-    padding-left: 3px;
-    border-color:rgb(119, 81, 81);
-} */
-.color-1 {
-    color: rgb(119, 81, 81);
-    background-color: rgb(119, 81, 81);
-    border: 1px solid;
-    border-radius: 250px;
-    width: 30px;
-    height: 30px;
-}
-
-/* .border-color-2{
-    color:  rgb(119, 81, 81);
-       border: 1px solid;
-    border-radius: 250px;
-    width: 37px;
-    height:37px;
-    padding-top: 2.5px;
-    padding-left: 3px;
-    border-color:rgb(119, 81, 81);
-} */
-.color-2 {
-    color: rgb(70, 113, 123);
-    background-color: rgb(70, 113, 123);
-    border: 1px solid;
-    border-radius: 250px;
-    width: 30px;
-    height: 30px;
-}
-
-/* .border-color-3{
-    color:  rgb(119, 81, 81);
-       border: 1px solid;
-    border-radius: 250px;
-    width: 37px;
-    height:37px;
-    padding-top: 2.5px;
-    padding-left: 3px;
-    border-color:rgb(119, 81, 81);
-} */
-.color-3 {
-    color: rgb(148, 147, 147);
-    background-color: rgb(148, 147, 147);
-    border: 1px solid;
-    border-radius: 250px;
-    width: 30px;
-    height: 30px;
-}
-
-.size-button {
-    color: rgb(0, 0, 0);
-    background-color: white;
-    border-radius: 5px;
-}
 
 .amount {
     margin-bottom: 1px !important;
@@ -208,12 +152,16 @@
 }
 
 .quantity {
+    border: none;
+    padding: 0px 20px;
+
     border-radius: 25px;
     font-weight: bold;
-    padding-left: 12px;
-    padding-right: 12px;
-    padding-right: 15px;
     margin-bottom: 15px;
+    background-color: rgb(245, 245, 245);
+}
+
+.quantity:hover {
     background-color: rgb(245, 245, 245);
 }
 
@@ -256,19 +204,102 @@
 .faq-answers {
     max-width: 700px;
     width: auto;
+    font-weight: 300;
 }
 
 .accordion-button:not(.collapsed) {
     color: black !important;
+    font-size: 30px !important;
+    font-weight: 600 !important;
 }
 
 .accordion-button {
-    font-size: 17px !important;
+    font-size: 16px !important;
 }
 
-.active-faq .accordion-button {
-    font-size: 30px !important;
+
+
+.product-id {
+    font-weight: 500;
+    font-size: 13px;
 }
+
+/* color picker*/
+
+.color-selector p {
+    font-weight: 500;
+}
+
+.color-options {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.color-circle {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-clip: content-box;
+    padding: 3px;
+    background-color: transparent;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.color-circle-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+
+.color-circle.selected {
+    border: 1px solid #141414;
+}
+
+
+/* size */
+
+.size-selector .label {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.size-options {
+    display: flex;
+    gap: 10px;
+}
+
+.size-box {
+    padding: 1px 7px;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    background-color: white;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s ease;
+    color: #333;
+}
+
+.size-box.active {
+    background-color: #7c3aed;
+    /* Purple fill */
+    color: white;
+    border-color: #7c3aed;
+}
+
+
+
+
+
+
+
+
+
+
+/* media qurey */
 
 @media (max-width: 768px) {
 
@@ -301,9 +332,7 @@
     }
 
     .quantity {
-
-        padding-left: 42px;
-        padding-right: 0px;
+        padding: 0px 45px;
     }
 
     .product-subImg {
@@ -312,7 +341,8 @@
         cursor: pointer;
         margin-bottom: 30px;
     }
-   .product-view-details {
-    padding-left: 15px;
-}
+
+    .product-view-details {
+        padding-left: 15px;
+    }
 }
