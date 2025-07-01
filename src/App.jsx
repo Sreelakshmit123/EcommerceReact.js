@@ -10,6 +10,8 @@ import '/MobileTablet.css'
 import './Wishlist.css'
 import './AddToCart.css'
 import './ProductView.css'
+import './PaymentDetailsPage.css'
+import PaymentDetailsPage from './Components/PaymentDetailsPage'
 
 function App() {
 
@@ -22,6 +24,7 @@ function App() {
         <Route path='/wishlist' element={<Wishlist />} />
         <Route path='/shoppingCart' element={<AddToCart />} />
         <Route path='/product-view' element={<ProductView />} />
+        <Route path='/payment-page' element={<PaymentDetailsPage/>} />
       </Routes>
     </>
   )

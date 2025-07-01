@@ -1,0 +1,336 @@
+.change-address {
+    color: white;
+    background-color: rgb(136, 60, 249);
+    padding-left: 47px;
+    padding-right: 47px;
+}
+
+.address-form {
+    display: flex;
+    justify-content: space-between;
+    border: 0px solid;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.recipient {
+    font-size: 19px;
+}
+
+.form-text {
+    border: 0px solid;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 13px;
+    border-radius: 13px;
+    width: 100%;
+}
+
+/* order summary */
+
+.order-summary {
+    max-width: 400px;
+    margin: auto;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    background-color: #fff;
+}
+
+.order-summary-title {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 17px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+    font-size: 13px;
+}
+
+.summary-item-text {
+    font-weight: 400;
+    font-size: 11px;
+
+}
+
+.horizontal-line {
+    border: none;
+    border-top: 2px solid rgb(252, 104, 247);
+    margin: 16px 0;
+}
+
+.coupon-font {
+    font-size: 16px;
+}
+
+.coupon-amount {
+    color: green;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.total {
+    font-size: 18px;
+    color: black;
+}
+
+.payment-col {
+    padding-right: 50px;
+}
+
+.payment-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: rgb(136, 60, 249);
+    color: white;
+    font-weight: 400;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+}
+
+.payment-btn:hover {
+    background-color: rgb(113, 20, 251);
+}
+
+.backtocart-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: none;
+    color: #555;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.recipient-name {
+    font-weight: 300;
+}
+
+.recipient-mobile {
+    font-weight: 300;
+}
+
+.add-new {
+    border: none;
+    cursor: pointer;
+}
+
+.add-new:hover {
+    border: none;
+    cursor: pointer;
+}
+
+
+.delivery-address-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    border: 1px solid;
+    border-radius: 10px;
+}
+
+.delivery-Here-btn {
+    background-color: rgb(136, 60, 249);
+    color: white;
+    padding: 5px 35px;
+}
+
+.address-radio {
+    width: 18px;
+    height: 18px;
+}
+
+.address-delete {
+    color: rgb(115, 115, 115);
+    border: 0px;
+
+}
+
+.address-delete:hover {
+    color: rgb(115, 115, 115);
+    border: 0px;
+}
+
+.address-edit {
+    color: rgb(115, 115, 115);
+    border: 0px;
+}
+
+.address-edit:hover {
+    color: rgb(115, 115, 115);
+    border: 0px;
+}
+
+input[type='radio'] {
+    accent-color: rgb(136, 60, 249);
+}
+
+.Form.Check[type='radio'] {
+    accent-color: rgb(136, 60, 249);
+}
+
+.payment-option {
+    font-size: 27px;
+}
+
+.payment-text {
+    font-weight: 400;
+    color: gainsboro;
+}
+
+.payment-time {
+    display: flex;
+    justify-content: start;
+    border: 1px solid;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 15px;
+    border-color: gainsboro;
+    background-color: rgb(136, 60, 249);
+}
+
+.googlepay-upi {
+    border: 0px solid;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 13px;
+    border-radius: 13px;
+    width: 100%;
+}
+
+.goole-pay-icon {
+    width: 40px;
+    height: 18px;
+}
+
+.payment-upi-text {
+    font-size: 15px;
+
+}
+
+.payment-email {
+    font-size: 15px;
+    font-weight: 300;
+}
+
+
+
+.form-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-left: 32px;
+}
+
+.form-row-input {
+    border-radius: 10px;
+
+}
+
+.verify-btn {
+    color: #7e4cf7;
+    background-color: white;
+    font-weight: 600;
+    padding: 8px 16px;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.payment-input {
+    display: flex;
+    gap: 20px;
+}
+
+/* net banking credit and debit */
+
+
+.payment-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+input[type="radio"] {
+    accent-color: #7e4cf7;
+    width: 16px;
+    height: 16px;
+}
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 8px 10px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+
+
+.upi-options label,
+.popular-banks label {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.pay-btn {
+    background-color: #7e4cf7;
+    color: white;
+    font-weight: 600;
+    padding: 8px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.pay-btn:hover {
+    background-color: #693ed4;
+}
+
+/*  */
+
+
+.bank-logs {
+    height: 70px;
+    width: fit-content;
+}
+
+@media (max-width: 768px) {
+    .address-form {
+        display: block;
+    }
+
+    .form-row {
+        display: block;
+    }
+
+    .payment-col {
+        padding-right:12px;
+    }
+
+    .payment-input {
+        display: block;
+    }
+
+    .payments-Btn {
+        margin-top: 20px;
+        margin-left: 30px;
+    }
+
+}

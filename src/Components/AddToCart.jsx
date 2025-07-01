@@ -152,7 +152,7 @@ function AddToCart() {
                                 </div>
                                 <Link to={''} className='continueShopping'>
                                     <div className='d-grid'>
-                                        <button className='btn checkout-btn'>Checkout</button>
+                                   <Link className='checkout' to={'/payment-page'}><button className='btn checkout-btn'>  Checkout</button></Link>
                                     </div>
                                 </Link>
                                 <Link to={'/mobiletablet'} className='continueShopping'>

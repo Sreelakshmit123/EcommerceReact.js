@@ -88,15 +88,24 @@
 }
 
 .checkout-btn {
-    border: 1px solid;
-    border-radius: 10px;
+    text-align: center;
     color: white;
     background-color: rgb(136, 60, 249);
+    border-color: rgb(136, 60, 249);
+
+}
+
+.checkout {
+    text-align: center;
+    border-radius: 20px;
+    color: white;
+    background-color: rgb(136, 60, 249);
+    border-color: rgb(136, 60, 249);
+    text-decoration: none;
 }
 
 .checkout-btn:hover {
-    border: 1px solid;
-    border-radius: 10px;
+    border-color: rgb(136, 60, 249);
     color: white;
     background-color: rgb(136, 60, 249);
 }
@@ -107,10 +116,12 @@
     color: black;
     text-align: center;
 }
-.continueShopping{
+
+.continueShopping {
     text-decoration: none;
 }
-.continueShopping:hover{
+
+.continueShopping:hover {
     text-decoration: none;
     color: black;
 }
@@ -126,9 +137,11 @@
 .add-to-cart {
     margin-bottom: 85px;
 }
-.total{
+
+.total {
     font-weight: 500;
 }
+
 /* mobile view */
 
 @media (max-width: 768px) {
