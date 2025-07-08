@@ -363,6 +363,9 @@
     font-weight: bold;
 
 }
+.filterHead-text .accordion-button:not(.collapsed) {
+  font-size:15px  !important;   
+}
 
 .checkbox-filter {
     width: 15px;

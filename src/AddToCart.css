@@ -90,9 +90,7 @@
 .checkout-btn {
     text-align: center;
     color: white;
-    background-color: rgb(136, 60, 249);
-    border-color: rgb(136, 60, 249);
-
+  border: none;
 }
 
 .checkout {
@@ -100,8 +98,8 @@
     border-radius: 20px;
     color: white;
     background-color: rgb(136, 60, 249);
-    border-color: rgb(136, 60, 249);
     text-decoration: none;
+    border: 1px solid;
 }
 
 .checkout-btn:hover {

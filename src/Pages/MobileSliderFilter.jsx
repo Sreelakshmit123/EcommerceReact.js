@@ -50,18 +50,18 @@ function MobileSliderFilter({ onApplyFilter }) {
             <p className='horizontal-line0' />
             <Accordion defaultActiveKey={['0']} alwaysOpen>
                 <Accordion.Item eventKey="0">
-                    <Accordion.Header>Filter by Price</Accordion.Header>
+                    <Accordion.Header className='filterHead-text'>Filter by Price</Accordion.Header>
                     <Accordion.Body>
                         <PriceFilter values={values} setValues={setValues} />
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
 
-            <p className='horizontal-line1' />
+            <p className='horizontal-line1 mt-4' />
 
             <Accordion defaultActiveKey={['0']} alwaysOpen>
                 <Accordion.Item eventKey="0">
-                    <Accordion.Header>Filter by Location</Accordion.Header>
+                    <Accordion.Header className='filterHead-text mb-3'>Filter by Location</Accordion.Header>
                     <Accordion.Body>
                         <div className='filter-input'>
                             {locations.map((location) => (

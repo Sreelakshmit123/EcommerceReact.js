@@ -14,12 +14,15 @@ import HDFC from '../assets/images/hdfc_bank.webp'
 
 
 function PaymentDetailsPage() {
+    
     const [selectedValue, setSelectedValue] = useState('');
     const [selectedMethod, setSelectedMethod] = useState('upi');
     const [selectedBank, setSelectedBank] = useState('');
     const handleChange = (event) => {
         setSelectedValue(event.target.value);
     }
+
+
     return (
         <>
             <div className='container-fluid' id='Container'>
@@ -120,8 +123,8 @@ function PaymentDetailsPage() {
                                 <span className='payment-upi-text ms-2'>UPI</span>
                                 <span className='ms-3'>Pay by Any UPI App</span>
                             </div>
-                            <p className='ms-4 ps-2 mb-1'>Choose an option</p>
-                            <Form className='ms-4 ps-2'>
+                            <p className='choose-option ps-2 mb-1'>Choose an option</p>
+                            <Form className='choose-option ps-2'>
                                 <input className='address-radio '
                                     type="radio"
                                     id="option1"
@@ -141,16 +144,20 @@ function PaymentDetailsPage() {
                                     onChange={handleChange}
                                 /><label for="option2" className='m-1'>Phone UPI ID</label>
                             </Form>
-                            <div className='payment-input  '>
-                                <div className="form-row">
-                                    <input className='form-row-input ps-3 p-2' type="text" placeholder="Enter UPI ID" />
-                                    <button className="verify-btn">Verify</button>
+
+                            <div className='row'>
+                                <div className="col-lg-5 form-row">
+                                    <input className='form-row-input ps-2 p-2' type="text" placeholder="Enter UPI ID" />
+                                    <button className="verify-btn me-2">Verify</button>
                                 </div>
-                                <button className="pay-btn">Pay $1297.00</button>
+                                <div className='col-lg-4'><button className="pay-btn-upi">Pay $1297.00</button></div>
+                                <div className="col-lg-3"></div>
                             </div>
                         </div>
 
+
                         {/* Credit/Debit Card Section */}
+
                         <div className="payment-card">
                             <div className="section-header">
                                 <input
@@ -163,69 +170,90 @@ function PaymentDetailsPage() {
                                 <label htmlFor="card">Credit Card / Debit Card</label>
                             </div>
 
-                            {selectedMethod === 'card' && (
-                             <div className='row'>
-                                    <div className="card-options col-lg-6">
-                                        <input type="text" placeholder="Enter Card Number" />
-                                        <div className="form-row ms-0">
-                                            <select>
-                                                <option>MM</option>
-                                                <option>01</option>
-                                                <option>02</option>
-                                                {/* Add more months */}
-                                            </select>
-                                            <select>
-                                                <option>YY</option>
-                                                <option>2025</option>
-                                                <option>2026</option>
-                                            </select>
-                                            <input type="text" placeholder="CVV" />
-                                        </div>
-                                        <button className="pay-btn">Pay $1297.00</button>
-                                    </div>
-                                    <div className="col-lg-6"></div>
-                             </div>
-                            )}
-                        </div>
+                            <div className='row'>
+                                <div className="card-options col-lg-6">
+                                    <input className='card-number' type="text" placeholder="Enter Card Number" />
+                                    <div className="form-rows ms-0">
+                                        <div className="card-expiry-wrapper">
+                                            <label className="expiry-label">Valid Thru</label>
+                                            <div className="expiry-dropdowns">
+                                                <Form.Select className='MM-selector' aria-label="Default select example">
+                                                    <option >MM</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                    <option value="11">11</option>
+                                                    <option value="12">12</option>
+                                                </Form.Select>
 
-                        {/* Net Banking Section */}
+                                                <Form.Select className='yy-selector' aria-label="Default select example">
+                                                    <option>YY</option>
+                                                    <option value="2017">2017</option>
+                                                    <option value="2018">2018</option>
+                                                    <option value="2019">2019</option>
+                                                    <option value="2020">2020</option>
+                                                    <option value="2021">2021</option>
+                                                    <option value="2022">2022</option>
+                                                    <option value="2023">2023</option>
+                                                    <option value="2024">2024</option>
+                                                    <option value="2025">2025</option>
+                                                    <option value="2026">2026</option>
+                                                    <option value="2026">2027</option>
+                                                    <option value="2028">2028</option>
+                                                    <option value="2029">2029</option>
+                                                    <option value="2030">2030</option>
+                                                    <option value="2031">2031</option>
+                                                    <option value="2032">2032</option>
+                                                </Form.Select>
+                                            </div>
+                                        </div>
+                                        <input className='cvv-input' type="text" placeholder="CVV" />
+                                        <i className="cvv-icon fa-solid fa-clock"></i>
+                                    </div>
+
+                                    <button className="pay-btn mt-2">Pay $1297.00</button>
+                                </div>
+                                <div className="col-lg-6"></div>
+                            </div>
+
+                        </div>
+                        {/* Net banking */}
                         <div className="payment-card">
                             <div className="section-header">
-                                <input
-                                    type="radio"
-                                    id="netbanking"
-                                    name="payment"
-                                    checked={selectedMethod === 'netbanking'}
-                                    onChange={() => setSelectedMethod('netbanking')}
+                                <input type="radio" id="netbanking" name="payment" checked={selectedMethod === 'netbanking'} onChange={() => setSelectedMethod('netbanking')}
                                 />
                                 <label htmlFor="netbanking">Net Banking</label>
                             </div>
-                            {selectedMethod === 'netbanking' && (
-                                <div className="netbanking-options ms-4">
-                                      <p className='mb-0'>Popular Banks</p>
-                                    <div className="popular-banks">
-                                        <label><input type="radio" name="bank" value="axis" /> <img className='bank-logs' src={AxisBank} alt="axis-bank-logo" /></label>
-                                        <label><input type="radio" name="bank" value="icici" />  <img className='bank-logs' src={icicBank} alt="icic-bank-logo" /></label>
-                                        <label><input type="radio" name="bank" value="yes" /> <img className='bank-logs' src={YesBank} alt="yes-bank-logo" /></label>
-                                        <label><input type="radio" name="bank" value="hdfc" /><img className='bank-logs' src={HDFC} alt="hdfc-bank-logo" /></label>
-                                    </div>
-                                    <p className=' mb-0'>Other Banks</p>
-                                   <div className='row'>
-                                      <div className='col-lg-3'>
-                                            <select onChange={(e) => setSelectedBank(e.target.value)}value={selectedBank} >
-                                                <option value="">Select Bank</option>
-                                                <option value="sbi">SBI</option>
-                                                <option value="bob">Bank of Baroda</option>
-                                                <option value="kotak">Kotak</option>
-                                            </select>
-        
-                                            <button className="pay-btn">Pay $1297.00</button>
-                                      </div>
-                                      <div className="col-lg-6"></div>
-                                      <div className="col-lg-3"></div>
-                                   </div>
+                            <div className="netbanking-options ">
+                                <p className='mb-0'>Popular Banks</p>
+                                <div className="popular-banks ">
+                                    <label><input type="radio" name="bank" value="axis" /> <img className='bank-logs mb-2' src={AxisBank} alt="axis-bank-logo" /></label>
+                                    <label><input type="radio" name="bank" value="icici" />  <img className='bank-logs mb-2' src={icicBank} alt="icic-bank-logo" /></label>
+                                    <label><input type="radio" name="bank" value="yes" /> <img className='bank-logs mb-2' src={YesBank} alt="yes-bank-logo" /></label>
+                                    <label><input type="radio" name="bank" value="hdfc" /><img className='bank-logs ms-2 mb-1' src={HDFC} alt="hdfc-bank-logo" /></label>
                                 </div>
-                            )}
+                                <p className=' mb-0'>Other Banks</p>
+                                <div className='row'>
+                                    <div className='col-lg-3'>
+                                        <Form.Select onChange={(e) => setSelectedBank(e.target.value)} value={selectedBank} aria-label="Default select example">
+                                            <option>Select Bank</option>
+                                            <option value="1">SBI</option>
+                                            <option value="2">Bank of Baroda</option>
+                                            <option value="3">Kotak</option>
+                                        </Form.Select>
+                                        <button className="pay-btn mt-3">Pay $1297.00</button>
+                                    </div>
+                                    <div className="col-lg-6"></div>
+                                    <div className="col-lg-3"></div>
+                                </div>
+                            </div>
                         </div>
 
                         <div className='googlepay-upi mb-5'>
@@ -282,12 +310,13 @@ function PaymentDetailsPage() {
                             <hr className="horizontal-line mt-4 mb-4" />
 
                             <button className="payment-btn">Continue Payment</button>
-                            <button className="backtocart-btn">Back to Cart</button>
+                            <Link to={'/shoppingCart'}><button className="backtocart-btn">Back to Cart</button></Link>
                         </div>
                     </div>
                 </div>
 
             </div >
+            {/* footer */}
             <Footer />
         </>
     )
