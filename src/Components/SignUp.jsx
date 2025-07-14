@@ -16,7 +16,7 @@ function SignUp() {
                 <div className="sign-up-container container d-flex justify-content-center align-items-center w-100 h-100">
                     <Row className="sign-up-box shadow-lg rounded-5 overflow-hidden w-100" >
                         {/* left col */}
-                        <Col lg={6} className="bg-white p-5">
+                        <Col lg={6} className=" order-2 order-md-1 bg-white p-5">
                             <h2 className="fw-bold mb-2">Welcome Back</h2>
                             <p className="text-muted mb-4">Simplify your online business</p>
 
@@ -59,7 +59,7 @@ function SignUp() {
                             </div>
                         </Col>
                         {/* right col */}
-                        <Col lg={6} className="d-none rounded-5 d-md-flex flex-column justify-content-end align-items-start bg-dark text-white p-5">
+                        <Col lg={6} className="d-block order-1 order-md-2  rounded-5 d-md-flex flex-column justify-content-end align-items-start bg-dark text-white p-5">
                             <h3 className="fw-bold">Simplify your <br /> online business</h3>
                             <p className="mt-2">Tasya and Xain</p>
                         </Col>
