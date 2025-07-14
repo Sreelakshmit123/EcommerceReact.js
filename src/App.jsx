@@ -1,17 +1,19 @@
 import { Routes, Route } from 'react-router-dom'
-import './App.css'
 import Home from './Components/Home'
 import MobileTablet from './Pages/MobileTablet'
 import MobileProductCard from './Pages/MobileProductCard'
 import Wishlist from './Components/Wishlist'
 import AddToCart from './Components/AddToCart'
 import ProductView from './Components/ProductView'
+import PaymentDetailsPage from './Components/PaymentDetailsPage'
+import SignUp from './Components/SignUp'
+import './App.css'
 import '/MobileTablet.css'
 import './Wishlist.css'
 import './AddToCart.css'
 import './ProductView.css'
 import './PaymentDetailsPage.css'
-import PaymentDetailsPage from './Components/PaymentDetailsPage'
+import './SignUp.css'
 
 function App() {
 
@@ -25,6 +27,7 @@ function App() {
         <Route path='/shoppingCart' element={<AddToCart />} />
         <Route path='/product-view' element={<ProductView />} />
         <Route path='/payment-page' element={<PaymentDetailsPage/>} />
+        <Route path='/sign-up' element={<SignUp/>} />
       </Routes>
     </>
   )

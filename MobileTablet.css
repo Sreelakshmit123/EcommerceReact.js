@@ -161,9 +161,8 @@
     cursor: pointer;
     transition: 0.2s ease-in-out;
 }
-
-.control-arrow .new-next {
-    background-color: rgb(133, 2, 255);
+.custom-arrows:hover{
+       background-color: rgb(133, 2, 255);
     color: white;
     border-color: white;
 }
@@ -213,7 +212,7 @@
     height: fit-content;
     border-radius: 5%;
     border: 0;
-    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 20px -5px, rgba(0, 0, 0, 0.1) 0px 0px 20px -5px;
 }
 
 .relatedProduct-slider .slick-slide>div {

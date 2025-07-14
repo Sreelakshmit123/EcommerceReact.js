@@ -213,6 +213,8 @@ function MobileProductCard({ filters }) {
         if (alreadyInCart) {
             toast.warning("Item is already in the cart.");
             return;
+        }else{
+            toast.success("Item is added to the cart")
         }
         const updated = [...cart, product];
         setCart(updated)

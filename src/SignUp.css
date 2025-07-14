@@ -1,0 +1,101 @@
+.signup-background {
+    height: 100vh;
+    position: absolute;
+}
+
+.circle-gradient0-sign-up {
+    overflow: hidden;
+    width: 160px;
+    height: 160px;
+    background: linear-gradient(160deg, rgb(163, 69, 252), rgb(144, 45, 237), rgb(126, 13, 231), rgb(252, 172, 249));
+    border-radius: 50%;
+    position: absolute;
+    top: -92px;
+    left: 450px;
+    z-index: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.circle-gradient1-sign-up {
+    overflow: hidden;
+    width: 110px;
+    height: 110px;
+    background: linear-gradient(160deg, rgb(163, 69, 252), rgb(141, 37, 238), rgb(252, 172, 249));
+    border-radius: 50%;
+    position: absolute;
+    bottom: 300px;
+    left: -65px;
+    z-index: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.circle-gradient2-sign-up {
+    overflow: hidden;
+    width: 220px;
+    height: 220px;
+    background: linear-gradient(160deg, rgb(255, 255, 255), rgb(224, 198, 248), rgb(136, 27, 239));
+    border-radius: 50%;
+    position: absolute;
+    bottom: -40px;
+    left: 1095px;
+    z-index: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.sign-up-container {
+    position: relative;
+}
+
+.sign-up-box {
+    margin-top: 50px;
+    max-width: 900px;
+}
+
+.sign-up-form {
+    border: 1px solid;
+    max-width: none;
+    text-align: start;
+}
+
+.sign-up-button {
+    background-color: rgba(211, 19, 228, 0.766);
+    border: none;
+    font-weight: bold;
+}
+
+.sign-up-button:hover {
+    background-color: rgba(225, 45, 242, 0.766);
+    border: none;
+    font-weight: bold;
+}
+
+.sign-up-email-text {
+    color: rgb(224, 224, 224);
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.signup-google:hover {
+    background-color: white;
+    color: black;
+}
+
+@media (max-width: 768px) {
+    .circle-gradient0-sign-up {
+        top: -92px;
+        left: 150px;
+    }
+
+    .circle-gradient1-sign-up {
+        bottom: 500px;
+    }
+
+    .circle-gradient2-sign-up {
+        bottom: 120px;
+        left: 150px;
+    }
+    .sign-up-box {
+    margin-top: 100px;
+    max-width: 900px;
+}
+}
