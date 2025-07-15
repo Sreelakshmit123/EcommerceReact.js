@@ -1,8 +1,74 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import {Row, Col, Form, Button } from "react-bootstrap";
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Row, Col, Form, Button } from "react-bootstrap";
 import google_logo from '../assets/images/GoogleLogo.png'
+
+
 function SignUp() {
+    const [inputs, setInputs] = useState({
+        firstname: "",
+        name: "",
+        email: "",
+        password: "",
+        cpassword: ""
+    })
+    console.log(inputs);
+
+    const [error, setError] = useState({})
+
+    const validation = (value) => {
+        let newerror = {}
+
+        if (!value.firstname) {
+            newerror.firstname = "firstname is required";
+        } else if (value.firstname.length < 3) {
+            newerror.firstname = "first name must be atleast 3 characters"
+
+        } else if (/\s/.test(value.firstname)) {
+            newerror.firstname = "firstname must not contain spaces"
+        }
+
+        if (!value.name) {
+            newerror.name = "name is requried";
+        } else if (value.name.length < 3) {
+            newerror.name = "name must have include 3-16 characters"
+        } else if (/\s/.test(value.name)) {
+            newerror.name = "name must not contain spaces"
+        }
+
+        if (!value.email) {
+            newerror.email = "email is required";
+        } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z][a-zA-Z.-]*\.[a-zA-Z]{2,}$/.test(value.email)) {
+            newerror.email = "email address is invalid. eg: name123@gmail.com"
+        }
+
+        if (!value.password) {
+            newerror.password = "password is required";
+        } else if (value.password.length < 6) {
+            newerror.password = "password must be atleast 6 characters"
+        } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/.test(value.password)) {
+            newerror.password = "Must include Minimum six characters, at least one uppercase letter, one lowercase letter and one number"
+        }
+        if (!value.cpassword) {
+            newerror.cpassword = "confirm password is required";
+        } else if (value.cpassword !== value.password) {
+            newerror.cpassword = "password is not matching"
+        }
+        return newerror;
+    }
+
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const errors = validation(inputs);
+        setError(errors);
+
+        if (JSON.stringify(errors) === '{}') {
+            navigate("/login");
+        }
+    }
+
     return (
         <>
             <div className='sign-up'>
@@ -24,32 +90,35 @@ function SignUp() {
                                 <img src={google_logo} alt="Google" width="20" className="me-2" />
                                 Sign up with Google
                             </Button>
-
-                            <p className="sign-up-email-text text-center mb-3">Or, sign up with your email</p>
-
-
+                                <p className="sign-up-email-text text-center mb-3">Or, sign up with your email</p>   
                             <Row className="mb-3">
                                 <Col>
-                                    <Form.Control className='sign-up-form' placeholder="Your first name" />
+                                    <Form.Control className='sign-up-form' placeholder="Your first name" name='firstname' value={inputs.firstname} onChange={e => setInputs({ ...inputs, firstname: e.target.value })} required />
+                                    {error.firstname && <span className='text-danger small'>{error.firstname}</span>}
                                 </Col >
                                 <Col>
-                                    <Form.Control className='sign-up-form' placeholder="Your name" />
+                                    <Form.Control className='sign-up-form' placeholder="Your name" name='name' value={inputs.name} onChange={e => setInputs({ ...inputs, name: e.target.value })} required />
+                                    {error.name && <span className='text-danger small'>{error.name}</span>}
+
                                 </Col>
                             </Row>
 
                             <Form.Group className="mb-3">
-                                <Form.Control className='sign-up-form' type="email" placeholder="Enter your E-mail" />
+                                <Form.Control className='sign-up-form' type="email" placeholder="Enter your E-mail" name='email' value={inputs.email} onChange={e => setInputs({ ...inputs, email: e.target.value })} required />
+                                {error.email && <span className='text-danger small'>{error.email}</span>}
                             </Form.Group>
 
                             <Form.Group className="mb-3">
-                                <Form.Control className='sign-up-form' type="password" placeholder="Enter your password" />
+                                <Form.Control className='sign-up-form' type="password" placeholder="Enter your password" name='password' value={inputs.password} onChange={e => setInputs({ ...inputs, password: e.target.value })} required />
+                                {error.password && <span className='text-danger small'>{error.password}</span>}
                             </Form.Group>
 
                             <Form.Group className="mb-4">
-                                <Form.Control className='sign-up-form' type="password" placeholder="Retype your password" />
+                                <Form.Control className='sign-up-form' type="password" placeholder="Retype your password" name='cpassword' value={inputs.cpassword} onChange={e => setInputs({ ...inputs, cpassword: e.target.value })} required />
+                                {error.cpassword && <span className='text-danger small'>{error.cpassword}</span>}
                             </Form.Group>
 
-                            <Button className="sign-up-button w-100 pt-3 pb-3">
+                            <Button onClick={handleSubmit} className="sign-up-button w-100 pt-3 pb-3">
                                 Sign Up
                             </Button>
 
@@ -59,7 +128,7 @@ function SignUp() {
                             </div>
                         </Col>
                         {/* right col */}
-                        <Col lg={6} className="d-block order-1 order-md-2  rounded-5 d-md-flex flex-column justify-content-end align-items-start bg-dark text-white p-5">
+                        <Col lg={6} className="d-block order-1 order-md-2 rounded-5 d-md-flex flex-column justify-content-end align-items-start bg-dark text-white p-5">
                             <h3 className="fw-bold">Simplify your <br /> online business</h3>
                             <p className="mt-2">Tasya and Xain</p>
                         </Col>
