@@ -82,6 +82,9 @@
 .transitions style{
     background-color: white;
 }
+.sign-up{
+        margin-bottom: 85px;
+    }
 
 @media (width: 1024px) {
    .sign-up-container{

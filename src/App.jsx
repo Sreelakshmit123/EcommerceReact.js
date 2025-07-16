@@ -7,6 +7,7 @@ import AddToCart from './Components/AddToCart'
 import ProductView from './Components/ProductView'
 import PaymentDetailsPage from './Components/PaymentDetailsPage'
 import SignUp from './Components/SignUp'
+import Login from './Components/Login'
 import './App.css'
 import '/MobileTablet.css'
 import './Wishlist.css'
@@ -14,7 +15,7 @@ import './AddToCart.css'
 import './ProductView.css'
 import './PaymentDetailsPage.css'
 import './SignUp.css'
-
+import './Login.css'
 function App() {
 
   return (
@@ -27,7 +28,8 @@ function App() {
         <Route path='/shoppingCart' element={<AddToCart />} />
         <Route path='/product-view' element={<ProductView />} />
         <Route path='/payment-page' element={<PaymentDetailsPage/>} />
-        <Route path='/sign-up' element={<SignUp/>} />
+        <Route path='/register' element={<SignUp/>} />
+        <Route path='/login' element={<Login/>} />
       </Routes>
     </>
   )

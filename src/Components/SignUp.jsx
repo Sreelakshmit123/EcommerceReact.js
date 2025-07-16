@@ -3,8 +3,13 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Row, Col, Form, Button } from "react-bootstrap";
 import google_logo from '../assets/images/GoogleLogo.png'
 
+import { ToastContainer, toast } from 'react-toastify';
+import { registerAPI, sendVerificationAPI, verifyTokenAPI } from '../Services/allAPIs';
 
 function SignUp() {
+    const navigate = useNavigate()
+    const [otp, setOtp] = useState("");
+    const [otpMode, setOtpMode] = useState(false)
     const [inputs, setInputs] = useState({
         firstname: "",
         name: "",
@@ -12,7 +17,7 @@ function SignUp() {
         password: "",
         cpassword: ""
     })
-    console.log(inputs);
+        console.log(inputs);
 
     const [error, setError] = useState({})
 
@@ -59,13 +64,58 @@ function SignUp() {
 
 
 
-    const handleSubmit = (e) => {
+    const handleSubmitSignUp = async (e) => {
         e.preventDefault();
         const errors = validation(inputs);
         setError(errors);
 
-        if (JSON.stringify(errors) === '{}') {
-            navigate("/login");
+        if (JSON.stringify(errors).length === 0) {
+            try {
+                const result = await sendVerificationAPI({
+                    email: inputs.email
+                })
+                if (result.status === 200) {
+                    toast.success("OTP send to Email")
+                    setOtpMode(true)
+                }
+
+            } catch (error) {
+                toast.error("OTP send failed!!")
+            }
+        }
+    }
+
+    const handleOtpVerification = async () => {
+        try {
+            const otpResponse = await verifyTokenAPI({
+                email: inputs.email, otp
+            });
+
+            if (otpResponse.status === 200 && register?.status === 200) {
+                const register = await registerAPI({
+                    firstname: inputs.firstname,
+                    name: inputs.name,
+                    email: inputs.email,
+                    password: inputs.password,
+                });
+
+                if (register.status === 200) {
+                    toast.success(`${result.data.name} has registered successfully`)
+                    setInputs({
+                        firstname: "",
+                        name: "",
+                        email: "",
+                        password: "",
+                        cpassword: ""
+                    })
+                    setTimeout(() => {
+                        navigate("/login");
+                    }, 3000);
+                }
+            }
+        } catch (err) {
+            console.log(err);           
+            toast.error("OTP verification or registration failed");
         }
     }
 
@@ -83,49 +133,77 @@ function SignUp() {
                     <Row className="sign-up-box shadow-lg rounded-5 overflow-hidden w-100" >
                         {/* left col */}
                         <Col lg={6} className=" order-2 order-md-1 bg-white p-5">
-                            <h2 className="fw-bold mb-2">Welcome Back</h2>
-                            <p className="text-muted mb-4">Simplify your online business</p>
+                            {!otpMode ? (
+                                <>
+                                    <h2 className="fw-bold mb-2">Welcome Back</h2>
+                                    <p className="text-muted mb-4">Simplify your online business</p>
 
-                            <Button variant="outline-secondary" className="signup-google w-100 mb-3 d-flex align-items-center justify-content-center">
-                                <img src={google_logo} alt="Google" width="20" className="me-2" />
-                                Sign up with Google
-                            </Button>
-                                <p className="sign-up-email-text text-center mb-3">Or, sign up with your email</p>   
-                            <Row className="mb-3">
-                                <Col>
-                                    <Form.Control className='sign-up-form' placeholder="Your first name" name='firstname' value={inputs.firstname} onChange={e => setInputs({ ...inputs, firstname: e.target.value })} required />
-                                    {error.firstname && <span className='text-danger small'>{error.firstname}</span>}
-                                </Col >
-                                <Col>
-                                    <Form.Control className='sign-up-form' placeholder="Your name" name='name' value={inputs.name} onChange={e => setInputs({ ...inputs, name: e.target.value })} required />
-                                    {error.name && <span className='text-danger small'>{error.name}</span>}
+                                    <Button variant="outline-secondary" className="signup-google w-100 mb-3 d-flex align-items-center justify-content-center">
+                                        <img src={google_logo} alt="Google" width="20" className="me-2" />
+                                        Sign up with Google
+                                    </Button>
+                                    <p className="sign-up-email-text text-center mb-3">Or, sign up with your email</p>
+                                    <Row className="mb-3">
+                                        <Col>
+                                            <Form.Control className='sign-up-form' placeholder="Your first name" name='firstname' value={inputs.firstname} onChange={e => setInputs({ ...inputs, firstname: e.target.value })} required />
+                                            {error.firstname && <span className='text-danger small'>{error.firstname}</span>}
+                                        </Col >
+                                        <Col>
+                                            <Form.Control className='sign-up-form' placeholder="Your name" name='name' value={inputs.name} onChange={e => setInputs({ ...inputs, name: e.target.value })} required />
+                                            {error.name && <span className='text-danger small'>{error.name}</span>}
 
-                                </Col>
-                            </Row>
+                                        </Col>
+                                    </Row>
 
-                            <Form.Group className="mb-3">
-                                <Form.Control className='sign-up-form' type="email" placeholder="Enter your E-mail" name='email' value={inputs.email} onChange={e => setInputs({ ...inputs, email: e.target.value })} required />
-                                {error.email && <span className='text-danger small'>{error.email}</span>}
-                            </Form.Group>
+                                    <Form.Group className="mb-3">
+                                        <Form.Control className='sign-up-form' type="email" placeholder="Enter your E-mail" name='email' value={inputs.email} onChange={e => setInputs({ ...inputs, email: e.target.value })} required />
+                                        {error.email && <span className='text-danger small'>{error.email}</span>}
+                                    </Form.Group>
 
-                            <Form.Group className="mb-3">
-                                <Form.Control className='sign-up-form' type="password" placeholder="Enter your password" name='password' value={inputs.password} onChange={e => setInputs({ ...inputs, password: e.target.value })} required />
-                                {error.password && <span className='text-danger small'>{error.password}</span>}
-                            </Form.Group>
+                                    <Form.Group className="mb-3">
+                                        <Form.Control className='sign-up-form' type="password" placeholder="Enter your password" name='password' value={inputs.password} onChange={e => setInputs({ ...inputs, password: e.target.value })} required />
+                                        {error.password && <span className='text-danger small'>{error.password}</span>}
+                                    </Form.Group>
 
-                            <Form.Group className="mb-4">
-                                <Form.Control className='sign-up-form' type="password" placeholder="Retype your password" name='cpassword' value={inputs.cpassword} onChange={e => setInputs({ ...inputs, cpassword: e.target.value })} required />
-                                {error.cpassword && <span className='text-danger small'>{error.cpassword}</span>}
-                            </Form.Group>
+                                    <Form.Group className="mb-4">
+                                        <Form.Control className='sign-up-form' type="password" placeholder="Retype your password" name='cpassword' value={inputs.cpassword} onChange={e => setInputs({ ...inputs, cpassword: e.target.value })} required />
+                                        {error.cpassword && <span className='text-danger small'>{error.cpassword}</span>}
+                                    </Form.Group>
 
-                            <Button onClick={handleSubmit} className="sign-up-button w-100 pt-3 pb-3">
-                                Sign Up
-                            </Button>
+                                    <Button onClick={handleSubmitSignUp} className="sign-up-button w-100 pt-3 pb-3">
+                                        Sign Up
+                                    </Button>
 
-                            <div className="d-flex justify-content-evenly align-items-center mt-3 text-muted small ">
-                                <a href="#" className='text-dark text-decoration-none'>Customer Support</a>
-                                <a href="#" className='text-dark text-decoration-none'>Terms of Service</a>
-                            </div>
+                                    <div className="d-flex justify-content-evenly align-items-center mt-3 text-muted small ">
+                                        <a href="#" className='text-dark text-decoration-none'>Customer Support</a>
+                                        <a href="#" className='text-dark text-decoration-none'>Terms of Service</a>
+                                    </div>
+                                </>
+                            ) : (
+                                <>
+                                    <h2 className="fw-bold mb-4">Verify OTP</h2>
+                                    <p className="text-muted mb-3">Please enter OTP here, We have sent a verification code to <strong>{inputs.email}</strong></p>
+
+                                    <Form.Group className="mb-3">
+                                        <Form.Control type="text" placeholder="Enter 4-digit OTP" className='sign-up-form' value={otp} onChange={(e) => setOtp(e.target.value)} required />
+                                    </Form.Group>
+                                    <Button onClick={handleOtpVerification}
+                                        // () => {
+                                        //     if (otp === "1234") {
+                                        //         toast.success("OTP verified. Account created!");
+                                        //         setTimeout(() => {
+                                        //             navigate("/login");
+                                        //         }, 3000);
+                                        //     } else {
+                                        //         toast.warning("Invalid OTP");
+                                        //     }
+                                        // }
+                                        className="sign-up-button w-100 pt-3 pb-3"> Verify OTP</Button>
+                                    <div className="text-center mt-3 small">
+                                        Didn't get OTP? <a href="#" className='text-decoration-none'>Resend</a>
+                                    </div>
+                                </>
+                            )}
                         </Col>
                         {/* right col */}
                         <Col lg={6} className="d-block order-1 order-md-2 rounded-5 d-md-flex flex-column justify-content-end align-items-start bg-dark text-white p-5">
@@ -135,7 +213,7 @@ function SignUp() {
                     </Row>
                 </div>
             </div>
-
+            <ToastContainer />
         </>
     )
 }

@@ -70,7 +70,7 @@ function AddToCart() {
                             <Nav.Link><Link to={"/wishlist"}><button className='Whishlistbtn btn btn-outline-dark '>Wishlist</button></Link></Nav.Link>
                         </Nav>
                         <Nav>
-                            <Nav.Link><Link to={"/sign-up"}><button className='signUp-btn btn '>Sign in <i class="fa-solid fa-arrow-right"></i></button></Link></Nav.Link>
+                            <Nav.Link><Link to={"/register"}><button className='signUp-btn btn '>Sign in <i class="fa-solid fa-arrow-right"></i></button></Link></Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
