@@ -16,6 +16,8 @@ import './ProductView.css'
 import './PaymentDetailsPage.css'
 import './SignUp.css'
 import './Login.css'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 function App() {
 
   return (
@@ -26,7 +28,7 @@ function App() {
         <Route path="/filtered-products" element={<MobileProductCard />} />
         <Route path='/wishlist' element={<Wishlist />} />
         <Route path='/shoppingCart' element={<AddToCart />} />
-        <Route path='/product-view' element={<ProductView />} />
+        <Route path="/product/:product_id/:skuId" element={<ProductView />} />
         <Route path='/payment-page' element={<PaymentDetailsPage/>} />
         <Route path='/register' element={<SignUp/>} />
         <Route path='/login' element={<Login/>} />

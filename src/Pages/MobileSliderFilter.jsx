@@ -5,7 +5,7 @@ import PriceFilter from './PriceFilter'
 
 function MobileSliderFilter({ onApplyFilter }) {
 
-    const [values, setValues] = useState([0, 2000])
+    const [values, setValues] = useState([0, 50000])
     const locations = ['Jagarta', 'Yogyakarta', 'Bandung', 'Semarang', 'Sarabaya'];
     const [checkedLocations, setCheckedLocations] = useState({});
 
@@ -22,7 +22,7 @@ function MobileSliderFilter({ onApplyFilter }) {
         onApplyFilter(values, selectedLocations);
     }
     const handleResetFilter = () => {
-        const resetValues = [0,2000];
+        const resetValues = [0,50000];
         setCheckedLocations({});
         setValues(resetValues);
         onApplyFilter(resetValues,[]);

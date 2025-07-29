@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import landingImage from '../assets/images/landingImg.png'
 import DealsOfTheWeek from './DealsOfTheWeek'
 import DealsOfTheDay from './DealsOfTheDay'
@@ -7,9 +7,82 @@ import SpotlightedItems from './SpotlightedItems'
 import { Link } from 'react-router-dom'
 import Footer from './Footer'
 import Header from './Header'
+import Slider from 'react-slick';
 
+
+
+import { footerBannersAPI } from '../Services/allAPIs'
+import { Card } from 'react-bootstrap'
 function Home() {
+    const sliderRef = useRef(null);
+
+    const [footerBanners, setFooterBanners] = useState([]);
+    const CustomNextArrow = ({ onClick }) => (
+        <div className="custom-arrows-footerBanner new-next ms-3" onClick={onClick}>
+            <i class="fa-solid fa-arrow-right"></i>
+        </div>
+    );
+
+    const CustomPrevArrow = ({ onClick }) => (
+        <div className="custom-arrows-footerBanner new-prev" onClick={onClick}>
+            <i class="fa-solid fa-arrow-left"></i>
+        </div>
+    );
+    const handleFooterBanners = async () => {
+        try {
+            const result = await footerBannersAPI();
+            console.log("API Response:", result);
+            if (result.status == 200) {
+                setFooterBanners(result.data.footer_banners)
+            } else {
+                console.error("Failed to fetch deals:", result);
+            }
+        } catch (error) {
+            setError("Something went wrong");
+        } finally {
+            setLoading(false);
+        }
+    }
+    useEffect(() => {
+        handleFooterBanners()
+    }, [])
+
+    var settings = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        initialSlide: 0,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    };
     return (
+
         <>
             <div className='container-fluid' id='Container'>
                 <Header />
@@ -53,6 +126,30 @@ function Home() {
                         <h4 className='deal-of-day mt-5'>SPOTLIGHTED ITEMS</h4>
                         <SpotlightedItems />
                     </div>
+                </div>
+                <div className='mb-4'>
+                  <div className='d-flex justify-content-between'>
+                        <h4 className='footerBanners fw-bolder'>Real People, Real Savings</h4>
+                        <div className="control-arrow">
+                            <CustomPrevArrow onClick={() => sliderRef.current?.slickPrev()} />
+                            <CustomNextArrow onClick={() => sliderRef.current?.slickNext()} />
+                        </div>
+                  </div>
+                    <p className="footerLineWrapper">
+                        <p className="footerLine"></p>
+                    </p>
+
+                    {/* cards */}
+                    <Slider ref={sliderRef} {...settings}>
+                        <div className='d-flex justify-content-between'>
+                            <Card className='cardImg d-flex justify-content-between'>
+                                <Card.Img className='w-100 h-100 rounded image' variant="top" src={landingImage} />
+                                <Card.Body className='cardsText'>
+                                    <button className="footerBanner-btn d-flex justify-content-between btn btn-sm  w-100 ps-3 pe-3 p-2">Up to 50% <i class="fa-solid fa-arrow-right mt-1"></i></button>
+                                </Card.Body>
+                            </Card>
+                        </div>
+                    </Slider>
                 </div>
             </div>
             {/* footer */}

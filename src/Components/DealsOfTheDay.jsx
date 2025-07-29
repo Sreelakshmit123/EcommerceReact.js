@@ -6,10 +6,14 @@ import haedphone from '../assets/images/dealsOfDay-headphone.jpg';
 import WashingMachine from '../assets/images/dealsOfDay-machinejpg.jpg';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { dealsOfTheDayAPI } from '../Services/allAPIs';
+import { SERVER_URL } from '../Services/serverUrl';
 
 function DealsOfTheDay() {
     const sliderRef = useRef(null);
     const [deals, setdayDeals] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const CustomNextArrow = ({ onClick }) => (
         <div className="custom-arrow new-next ms-4" onClick={onClick}>
             <i class="fa-solid fa-arrow-right"></i>
@@ -21,59 +25,77 @@ function DealsOfTheDay() {
             <i class="fa-solid fa-arrow-left"></i>
         </div>
     );
+
+    const getDealsofDayDeals = async () => {
+        try {
+            const result = await dealsOfTheDayAPI();
+            if (result.status === 200 && result.data?.deal_of_the_day?.product_details) {
+                setdayDeals(result.data.deal_of_the_day.product_details);
+            } else {
+                setError("No deals found");
+            }
+        } catch (error) {
+            setError("Something went wrong");
+        } finally {
+            setLoading(false);
+        }
+    };
     useEffect(() => {
-        const DayDeals = [
-            {
-                id: 1,
-                title: "Shoes orem sit ipsum sit ipsum sit ament ectetur",
-                price: "$9.99",
-                image: shoes,
-            },
-            {
-                id: 2,
-                title: "BenQ Monitor Lorem sit ipsum sit amet ectetur",
-                price: "$199.99",
-                image: haedphone,
-            },
-            {
-                id: 3,
-                title: "Earbuds  Lorem sit ipsum sit amet ectetur",
-                price: "$29.99",
-                image: WashingMachine,
-            },
-            {
-                id: 4,
-                title: "Bluetooth Speaker Lorem sit ipsum amet ectetur",
-                price: "$49.99",
-                image: haedphone,
-            },
-            {
-                id: 5,
-                title: "Smart Watch Lorem sit ipsum sit amet ectetur",
-                price: "$9.99",
-                image: shoes,
-            },
-            {
-                id: 6,
-                title: "BenQ Monitor Lorem sit ipsum sit amet ectetur",
-                price: "$199.99",
-                image: WashingMachine,
-            },
-            {
-                id: 7,
-                title: "Earbuds Lorem sit ipsum sit amet ectetur",
-                price: "$29.99",
-                image: haedphone,
-            },
-            {
-                id: 8,
-                title: "Bluetooth Speaker Lorem sit ipsum sit amet ectetur",
-                price: "$49.99",
-                image: WashingMachine,
-            },
-        ];
-        setdayDeals(DayDeals);
+        getDealsofDayDeals()
     }, []);
+    // useEffect(() => {
+    //     const DayDeals = [
+    //         {
+    //             id: 1,
+    //             title: "Shoes orem sit ipsum sit ipsum sit ament ectetur",
+    //             price: "$9.99",
+    //             image: shoes,
+    //         },
+    //         {
+    //             id: 2,
+    //             title: "BenQ Monitor Lorem sit ipsum sit amet ectetur",
+    //             price: "$199.99",
+    //             image: haedphone,
+    //         },
+    //         {
+    //             id: 3,
+    //             title: "Earbuds  Lorem sit ipsum sit amet ectetur",
+    //             price: "$29.99",
+    //             image: WashingMachine,
+    //         },
+    //         {
+    //             id: 4,
+    //             title: "Bluetooth Speaker Lorem sit ipsum amet ectetur",
+    //             price: "$49.99",
+    //             image: haedphone,
+    //         },
+    //         {
+    //             id: 5,
+    //             title: "Smart Watch Lorem sit ipsum sit amet ectetur",
+    //             price: "$9.99",
+    //             image: shoes,
+    //         },
+    //         {
+    //             id: 6,
+    //             title: "BenQ Monitor Lorem sit ipsum sit amet ectetur",
+    //             price: "$199.99",
+    //             image: WashingMachine,
+    //         },
+    //         {
+    //             id: 7,
+    //             title: "Earbuds Lorem sit ipsum sit amet ectetur",
+    //             price: "$29.99",
+    //             image: haedphone,
+    //         },
+    //         {
+    //             id: 8,
+    //             title: "Bluetooth Speaker Lorem sit ipsum sit amet ectetur",
+    //             price: "$49.99",
+    //             image: WashingMachine,
+    //         },
+    //     ];
+    //     setdayDeals(DayDeals);
+    // }, []);
 
 
     let settings = {
@@ -88,39 +110,63 @@ function DealsOfTheDay() {
     return (
         <>
             <Slider ref={sliderRef} {...settings}>
-                {deals.map((item, index) => {
-                    return (
-                        <div key={index}>
-                            <Card  className='cardImg'>
-                                <Card.Img className='image' variant="top" src={item.image} />
-                                <Card.Body className='cardsText'>
-                                    <div className="row">
-                                        <div className="col-lg-9 bar">
-                                            <div className="base-bar"></div>
-                                            <div className="base-bar sold-bar"></div>
+                {loading ? (
+                    <div className='text-center mb-4 fs-5 text-danger'><b>Loading...Please wait</b></div>
+                ) : error ? (
+                    <div className='text-center mb-4 fs-5 text-danger'><b>{error}</b></div>
+                ) : (
+                    deals.map((item, index) => {
+                        return (
+                            <div key={index}>
+                                <Card className='cardImg'>
+                                    <Card.Img className='image' variant="top" src={item?.mainimage?.startsWith('http') ? item.mainimage : `${SERVER_URL}${item.mainimage}`} alt='image not working' />
+                                    <Card.Body className='cardsText'>
+                                        <div className="row">
+                                            <div className="col-lg-9 bar">
+                                                <div className="base-bar"></div>
+                                                <div className="base-bar sold-bar"></div>
 
+                                            </div>
+                                            <div className="col-lg-3 ">
+                                                <span className='spantext ms-3'>sold: 12/{item.sku.stock}</span>
+                                            </div>
                                         </div>
-                                        <div className="col-lg-3 ">
-                                            <span className='spantext ms-3'>sold: 12/20</span>
+                                        <Card.Text >
+                                            {item.description}
+                                        </Card.Text>
+                                        <div className='d-flex '>
+                                            <p className='bottomtag-para me-1 '>
+                                                {[1, 2, 3, 4, 5].map((i) => {
+                                                    const rating = item.average_rating || 0;
+                                                    const full = rating >= i;
+                                                    const half = rating >= i - 0.5 && rating < i;
+
+                                                    const iconClass = full
+                                                        ? "fa-solid fa-star"
+                                                        : half
+                                                            ? "fa-solid fa-star-half-stroke"
+                                                            : "fa-solid fa-star";
+
+                                                    const iconColor = rating === 0 ? "rgba(233, 229, 229, 1)" : "rgba(253, 199, 5, 1)";
+
+                                                    return (
+                                                        <i key={i} className={`ms-1 ${iconClass}`} style={{ color: iconColor }}></i>
+                                                    );
+                                                })}
+                                            </p>
+                                            <p style={{ color: 'rgba(223, 222, 222, 1)' }} className='text-rating ps-2 '>|{item.average_rating}|</p>
                                         </div>
-                                    </div>
-                                    <Card.Text >
-                                        {item.title}
-                                    </Card.Text>
-                                    <div className='d-flex '>
-                                        <p className='bottomtag-para'><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                        </p>
-                                        <p className='ps-2 text-secondary'>|5.0|</p>
-                                    </div>
-                                    <div className='d-flex justify-content-between align-items-start'>
-                                        <p>{item.price}</p>
-                                        <button className='shoppingcartbtn btn '><i class="fa-solid fa-cart-shopping"></i></button>
-                                    </div>
-                                </Card.Body>
-                            </Card>
-                        </div>
-                    )
-                })}
+                                        <div className='d-flex justify-content-between align-items-start '>
+                                        <p>₹{item.sku.sales_rate} <del className='actualprice '>₹{item.sku.price}</del></p>
+                                            <button className='shoppingcartbtn btn '><i class="fa-solid fa-cart-shopping"></i></button>
+                                        </div>
+                                    </Card.Body>
+                                </Card>
+                            </div>
+                        )
+                    }))
+
+                }
             </Slider>
             <div className="arrow-control">
                 <CustomPrevArrow onClick={() => sliderRef.current?.slickPrev()} />

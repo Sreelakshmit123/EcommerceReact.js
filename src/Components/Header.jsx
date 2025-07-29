@@ -1,16 +1,62 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import { NavDropdown } from 'react-bootstrap';
+import { searchProductAPI } from '../Services/allAPIs';
 
 function Header() {
+    const [name, setName] = useState("")
+    const [logoutStatus, setLogoutStatus] = useState(false);
+    const navigate = useNavigate()
+    const [searchText, setSearchText] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+
+    const handleSearch = async (e) => {
+        const text = e.target.value;
+        setSearchText(text);
+
+        if (text.trim() === '') {
+            setSearchResults([]);
+            return;
+        }
+
+        try {
+            const response = await searchProductAPI(text);
+            if (response.status === 200) {
+                setSearchResults(response.data?.data || []);
+                // optionally: navigate(`/search-results?query=${text}`)
+            } else {
+                setSearchResults([]);
+            }
+        } catch (error) {
+            console.error('Search failed:', error);
+            setSearchResults([]);
+        }
+    };
+
+    useEffect(() => {
+        if (localStorage.getItem("access_token")) {
+            setLogoutStatus(true);
+            const firstName = localStorage.getItem("firstname");
+            const userEmail = localStorage.getItem("email");
+            const fallbackName = localStorage.getItem("name");
+
+            setName(firstName || fallbackName || userEmail);
+        } else {
+            setLogoutStatus(false);
+        }
+    }, []);
+    const logout = () => {
+        localStorage.clear();
+        navigate('/');
+    };
     return (
         <>
             {/* Navbar */}
             <Navbar collapseOnSelect expand="lg">
-                <Navbar.Brand className='brandname fw-bold' href="#home"><b>EBrands</b></Navbar.Brand>
+                <Link className='text-decoration-none' to={"/"}><Navbar.Brand className='brandname fw-bold'><b>EBrands</b></Navbar.Brand></Link>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="navsection  me-auto ">
@@ -35,7 +81,7 @@ function Header() {
                         <Nav.Link><Link to={"/wishlist"}><button className='Whishlistbtn btn btn-outline-dark '>Wishlist</button></Link></Nav.Link>
                     </Nav>
                     <Nav>
-                        <Nav.Link><Link to={"/register"}><button className='signUp-btn btn '>Sign in <i class="fa-solid fa-arrow-right"></i></button></Link></Nav.Link>
+                        {logoutStatus ? (<Nav.Link><Link to={"/"}><button className='signUp-btn btn ' onClick={logout}> LogOut <i class="fa-solid fa-arrow-right"></i></button></Link></Nav.Link>) : (<Nav.Link><Link to={"/register"}><button className='signUp-btn btn '>Sign in <i class="fa-solid fa-arrow-right"></i></button></Link></Nav.Link>)}
                     </Nav>
                 </Navbar.Collapse>
 
@@ -48,6 +94,8 @@ function Header() {
                     <input
                         type="text"
                         placeholder="Search"
+                        value={searchText}
+                        onChange={handleSearch}
                         className="searchbar mr-sm-2" />
                 </div>
                 <button className='navbarbtns btn'><i className="fontBtnPopular fa-solid fa-fire me-2"></i> Most Popular</button>

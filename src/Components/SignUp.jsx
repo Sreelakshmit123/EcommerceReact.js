@@ -4,8 +4,8 @@ import { Row, Col, Form, Button } from "react-bootstrap";
 import google_logo from '../assets/images/GoogleLogo.png'
 
 import { ToastContainer, toast } from 'react-toastify';
-import { registerAPI, sendVerificationAPI, verifyTokenAPI } from '../Services/allAPIs';
-
+import { googleLoginAPI, registerAPI, sendVerificationAPI, verifyTokenAPI } from '../Services/allAPIs';
+import { GoogleLogin } from '@react-oauth/google';
 function SignUp() {
     const navigate = useNavigate()
     const [otp, setOtp] = useState("");
@@ -17,7 +17,7 @@ function SignUp() {
         password: "",
         cpassword: ""
     })
-        console.log(inputs);
+    console.log(inputs);
 
     const [error, setError] = useState({})
 
@@ -69,7 +69,7 @@ function SignUp() {
         const errors = validation(inputs);
         setError(errors);
 
-        if (JSON.stringify(errors).length === 0) {
+        if (JSON.stringify(errors) === "{}") {
             try {
                 const result = await sendVerificationAPI({
                     email: inputs.email
@@ -88,36 +88,64 @@ function SignUp() {
     const handleOtpVerification = async () => {
         try {
             const otpResponse = await verifyTokenAPI({
-                email: inputs.email, otp
+                email: inputs.email, otp: otp.trim(),
             });
 
-            if (otpResponse.status === 200 && register?.status === 200) {
-                const register = await registerAPI({
-                    firstname: inputs.firstname,
+            if (otpResponse.status === 200) {
+                localStorage.setItem("username", inputs.email);
+                const result = await registerAPI({
+                    first_name: inputs.firstname,
                     name: inputs.name,
                     email: inputs.email,
                     password: inputs.password,
+                    otp: otp.trim(),
                 });
 
-                if (register.status === 200) {
-                    toast.success(`${result.data.name} has registered successfully`)
-                    setInputs({
-                        firstname: "",
-                        name: "",
-                        email: "",
-                        password: "",
-                        cpassword: ""
-                    })
-                    setTimeout(() => {
-                        navigate("/login");
-                    }, 3000);
+                if (result.status === 200 || result.status === 201) {
+                    console.log("Registration complete");
+                    sessionStorage.setItem("access_token", result.data.access_token);
+                    localStorage.setItem("firstname", inputs.firstname);
+                    localStorage.setItem("name", inputs.name);
+                    localStorage.setItem("password", inputs.password);
+                    localStorage.setItem("username", inputs.email);
+                    toast.success(`${result.data.name} has registered successfully`);
+                    navigate("/login");
+                } else {
+                    console.log(error);
+
                 }
             }
         } catch (err) {
-            console.log(err);           
+            console.log(err);
             toast.error("OTP verification or registration failed");
         }
     }
+
+    const handleGoogleLogin = async () => {
+        const dummyGoogleUser = {
+            first_name:"" ,
+            last_name: "",
+            email: "@gmail.com",
+            login_id: "", 
+        };
+
+        try {
+            const result = await googleLoginAPI(dummyGoogleUser);
+            if (result.status === 200 || result.status === 201) {
+                toast.success(`${result.data.name} logged in with Google`);
+                sessionStorage.setItem("access_token", result.data.access_token);
+                localStorage.setItem("name", result.data.name);
+                localStorage.setItem("username", result.data.email);
+                navigate("/");
+            } else {
+                toast.error("Google login failed");
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error("Something went wrong during Google login");
+        }
+    };
+
 
     return (
         <>
@@ -137,8 +165,8 @@ function SignUp() {
                                 <>
                                     <h2 className="fw-bold mb-2">Welcome Back</h2>
                                     <p className="text-muted mb-4">Simplify your online business</p>
-
-                                    <Button variant="outline-secondary" className="signup-google w-100 mb-3 d-flex align-items-center justify-content-center">
+                                    {/* continue with goole login */}
+                                    <Button onClick={handleGoogleLogin} variant="outline-secondary" className="signup-google w-100 mb-3 d-flex align-items-center justify-content-center">
                                         <img src={google_logo} alt="Google" width="20" className="me-2" />
                                         Sign up with Google
                                     </Button>
@@ -213,7 +241,7 @@ function SignUp() {
                     </Row>
                 </div>
             </div>
-            <ToastContainer />
+            <ToastContainer position="top-right" autoClose={2000} />
         </>
     )
 }

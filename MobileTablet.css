@@ -83,7 +83,8 @@
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
     border-radius: 20px 20px 0px 0px;
-    height: fit-content;
+    height: 40vh;
+    padding: 25px;
 }
 
 .mobiletablet-btn {
@@ -233,6 +234,7 @@
     border-radius: 5%;
     height: 28vh;
     width: 100%;
+    padding: 20px;
 
 
 }

@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Col, Form, NavDropdown, Row } from 'react-bootstrap';
 import Footer from './Footer';
 import AddAddress from '../Pages/AddAddress';
@@ -14,7 +14,10 @@ import HDFC from '../assets/images/hdfc_bank.webp'
 
 
 function PaymentDetailsPage() {
-    
+    const [name, setName] = useState("")
+    const [logoutStatus, setLogoutStatus] = useState(false);
+    const navigate = useNavigate()
+
     const [selectedValue, setSelectedValue] = useState('');
     const [selectedMethod, setSelectedMethod] = useState('upi');
     const [selectedBank, setSelectedBank] = useState('');
@@ -22,13 +25,28 @@ function PaymentDetailsPage() {
         setSelectedValue(event.target.value);
     }
 
+    useEffect(() => {
+        if (localStorage.getItem("access_token")) {
+            setLogoutStatus(true);
+            const firstName = localStorage.getItem("firstname");
+            const userEmail = localStorage.getItem("email");
+            const fallbackName = localStorage.getItem("name");
 
+            setName(firstName || fallbackName || userEmail);
+        } else {
+            setLogoutStatus(false);
+        }
+    }, []);
+    const logout = () => {
+        localStorage.clear();
+        navigate('/');
+    };
     return (
         <>
             <div className='container-fluid' id='Container'>
                 {/* Navbar */}
                 <Navbar collapseOnSelect expand="lg">
-                    <Navbar.Brand className='brandname fw-bold' href="#home"><b>EBrands</b></Navbar.Brand>
+                    <Link className='text-decoration-none' to={"/"}><Navbar.Brand className='brandname fw-bold'><b>EBrands</b></Navbar.Brand></Link>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="navsection  me-auto ">
@@ -53,7 +71,7 @@ function PaymentDetailsPage() {
                             <Nav.Link><Link to={"/wishlist"}><button className='Whishlistbtn btn btn-outline-dark '>Wishlist</button></Link></Nav.Link>
                         </Nav>
                         <Nav>
-                            <Nav.Link><Link to={"/register"}><button className='signUp-btn btn '>Sign in <i class="fa-solid fa-arrow-right"></i></button></Link></Nav.Link>
+                            {logoutStatus ? (<Nav.Link><Link to={"/"}><button className='signUp-btn btn ' onClick={logout}> LogOut <i class="fa-solid fa-arrow-right"></i></button></Link></Nav.Link>) : (<Nav.Link><Link to={"/register"}><button className='signUp-btn btn '>Sign in <i class="fa-solid fa-arrow-right"></i></button></Link></Nav.Link>)}
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

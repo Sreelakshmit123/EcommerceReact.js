@@ -1,39 +1,130 @@
 import React, { useEffect, useState } from 'react'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { NavDropdown } from 'react-bootstrap';
 import WishlistCard from '../Pages/WishlistCard';
+import { listWishlistAPI, removeWishlistAPI } from '../Services/allAPIs';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Wishlist() {
-    const [wishlistedItems, setWishlistedItems] = useState([]);
-
+    const [name, setName] = useState("")
+    const [logoutStatus, setLogoutStatus] = useState(false);
+    const navigate = useNavigate()
 
     useEffect(() => {
-        const stored = localStorage.getItem("wishlist")
-        if (stored) {
-            setWishlistedItems(JSON.parse(stored))
+        if (localStorage.getItem("access_token")) {
+            setLogoutStatus(true);
+            const firstName = localStorage.getItem("firstname");
+            const userEmail = localStorage.getItem("email");
+            const fallbackName = localStorage.getItem("name");
+
+            setName(firstName || fallbackName || userEmail);
+        } else {
+            setLogoutStatus(false);
         }
     }, []);
+    const logout = () => {
+        localStorage.clear();
+        navigate('/');
+    };
+    const [wishlistedItems, setWishlistedItems] = useState([]);
 
-    const handleWishlistRemove = (id) =>{
-        const updated = wishlistedItems.filter(item => item.id !== id)
-        setWishlistedItems(updated)
-        localStorage.setItem("wishlist", JSON.stringify(updated)) 
+    // get the wishlist in the wishlist page
+    const getlistWishlist = async () => {
+        console.log("inside favourites");
+        const token = localStorage.getItem("access_token")
+        if (!token) return;
+
+        const reqHeader = {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+        };
+        try {
+            const result = await listWishlistAPI(reqHeader);
+            if (result.status === 200) {
+                const apiWishlist = result.data.data;
+                setWishlistedItems(apiWishlist);
+                localStorage.setItem("wishlist", JSON.stringify(apiWishlist));
+            }
+        } catch (err) {
+            console.error("Failed to sync wishlist", err);
+        }
+    }
+    console.log(wishlistedItems);
+
+    useEffect(() => {
+        getlistWishlist()
+    }, []);
+    // remove wishlisted items by their id 
+    const handleWishlistRemove = async (wishlistItemId) => {
+        const token = localStorage.getItem("access_token");
+
+        const updated = wishlistedItems.filter(item => item.id !== wishlistItemId);
+        setWishlistedItems(updated);
+        localStorage.setItem("wishlist", JSON.stringify(updated));
+
+        if (token) {
+            const reqHeader = {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+            try {
+                const result = await removeWishlistAPI([wishlistItemId], reqHeader);
+                if (result.status === 200) {
+                    toast.success("This item was removed successfully");
+                    getlistWishlist(); // refresh
+                } else {
+                    toast.warning(result.data);
+                }
+            } catch (err) {
+                console.error(err);
+                toast.error("Failed to remove item from wishlist");
+            }
+        }
     }
 
-    const handleRemoveAll = () =>{
-        setWishlistedItems([]),
-        localStorage.setItem("wishlist", JSON.stringify([]))
-    }
+    const removeFromWishlistUI = (id) => {
+        const updated = wishlistedItems.filter(item => item.id !== id);
+        setWishlistedItems(updated);
+        localStorage.setItem("wishlist", JSON.stringify(updated));
+    };
+    // remove all wishlisted items
+    const handleRemoveAll = async () => {
+        const token = localStorage.getItem("access_token");
+        if (!token) return;
 
-    
+        const reqHeader = {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        };
+
+        try {
+            const result = await removeWishlistAPI(wishlistedItems.map(item => item.id), reqHeader);
+
+            if (result.status === 200) {
+                toast.success("All wishlisted items are removed!");
+                setWishlistedItems([]);
+                localStorage.setItem("wishlist", JSON.stringify([]));
+            } else {
+                toast.error("Failed to remove all items");
+            }
+        } catch (err) {
+            console.error("Error removing all wishlist items", err);
+            toast.error("Something went wrong");
+        }
+    };
+
+
+
+
     return (
         <>
             {/* Navbar */}
             <div className='container-fluid' id='Container'>
                 <Navbar collapseOnSelect expand="lg">
-                    <Navbar.Brand className='brandname fw-bold' href="#home"><b>EBrands</b></Navbar.Brand>
+                    <Link className='text-decoration-none' to={"/"}><Navbar.Brand className='brandname fw-bold'><b>EBrands</b></Navbar.Brand></Link>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="navsection  me-auto ">
@@ -59,7 +150,7 @@ function Wishlist() {
                             <Nav.Link><Link to={"/wishlist"}><button className='Whishlistbtn btn btn-outline-dark '>Wishlist</button></Link></Nav.Link>
                         </Nav>
                         <Nav>
-                            <Nav.Link><Link to={"/register"}><button className='signUp-btn btn '>Sign in <i class="fa-solid fa-arrow-right"></i></button></Link></Nav.Link>
+                            {logoutStatus ? (<Nav.Link><Link to={"/"}><button className='signUp-btn btn ' onClick={logout}> LogOut <i class="fa-solid fa-arrow-right"></i></button></Link></Nav.Link>) : (<Nav.Link><Link to={"/register"}><button className='signUp-btn btn '>Sign in <i class="fa-solid fa-arrow-right"></i></button></Link></Nav.Link>)}
                         </Nav>
                     </Navbar.Collapse>
 
@@ -85,10 +176,11 @@ function Wishlist() {
                     <p className="text-center fs-1 text-danger mt-5">No items in wishlist.</p>
                 ) : (
                     wishlistedItems.map(item => (
-                        <WishlistCard key={item.id} product={item} onClick={handleWishlistRemove} />
+                        <WishlistCard key={item.id} product={item} onClick={() => handleWishlistRemove(item.id)} removeFromWishlistUI={removeFromWishlistUI} />
                     ))
                 )}
             </div>
+            <ToastContainer autoClose={3000} />
         </>
 
     )

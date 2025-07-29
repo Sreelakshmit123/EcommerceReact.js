@@ -4,8 +4,8 @@ import { getTrackBackground, Range } from 'react-range';
 
 function PriceFilter({
     min = 0,
-    max = 2000,
-    step = 100,
+    max = 50000,
+    step = 1000,
     values,
     setValues
 }) {

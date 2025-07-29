@@ -6,10 +6,7 @@ import MobileSliderFilter from './MobileSliderFilter'
 import FavoriteBrands from './FavoriteBrands'
 import RelatedProducts from './RelatedProducts'
 function MobileTablet() {
-    const [filters, setFilters] = useState({
-        priceRange: [0, 2000],
-        locations: []
-    });
+    const [filters, setFilters] = useState(null);
 
     const handleApplyFilter = (priceRange, locations) => {
         setFilters({ priceRange, locations });

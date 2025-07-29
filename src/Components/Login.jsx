@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Row, Col, Form, Button } from "react-bootstrap";
+import { ToastContainer, toast } from 'react-toastify';
+import { loginAPI } from '../Services/allAPIs';
 
 function Login() {
-    const navigate =  useNavigate()
+    const navigate = useNavigate()
     const [inputs, setInputs] = useState({
         email: "",
         password: "",
-        cpassword: ""
     })
     console.log(inputs);
 
@@ -35,13 +36,38 @@ function Login() {
 
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const errors = validation(inputs);
         setError(errors);
 
         if (JSON.stringify(errors) === '{}') {
-            navigate("/");
+            try {
+                const response = await loginAPI({
+                    username: inputs.email,
+                    password: inputs.password
+                });
+                if (response.status === 200) {
+                    const data = response.data;
+                    localStorage.setItem("access_token", data.access_token);
+                    localStorage.setItem("refresh_token", data.refresh_token);
+                    localStorage.setItem("user_type", data.user_type);
+                    localStorage.setItem("email", inputs.email);
+                    if (data.name) {
+                        localStorage.setItem("name", data.name);
+                        localStorage.setItem("firstname", data.firstname )
+                    }
+                     console.log("Access Token Saved:", data.access_token);
+                    toast.success(`${data.name || inputs.email} has successfully Logged In`);
+                    setTimeout(() => {
+                        navigate("/");
+                    }, 3000);
+                } else {
+                    toast.warning(response.response.data)
+                }
+            } catch (err) {
+                toast.error("login failed")
+            }
         }
     }
 
@@ -90,6 +116,7 @@ function Login() {
                     </Row>
                 </div>
             </div>
+            <ToastContainer />
 
         </>
     )
