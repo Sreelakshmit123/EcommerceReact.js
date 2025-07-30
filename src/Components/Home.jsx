@@ -7,25 +7,24 @@ import SpotlightedItems from './SpotlightedItems'
 import { Link } from 'react-router-dom'
 import Footer from './Footer'
 import Header from './Header'
-import Slider from 'react-slick';
-
-
-
+import Slider from 'react-slick'
 import { footerBannersAPI } from '../Services/allAPIs'
 import { Card } from 'react-bootstrap'
+import { SERVER_URL } from '../Services/serverUrl'
 function Home() {
     const sliderRef = useRef(null);
-
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [footerBanners, setFooterBanners] = useState([]);
     const CustomNextArrow = ({ onClick }) => (
         <div className="custom-arrows-footerBanner new-next ms-3" onClick={onClick}>
-            <i class="fa-solid fa-arrow-right"></i>
+            <i class="fa-solid fa-angle-right"></i>
         </div>
     );
 
     const CustomPrevArrow = ({ onClick }) => (
         <div className="custom-arrows-footerBanner new-prev" onClick={onClick}>
-            <i class="fa-solid fa-arrow-left"></i>
+            <i class="fa-solid fa-angle-left"></i>
         </div>
     );
     const handleFooterBanners = async () => {
@@ -128,27 +127,37 @@ function Home() {
                     </div>
                 </div>
                 <div className='mb-4'>
-                  <div className='d-flex justify-content-between'>
+                    <div className='d-flex justify-content-between'>
                         <h4 className='footerBanners fw-bolder'>Real People, Real Savings</h4>
                         <div className="control-arrow">
                             <CustomPrevArrow onClick={() => sliderRef.current?.slickPrev()} />
                             <CustomNextArrow onClick={() => sliderRef.current?.slickNext()} />
                         </div>
-                  </div>
+                    </div>
                     <p className="footerLineWrapper">
                         <p className="footerLine"></p>
                     </p>
 
                     {/* cards */}
                     <Slider ref={sliderRef} {...settings}>
-                        <div className='d-flex justify-content-between'>
-                            <Card className='cardImg d-flex justify-content-between'>
-                                <Card.Img className='w-100 h-100 rounded image' variant="top" src={landingImage} />
-                                <Card.Body className='cardsText'>
-                                    <button className="footerBanner-btn d-flex justify-content-between btn btn-sm  w-100 ps-3 pe-3 p-2">Up to 50% <i class="fa-solid fa-arrow-right mt-1"></i></button>
-                                </Card.Body>
-                            </Card>
-                        </div>
+                        {loading ? (
+                            <div className='text-center mb-4 fs-5 text-danger'><b>Loading...Please wait</b></div>
+                        ) : error ? (
+                            <div className='text-center mb-4 fs-5 text-danger'><b>{error}</b></div>
+                        ) : (
+                            footerBanners.map((item, index) => {
+                                return (
+                                    <div key={index} className='d-flex justify-content-between'>
+                                        <Card className='cardImg d-flex justify-content-between'>
+                                            <Card.Img className='w-100 h-100 rounded image' variant="top" src={item?.icon_url?.startsWith('http') ? item.icon_url : `${SERVER_URL}${item.icon_url}`} />
+                                            <Card.Body className='cardsText'>
+                                                <button className="footerBanner-btn d-flex justify-content-between btn btn-sm  w-100 ps-3 pe-3 p-2">Up to 50% <i class="fa-solid fa-arrow-right mt-1"></i></button>
+                                            </Card.Body>
+                                        </Card>
+                                    </div>
+                                )
+                            }))
+                        }
                     </Slider>
                 </div>
             </div>

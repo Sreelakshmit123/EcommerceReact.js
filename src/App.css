@@ -564,18 +564,17 @@ body {
   color: rgb(237, 237, 237);
 }
 .custom-arrows-footerBanner{
-    font-size: 12px;
+    font-size: 15px;
     color: black;
     background-color: transparent;
-    padding: 8px 5px;
-    border-radius: 120px;
+    padding: 0px 2px;
     cursor: pointer;
     transition: 0.2s ease-in-out;
 }
 .custom-arrows-footerBanner:hover{
-    color: white;
-    border-color: white;
+    color: rgb(141, 141, 141);
 }
+
 
 /* tablet view  */
 @media (max-width: 1440px) {}
