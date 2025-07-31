@@ -8,6 +8,8 @@ import ProductView from './Components/ProductView'
 import PaymentDetailsPage from './Components/PaymentDetailsPage'
 import SignUp from './Components/SignUp'
 import Login from './Components/Login'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css'
 import '/MobileTablet.css'
 import './Wishlist.css'
@@ -29,10 +31,11 @@ function App() {
         <Route path='/wishlist' element={<Wishlist />} />
         <Route path='/shoppingCart' element={<AddToCart />} />
         <Route path="/product/:product_id/:skuId" element={<ProductView />} />
-        <Route path='/payment-page' element={<PaymentDetailsPage/>} />
-        <Route path='/register' element={<SignUp/>} />
-        <Route path='/login' element={<Login/>} />
+        <Route path='/payment-page' element={<PaymentDetailsPage />} />
+        <Route path='/register' element={<SignUp />} />
+        <Route path='/login' element={<Login />} />
       </Routes>
+      <ToastContainer position="top-right" autoClose={2000} />
     </>
   )
 }

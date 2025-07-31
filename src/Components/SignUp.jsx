@@ -2,11 +2,15 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Row, Col, Form, Button } from "react-bootstrap";
 import google_logo from '../assets/images/GoogleLogo.png'
-
+import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { googleLoginAPI, registerAPI, sendVerificationAPI, verifyTokenAPI } from '../Services/allAPIs';
 import { GoogleLogin } from '@react-oauth/google';
+
+
 function SignUp() {
+    const [showPassword, setshowPassword] = useState(false);
+    const [showCPassword, setshowCPassword] = useState(false);
     const navigate = useNavigate()
     const [otp, setOtp] = useState("");
     const [otpMode, setOtpMode] = useState(false)
@@ -35,10 +39,8 @@ function SignUp() {
 
         if (!value.name) {
             newerror.name = "name is requried";
-        } else if (value.name.length < 3) {
-            newerror.name = "name must have include 3-16 characters"
-        } else if (/\s/.test(value.name)) {
-            newerror.name = "name must not contain spaces"
+        } else if (value.name.length < 1) {
+            newerror.name = "name must have atleast 1 character"
         }
 
         if (!value.email) {
@@ -51,8 +53,8 @@ function SignUp() {
             newerror.password = "password is required";
         } else if (value.password.length < 6) {
             newerror.password = "password must be atleast 6 characters"
-        } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/.test(value.password)) {
-            newerror.password = "Must include Minimum six characters, at least one uppercase letter, one lowercase letter and one number"
+        } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d\s]).{6,}$/.test(value.password)) {
+            newerror.password = "Must include Minimum 6 characters, at least one uppercase letter, one lowercase letter, one number and one special character"
         }
         if (!value.cpassword) {
             newerror.cpassword = "confirm password is required";
@@ -77,10 +79,15 @@ function SignUp() {
                 if (result.status === 200) {
                     toast.success("OTP send to Email")
                     setOtpMode(true)
+                }else if(result.status === 403){
+                    toast.info("This email is already registered with an active account. Please login.")
+                    setTimeout(() => {
+                        navigate("/login")
+                    }, 3000);
                 }
-
             } catch (error) {
-                toast.error("OTP send failed!!")
+                console.log("OTP Send Error:", error);
+                
             }
         }
     }
@@ -123,10 +130,10 @@ function SignUp() {
 
     const handleGoogleLogin = async () => {
         const dummyGoogleUser = {
-            first_name:"" ,
+            first_name: "",
             last_name: "",
             email: "@gmail.com",
-            login_id: "", 
+            login_id: "",
         };
 
         try {
@@ -151,7 +158,7 @@ function SignUp() {
         <>
             <div className='sign-up'>
                 <div className='signup-background'>
-                    <Link className='brandname' to={'/'}><h5 className='brandname fw-bolder ms-5 mt-5'>EBrands</h5></Link>
+                    <Link className='brandname' to={'/'}><h5 className='brandname fw-bolder ms-5 mt-5 pt-4'>EBrands</h5></Link>
                     <div className='circle-gradient0-sign-up'></div>
                     <div className='circle-gradient1-sign-up'></div>
                     <div className='circle-gradient2-sign-up'></div>
@@ -160,41 +167,51 @@ function SignUp() {
                 <div className="sign-up-container container d-flex justify-content-center align-items-center w-100 h-100">
                     <Row className="sign-up-box shadow-lg rounded-5 overflow-hidden w-100" >
                         {/* left col */}
-                        <Col lg={6} className=" order-2 order-md-1 bg-white p-5">
+                        <Col lg={6} className="sign-up-padding order-2 order-md-1 bg-white ">
                             {!otpMode ? (
                                 <>
-                                    <h2 className="fw-bold mb-2">Welcome Back</h2>
-                                    <p className="text-muted mb-4">Simplify your online business</p>
+                                    <h2 className="fw-bold">Welcome Back</h2>
+                                    <p className="text-muted mb-3">Simplify your online business</p>
                                     {/* continue with goole login */}
-                                    <Button onClick={handleGoogleLogin} variant="outline-secondary" className="signup-google w-100 mb-3 d-flex align-items-center justify-content-center">
+                                    <Button onClick={handleGoogleLogin} variant="outline-secondary" className="signup-google w-100 mb-2 d-flex align-items-center justify-content-center">
                                         <img src={google_logo} alt="Google" width="20" className="me-2" />
                                         Sign up with Google
                                     </Button>
                                     <p className="sign-up-email-text text-center mb-3">Or, sign up with your email</p>
-                                    <Row className="mb-3">
+                                    <Row className="mb-2">
                                         <Col>
-                                            <Form.Control className='sign-up-form' placeholder="Your first name" name='firstname' value={inputs.firstname} onChange={e => setInputs({ ...inputs, firstname: e.target.value })} required />
+                                            <Form.Control className='sign-up-form ' autoComplete="off"   placeholder="Your first name" name='firstname' value={inputs.firstname} onChange={e => setInputs({ ...inputs, firstname: e.target.value })} required />
                                             {error.firstname && <span className='text-danger small'>{error.firstname}</span>}
-                                        </Col >
+                                        </Col>
                                         <Col>
-                                            <Form.Control className='sign-up-form' placeholder="Your name" name='name' value={inputs.name} onChange={e => setInputs({ ...inputs, name: e.target.value })} required />
+                                            <Form.Control className='sign-up-form' autoComplete="off" placeholder="Your name" name='name' value={inputs.name} onChange={e => setInputs({ ...inputs, name: e.target.value })} required />
                                             {error.name && <span className='text-danger small'>{error.name}</span>}
 
                                         </Col>
                                     </Row>
 
-                                    <Form.Group className="mb-3">
-                                        <Form.Control className='sign-up-form' type="email" placeholder="Enter your E-mail" name='email' value={inputs.email} onChange={e => setInputs({ ...inputs, email: e.target.value })} required />
+                                    <Form.Group className="mb-2">
+                                        <Form.Control className='sign-up-form'  autoComplete="off" type="email" placeholder="Enter your E-mail" name='email' value={inputs.email} onChange={e => setInputs({ ...inputs, email: e.target.value })} required />
                                         {error.email && <span className='text-danger small'>{error.email}</span>}
                                     </Form.Group>
 
-                                    <Form.Group className="mb-3">
-                                        <Form.Control className='sign-up-form' type="password" placeholder="Enter your password" name='password' value={inputs.password} onChange={e => setInputs({ ...inputs, password: e.target.value })} required />
+                                    <Form.Group className="mb-2">
+                                        <div className='password-eyeicon'>
+                                            <Form.Control className='sign-up-form '  autoComplete="off" type={showPassword ? "text" : "password"} placeholder="Enter your password" name='password' value={inputs.password} onChange={e => setInputs({ ...inputs, password: e.target.value })} required />
+                                            <i className={`password-eye fa-solid ${showPassword ? "fa-eye-slash" : "fa-eye"}`}
+                                                onClick={() => setshowPassword(!showPassword)}
+                                            ></i>
+                                        </div>
                                         {error.password && <span className='text-danger small'>{error.password}</span>}
                                     </Form.Group>
 
-                                    <Form.Group className="mb-4">
-                                        <Form.Control className='sign-up-form' type="password" placeholder="Retype your password" name='cpassword' value={inputs.cpassword} onChange={e => setInputs({ ...inputs, cpassword: e.target.value })} required />
+                                    <Form.Group className="mb-3">
+                                        <div className='password-eyeicon'>
+                                            <Form.Control className='sign-up-form ' autoComplete="off" type={showCPassword ? "text" : "password"} placeholder="Retype your password" name='cpassword' value={inputs.cpassword} onChange={e => setInputs({ ...inputs, cpassword: e.target.value })} required />
+                                            <i className={`password-eye fa-solid ${showCPassword ? "fa-eye-slash" : "fa-eye"}`}
+                                                onClick={() => setshowCPassword(!showCPassword)}
+                                            ></i>
+                                        </div>
                                         {error.cpassword && <span className='text-danger small'>{error.cpassword}</span>}
                                     </Form.Group>
 
@@ -239,9 +256,10 @@ function SignUp() {
                             <p className="mt-2">Tasya and Xain</p>
                         </Col>
                     </Row>
-                </div>
+                </div> 
             </div>
-            <ToastContainer position="top-right" autoClose={2000} />
+                              <ToastContainer position="top-right" autoClose={3000} />
+
         </>
     )
 }

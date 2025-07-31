@@ -244,10 +244,11 @@ function MobileProductCard({ filters, category, subcategory }) {
                                     </div>
                                     <Card.Body>
                                         <div className="mobiletablet-productname">
-                                            <p>{item.title}</p>
+                                            <p>{item.title.length > 20 ? item.title.slice(0, 20) + "..." : item.title}</p>
                                             <p>₹{item.sku.price}</p>
                                         </div>
-                                        <p className="mobiletablet-subtitle">{item.description}</p>
+                                        <p className="mobiletablet-subtitle">
+                                            {item.description.length > 60 ? item.description.slice(0, 60) + "..." : item.description}</p>
                                         <p className="mobiletablet-rating">
                                             {[1, 2, 3, 4, 5].map((i) => {
                                                 const rating = item.average_rating;

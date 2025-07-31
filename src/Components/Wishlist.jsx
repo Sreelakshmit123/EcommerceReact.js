@@ -28,6 +28,7 @@ function Wishlist() {
     }, []);
     const logout = () => {
         localStorage.clear();
+        setLogoutStatus(false);
         navigate('/');
     };
     const [wishlistedItems, setWishlistedItems] = useState([]);

@@ -83,8 +83,10 @@
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
     border-radius: 20px 20px 0px 0px;
-    height: 40vh;
-    padding: 25px;
+    height: 300px;
+    object-fit: contain;
+    width: 100%;
+    padding: 10px;
 }
 
 .mobiletablet-btn {
@@ -162,8 +164,9 @@
     cursor: pointer;
     transition: 0.2s ease-in-out;
 }
-.custom-arrows:hover{
-       background-color: rgb(133, 2, 255);
+
+.custom-arrows:hover {
+    background-color: rgb(133, 2, 255);
     color: white;
     border-color: white;
 }
@@ -213,7 +216,7 @@
     height: fit-content;
     border-radius: 5%;
     border: 0;
-   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 20px -5px, rgba(0, 0, 0, 0.1) 0px 0px 20px -5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 20px -5px, rgba(0, 0, 0, 0.1) 0px 0px 20px -5px;
 }
 
 .relatedProduct-slider .slick-slide>div {
@@ -364,8 +367,9 @@
     font-weight: bold;
 
 }
+
 .filterHead-text .accordion-button:not(.collapsed) {
-  font-size:15px  !important;   
+    font-size: 15px !important;
 }
 
 .checkbox-filter {
@@ -421,12 +425,14 @@
     color: rgb(0, 0, 0);
     text-decoration: none !important;
 }
+
 .category-link.selected,
 .subcategory-link.selected {
     font-weight: bold;
     color: rgb(136, 60, 249);
     text-decoration: none !important;
 }
+
 .priceSelector {
     padding: 2px 13px;
     font-size: 11px;
@@ -495,5 +501,3 @@
     }
 
 }
-
-

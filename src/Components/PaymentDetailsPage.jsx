@@ -43,6 +43,7 @@ function PaymentDetailsPage() {
 
     const logout = () => {
         localStorage.clear();
+        setLogoutStatus(false);
         navigate('/');
     };
     // homelist data

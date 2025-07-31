@@ -52,7 +52,6 @@ function Header() {
         }
     };
 
-
     useEffect(() => {
         fetchHomeData()
         if (localStorage.getItem("access_token")) {
@@ -68,6 +67,7 @@ function Header() {
     }, []);
     const logout = () => {
         localStorage.clear();
+         setLogoutStatus(false);
         navigate('/');
     };
     return (

@@ -125,30 +125,30 @@ function SpotlightedItems() {
                                             <span className='spantext ms-3'>sold: 12/{item.sku.stock}</span>
                                         </div>
                                     </div>
-                                    <Card.Text >
-                                        {item.title}
+                                    <Card.Text > 
+                                        {item.title.length > 50 ? item.title.slice(0, 50) + "..." : item.title}
                                     </Card.Text>
                                     <div className='d-flex '>
-                                      <p className='bottomtag-para me-1 '>
-                                                {[1, 2, 3, 4, 5].map((i) => {
-                                                    const rating = item.average_rating || 0;
-                                                    const full = rating >= i;
-                                                    const half = rating >= i - 0.5 && rating < i;
+                                        <p className='bottomtag-para me-1 '>
+                                            {[1, 2, 3, 4, 5].map((i) => {
+                                                const rating = item.average_rating || 0;
+                                                const full = rating >= i;
+                                                const half = rating >= i - 0.5 && rating < i;
 
-                                                    const iconClass = full
-                                                        ? "fa-solid fa-star"
-                                                        : half
-                                                            ? "fa-solid fa-star-half-stroke"
-                                                            : "fa-solid fa-star";
+                                                const iconClass = full
+                                                    ? "fa-solid fa-star"
+                                                    : half
+                                                        ? "fa-solid fa-star-half-stroke"
+                                                        : "fa-solid fa-star";
 
-                                                    const iconColor = rating === 0 ? "rgba(233, 229, 229, 1)" : "rgba(253, 199, 5, 1)";
+                                                const iconColor = rating === 0 ? "rgba(233, 229, 229, 1)" : "rgba(253, 199, 5, 1)";
 
-                                                    return (
-                                                        <i key={i} className={`ms-1 ${iconClass}`} style={{ color: iconColor }}></i>
-                                                    );
-                                                })}
-                                            </p>
-                                            <p style={{ color: 'rgba(223, 222, 222, 1)' }} className='text-rating ps-2 '>|{item.average_rating}|</p>
+                                                return (
+                                                    <i key={i} className={`ms-1 ${iconClass}`} style={{ color: iconColor }}></i>
+                                                );
+                                            })}
+                                        </p>
+                                        <p style={{ color: 'rgba(223, 222, 222, 1)' }} className='text-rating ps-2 '>|{item.average_rating}|</p>
                                     </div>
                                     <div className='d-flex justify-content-between align-items-start mt-1'>
                                         <p>₹{item.sku.sales_rate} <del className='actualprice '>₹{item.sku.price}</del></p>

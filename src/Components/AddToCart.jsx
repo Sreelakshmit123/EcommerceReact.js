@@ -35,6 +35,7 @@ function AddToCart() {
 
     const logout = () => {
         localStorage.clear();
+        setLogoutStatus(false);
         navigate('/');
     };
       // homelist data

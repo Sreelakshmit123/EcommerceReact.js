@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { loginAPI } from '../Services/allAPIs';
 
 function Login() {
+    const [showPassword, setshowPassword] = useState(false);
     const navigate = useNavigate()
     const [inputs, setInputs] = useState({
         email: "",
@@ -27,8 +28,8 @@ function Login() {
             newerror.password = "password is required";
         } else if (value.password.length < 6) {
             newerror.password = "password must be atleast 6 characters"
-        } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/.test(value.password)) {
-            newerror.password = "Must include Minimum six characters, at least one uppercase letter, one lowercase letter and one number"
+        } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d\s]).{6,}$/.test(value.password)) {
+            newerror.password = "Must include Minimum six characters, at least one uppercase letter, one lowercase letter, one number and one special character"
         }
 
         return newerror;
@@ -55,9 +56,9 @@ function Login() {
                     localStorage.setItem("email", inputs.email);
                     if (data.name) {
                         localStorage.setItem("name", data.name);
-                        localStorage.setItem("firstname", data.firstname )
+                        localStorage.setItem("firstname", data.firstname)
                     }
-                     console.log("Access Token Saved:", data.access_token);
+                    console.log("Access Token Saved:", data.access_token);
                     toast.success(`${data.name || inputs.email} has successfully Logged In`);
                     setTimeout(() => {
                         navigate("/");
@@ -89,12 +90,17 @@ function Login() {
                             <p className="text-muted mb-4">Simplify your online business</p>
 
                             <Form.Group className="mb-3">
-                                <Form.Control className='sign-up-form' type="email" placeholder="Enter your E-mail" name='email' value={inputs.email} onChange={e => setInputs({ ...inputs, email: e.target.value })} required />
+                                <Form.Control className='sign-up-form' autoComplete="off" type="email" placeholder="Enter your E-mail" name='email' value={inputs.email} onChange={e => setInputs({ ...inputs, email: e.target.value })} required />
                                 {error.email && <span className='text-danger small'>{error.email}</span>}
                             </Form.Group>
 
                             <Form.Group className="mb-3">
-                                <Form.Control className='sign-up-form' type="password" placeholder="Enter your password" name='password' value={inputs.password} onChange={e => setInputs({ ...inputs, password: e.target.value })} required />
+                                <div className='password-eyeicon'>
+                                    <Form.Control className='sign-up-form' autoComplete="off" type={showPassword ? "text" : "password"} placeholder="Enter your password" name='password' value={inputs.password} onChange={e => setInputs({ ...inputs, password: e.target.value })} required />
+                                    <i className={`password-eye fa-solid ${showPassword ? "fa-eye-slash" : "fa-eye"}`}
+                                        onClick={() => setshowPassword(!showPassword)}
+                                    ></i>
+                                </div>
                                 {error.password && <span className='text-danger small'>{error.password}</span>}
                             </Form.Group>
 

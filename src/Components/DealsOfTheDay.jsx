@@ -131,8 +131,8 @@ function DealsOfTheDay() {
                                                 <span className='spantext ms-3'>sold: 12/{item.sku.stock}</span>
                                             </div>
                                         </div>
-                                        <Card.Text >
-                                            {item.description}
+                                        <Card.Text >       
+                                           {item.description.length > 50 ? item.description.slice(0, 50) + "..." : item.description}
                                         </Card.Text>
                                         <div className='d-flex '>
                                             <p className='bottomtag-para me-1 '>
