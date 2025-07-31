@@ -218,8 +218,8 @@ function SignUp() {
                                     <Button onClick={handleSubmitSignUp} className="sign-up-button w-100 pt-3 pb-3">
                                         Sign Up
                                     </Button>
-
-                                    <div className="d-flex justify-content-evenly align-items-center mt-3 text-muted small ">
+                                    <div className='text-center small mt-1'>Have an Account ? <Link to={'/login'}>Login Here</Link></div>
+                                    <div className="d-flex justify-content-evenly align-items-center mt-1 text-muted small ">
                                         <a href="#" className='text-dark text-decoration-none'>Customer Support</a>
                                         <a href="#" className='text-dark text-decoration-none'>Terms of Service</a>
                                     </div>

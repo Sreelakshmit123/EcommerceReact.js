@@ -155,7 +155,8 @@ function DealsOfTheWeek() {
 
                   <Card.Body className='cardbody'>
                     <Card.Text >
-                      {item.title}
+                  
+                           {item.title.length > 20 ? item.title.slice(0, 20) + "..." : item.title}
                     </Card.Text>
                     <div className='d-flex'>
                       <p className='bottomtag-para me-1'>

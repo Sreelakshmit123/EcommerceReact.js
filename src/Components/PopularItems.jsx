@@ -56,7 +56,7 @@ function PopularItems() {
                                 <Card.Body>
 
                                     <div className="d-flex justify-content-between ">
-                                        <p className='popularitems-text'>{item.title}</p>
+                                        <p className='popularitems-text'>{item.title.length > 20 ? item.title.slice(0, 20) + "..." : item.title}</p>
                                         <p className='popularitems-text text-danger'>₹{item?.sku?.sales_rate ?? item.price}</p>
                                     </div>
                                     <div className="d-flex justify-content-between">
