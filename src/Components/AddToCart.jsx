@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link, useNavigate } from 'react-router-dom';
 import { Card, Col, NavDropdown, Row } from 'react-bootstrap';
 import Footer from './Footer';
-import { listCartAPI, moveToWishlistAPI, removeAllCartAPI, removeCartAPI } from '../Services/allAPIs';
+import { HomeListAPI, listCartAPI, moveToWishlistAPI, removeAllCartAPI, removeCartAPI } from '../Services/allAPIs';
 import { SERVER_URL } from '../Services/serverUrl';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,8 +17,10 @@ function AddToCart() {
     const [name, setName] = useState('');
     const [logoutStatus, setLogoutStatus] = useState(false);
     const navigate = useNavigate();
+    const [homeList, setHomeList] = useState([]);
 
     useEffect(() => {
+        fetchHomeData()
         const token = localStorage.getItem("access_token");
         if (token) {
             setLogoutStatus(true);
@@ -35,6 +37,20 @@ function AddToCart() {
         localStorage.clear();
         navigate('/');
     };
+      // homelist data
+        const fetchHomeData = async () => {
+            try {
+                const res = await HomeListAPI();
+                console.log("Home list API full response:", res);
+                if (res?.status === 200) {
+                    setHomeList(res.data.main_categories || []);
+                } else {
+                    console.warn('Home list API failed');
+                }
+            } catch (error) {
+                console.error('Home list fetch error:', error);
+            }
+        };
     // getting cart list
     const getlistCart = async () => {
         const token = localStorage.getItem("access_token");
@@ -264,18 +280,23 @@ function AddToCart() {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="navsection  me-auto ">
                             <Nav.Link><Link to={"/"} className='navsection'>Home</Link></Nav.Link>
-                            <NavDropdown title="Collection" id="basic-nav-dropdown" className='navsection'>
-                                <NavDropdown.Item ><Link to={"/Computer-Laptop"} className='navsection-dropdown'>Computer & Laptop</Link></NavDropdown.Item>
-                                <NavDropdown.Item><Link to={"/mobiletablet"} className='navsection-dropdown'>Mobile & Tablet</Link></NavDropdown.Item>
-                                <NavDropdown.Item ><Link to={"/camera"} className='navsection-dropdown'>Camera</Link></NavDropdown.Item>
-                                <NavDropdown.Item><Link to={"/tv-smartphone"} className='navsection-dropdown'>TV and Smart Box</Link></NavDropdown.Item>
-                                <NavDropdown.Item><Link to={"/home-appliance"} className='navsection-dropdown'>Home Appliance</Link></NavDropdown.Item>
-                                <NavDropdown.Item><Link to={"/smart-watch"} className='navsection-dropdown'>Smart watch</Link></NavDropdown.Item>
-                                <NavDropdown.Item><Link to={"/microphone-audio"} className='navsection-dropdown'>Microphone & Audio</Link></NavDropdown.Item>
-                                <NavDropdown.Item><Link to={"/gaming"} className='navsection-dropdown'>Gaming</Link></NavDropdown.Item>
-                                <NavDropdown.Item><Link to={"/printer"} className='navsection-dropdown'>Printer</Link></NavDropdown.Item>
-                                <NavDropdown.Item><Link to={"/accessories"} className='navsection-dropdown'>Accessories</Link></NavDropdown.Item>
-
+                            <NavDropdown title="Collection" id="basic-nav-dropdown" className="navsection">
+                                {homeList.map((category) => (
+                                    <div key={category.id} className="dropdown-submenu px-2">
+                                        <NavDropdown title={category.name} drop="end" className="navsection-dropdown">
+                                            {category.subcategories && category.subcategories.map((sub) => (
+                                                <NavDropdown.Item
+                                                    key={sub.id}
+                                                    as={Link}
+                                                    to={`/mobiletablet?page=1&category=${category.id}&subcategory=${sub.id}`}
+                                                    className="navsection-dropdown"
+                                                >
+                                                    {sub.name}
+                                                </NavDropdown.Item>
+                                            ))}
+                                        </NavDropdown>
+                                    </div>
+                                ))}
                             </NavDropdown>
                             <Nav.Link><Link to={"/sale"} className='navsection'>Sale</Link></Nav.Link>
                             <Nav.Link><Link to={"/faq"} className='navsection'>FAQ</Link></Nav.Link>

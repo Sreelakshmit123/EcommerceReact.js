@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { addToCartAPI, listCartAPI, listWishlistAPI, MobileProductListAPI, wishlistAPI } from '../Services/allAPIs';
 import { SERVER_URL } from '../Services/serverUrl';
 
-function MobileProductCard({ filters }) {
+function MobileProductCard({ filters, category, subcategory }) {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -31,45 +31,59 @@ function MobileProductCard({ filters }) {
     });
     // get products cards
     const getProductListCards = async () => {
+        setLoading(true);
         try {
-            const result = await MobileProductListAPI();
+            const params = new URLSearchParams();
+            params.set('page', 1);
+
+            if (category) params.set('category', category);
+            if (subcategory) params.set('subcategory', subcategory);
+
+            if (filters?.priceRange) {
+                const [min, max] = filters.priceRange;
+                params.set('price', `${min},${max}`);
+            }
+
+            const queryString = `?${params.toString()}`;
+            console.log("Sending query:", queryString);
+
+            const result = await MobileProductListAPI(queryString);
+            console.log("API Result:", result?.data?.results);
+
             if (result.status === 200) {
                 setmobileCategory(result.data.results);
                 setfilteredProducts(result.data.results);
                 setError(null);
             } else {
-                console.error('Failed to fetch products');
+                setError('Failed to fetch products');
             }
         } catch (error) {
+            console.error("Product list error:", error);
             setError('Something went wrong');
         } finally {
             setLoading(false);
         }
     };
 
+
+
     useEffect(() => {
         getProductListCards();
-    }, []);
+    }, [category, subcategory, filters]);
 
     // filter products
     useEffect(() => {
         if (!filters) return;
-        const [min, max] = filters?.priceRange || [0, 50000];
         const hasLocationFilter = filters.locations && filters.locations.length > 0;
-
         const result = mobileCategory.filter((item) => {
-            const priceValue = item?.sku?.price
-                ? parseFloat(item.sku.price.toString().replace(/[^0-9.]/g, ''))
-                : 0;
-            const inPriceRange = priceValue >= min && priceValue <= max;
-            const inLocation =
-                !hasLocationFilter || filters.locations.includes(item.location);
-            return inPriceRange && inLocation;
+            const inLocation = !hasLocationFilter || filters.locations.includes(item.location);
+            return inLocation;
         });
 
         setfilteredProducts(result);
         setError(null);
     }, [filters, mobileCategory]);
+
 
     // wishlist items
     const handleWishlistClick = async (product) => {

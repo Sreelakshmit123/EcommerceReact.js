@@ -52,8 +52,8 @@ export const BrandListAPI = async () => {
 };
 
 // MobileProduct List Cards
-export const MobileProductListAPI = async () => {
-  return await commonAPI("GET", `${SERVER_URL}/api/product-list/`);
+export const MobileProductListAPI = async (query = '') => {
+    return await commonAPI("GET", `${SERVER_URL}/api/product-list/${query}`);
 };
 
 // MobileProduct List view
@@ -123,3 +123,13 @@ export const googleLoginAPI = async (reqBody) =>{
   return await commonAPI("POST", `${SERVER_URL}/user/continue-with-google/`, reqBody)
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+//HomeList Api
+export const HomeListAPI = async (reqHeader) => {
+  return await commonAPI("GET", `${SERVER_URL}/api/homeList/`, reqHeader)
+}
+//Price List (filter) Api
+export const filterPriceListAPI = async (reqHeader) => {
+  return await commonAPI("GET", `${SERVER_URL}/api/PriceList/`, reqHeader)
+}

@@ -7,7 +7,15 @@ body {
 #Container {
   padding: 0 80px;
 }
+.dropdown-submenu {
+  position: relative;
+}
 
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
+}
 .search-dropdown-list {
   position: absolute;
   background-color: white;
@@ -577,10 +585,11 @@ body {
 
 
 /* tablet view  */
-@media (max-width: 1440px) {}
+@media (max-width: 1440px) {
+
+}
 
 /* moblie view  */
-
 
 @media (max-width: 768px) {
 

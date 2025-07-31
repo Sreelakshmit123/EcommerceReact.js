@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Accordion } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import PriceFilter from './PriceFilter'
+import { filterPriceListAPI, HomeListAPI } from '../Services/allAPIs'
 
-function MobileSliderFilter({ onApplyFilter }) {
+function MobileSliderFilter({ selectedCategory, selectedSubcategory, onApplyFilter }) {
 
     const [values, setValues] = useState([0, 50000])
     const locations = ['Jagarta', 'Yogyakarta', 'Bandung', 'Semarang', 'Sarabaya'];
     const [checkedLocations, setCheckedLocations] = useState({});
-
+    const [expandedCategory, setExpandedCategory] = useState(null);
+    const [homeList, setHomeList] = useState([]);
 
     const handleCheckboxChange = (location) => {
         setCheckedLocations((prev) => ({
@@ -17,35 +19,88 @@ function MobileSliderFilter({ onApplyFilter }) {
         }));
     }
 
+    const toggleCategory = (categoryId) => {
+        setExpandedCategory(prev => prev === categoryId ? null : categoryId);
+    };
+
     const handleSubmitFilter = () => {
         const selectedLocations = Object.keys(checkedLocations).filter(loc => checkedLocations[loc]);
         onApplyFilter(values, selectedLocations);
     }
+
     const handleResetFilter = () => {
-        const resetValues = [0,50000];
+        const resetValues = [0, 50000];
         setCheckedLocations({});
         setValues(resetValues);
-        onApplyFilter(resetValues,[]);
+        onApplyFilter(resetValues, []);
     }
+    // price filter
+    const getPriceList = async () => {
+        try {
+            const response = await filterPriceListAPI();
+            if (response.status === 200) {
+                const data = response.data;
+                const min = parseInt(data.min_price);
+                const max = parseInt(data.max_price);
+
+                setValues([min, max]);
+            }
+        } catch (err) {
+            console.log("Error fetching price range", err);
+        }
+    };
+
+    useEffect(() => {
+        getPriceList()
+        const HomeListCategories = async () => {
+            try {
+                const res = await HomeListAPI();
+                if (res.status === 200) {
+                    setHomeList(res.data.main_categories || []);
+                }
+            } catch (err) {
+                console.log("Error fetching categories", err);
+            }
+        };
+        HomeListCategories();
+    }, []);
+
+
     return (
         <>
             <p className='fw-bolder mb-4'>All Categories</p>
             <div className='All-categories d-block' id='style-1'>
-                <p><Link to={"/"} className='category-link'>Computer & Laptop <span>(25)</span></Link></p>
-                <p><Link to={"/mobiletablet"} className='category-link'>Mobile & Tablet <span>(125)</span></Link></p>
-                <p><Link to={"/"} className='category-link'>Camera <span>(150)</span></Link></p>
-                <p><Link to={"/"} className='category-link'>Tv & Smart Box <span>(75)</span></Link></p>
-                <p><Link to={"/"} className='category-link'>Home Appliance <span>(75)</span></Link></p>
-                <p><Link to={"/"} className='category-link'>Smart Watch <span>(45)</span></Link></p>
-                <p><Link to={"/"} className='category-link'>Microphone & Audio <span>(55)</span></Link></p>
-                <p><Link to={"/"} className='category-link'>Gaming  <span>(45)</span></Link></p>
-                <p><Link to={"/"} className='category-link'>Printer <span>(14)</span></Link></p>
-                <p><Link to={"/"} className='category-link'>Accessories <span>(32)</span></Link></p>
-                <p><Link to={"/"} className='category-link'>More Categories <span>(10)</span></Link></p>
-                <p><Link to={"/"} className='category-link'>Computer & Laptop <span>(25)</span></Link></p>
-                <p><Link to={"/"} className='category-link'>Computer & Laptop <span>(25)</span></Link></p>
-                <p><Link to={"/"} className='category-link'>Computer & Laptop <span>(25)</span></Link></p>
-                <p><Link to={"/"} className='category-link'>Computer & Laptop <span>(25)</span></Link></p>
+                {homeList.map(cat => (
+                    <div key={cat.id} className="mb-2">
+                        <div
+                            onClick={() => toggleCategory(cat.id)}
+                            style={{ cursor: 'pointer' }}
+                            className={`category-link d-flex justify-content-between  align-items-center ${selectedCategory == cat.id ? 'selected' : ''}`}
+                        >
+                            <span>
+                                {cat.name}
+                            </span>
+                            <i className={`fa-solid me-3 ${expandedCategory === cat.id ? 'fa-chevron-up' : 'fa-chevron-down'}`} />
+                        </div>
+
+                        {/* Show subcategories only when expanded */}
+                        {expandedCategory === cat.id && cat.subcategories?.length > 0 && (
+                            <div className='ps-3 mt-1'>
+                                {cat.subcategories.map(sub => (
+                                    <div key={sub.id} className="mb-1">
+                                        <Link 
+                                            to={`/mobiletablet?category=${cat.id}&subcategory=${sub.id}`}
+                                            className={`subcategory-link ${selectedSubcategory == sub.id ? 'selected' : ''}`}
+                                        >
+                                            {sub.name}
+                                        </Link>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                ))}
+
             </div>
             <p className='horizontal-line0' />
             <Accordion defaultActiveKey={['0']} alwaysOpen>
