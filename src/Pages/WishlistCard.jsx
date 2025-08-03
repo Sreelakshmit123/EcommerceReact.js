@@ -56,7 +56,7 @@ function WishlistCard({ product, onClick, removeFromWishlistUI }) {
             "Authorization": `Bearer ${token}`
         };
 
-        const wishlist_ids = [product.id]; 
+        const wishlist_ids = [product.id];
 
         try {
             const result = await moveToCartAPI(wishlist_ids, reqHeader);
@@ -94,18 +94,36 @@ function WishlistCard({ product, onClick, removeFromWishlistUI }) {
                             <img src={product?.mainimage?.startsWith('http') ? product.mainimage : `${SERVER_URL}${product.mainimage}`} alt="" className="card-image img-fluid" />
                         </Col>
                         <Col>
-                            <small>{product.average_rating}</small>
-                            <small className='text-warning ms-3'>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </small>
-                            <span className="text-muted ms-3 review-span">Review ({product.reviews_count})</span>
+
+                            <p>
+                                <span className='me-2 text-dark'>{product.average_rating}</span>
+                                {[1, 2, 3, 4, 5].map((i) => {
+                                    const rating = product.average_rating;
+                                    const full = rating >= i;
+                                    const half = rating >= i - 0.5 && rating < i;
+
+                                    const iconClass = full
+                                        ? "fa-solid fa-star"
+                                        : half
+                                            ? "fa-solid fa-star-half-stroke"
+                                            : "fa-solid fa-star";
+
+                                    const iconColor =
+                                        rating === 0 ? "rgba(227, 227, 227, 1)" : "rgba(253, 199, 5, 1)";
+
+                                    return (
+                                        <i
+                                            key={i}
+                                            className={`me-1 ${iconClass}`}
+                                            style={{ color: iconColor }}
+                                        ></i>
+                                    );
+                                })}
+                                <span className="text-muted ms-3 review-span">Review ({product.reviews_count})</span>
+                            </p>
                             <h5 className='mt-3'>{product.product_name}</h5>
                             <p className="text-muted mt-4 sub-title">
-                                {product.sku.title}
+                                {product.sku.title.length > 40 ? product.sku.title.slice(0, 40) + "..." : product.sku.title}
                             </p>
                             <button onClick={() => handleMovetocartClick(product)} className='wishlistCard-Add-to-card mt-3 ps-5 pe-5 pt-2 pb-2' size="sm" >
                                 Add to Cart

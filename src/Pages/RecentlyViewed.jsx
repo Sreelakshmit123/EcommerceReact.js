@@ -82,10 +82,9 @@ function RecentlyViewed() {
                                     <Card.Body className='relatedproduct-cardbody text-center '>
 
                                         <p className='relatedproduct-price fs-5'> {item.price}</p>
-                                        <p className='relatedproduct-para1 '> {item.para1}</p>
-                                        <p > {item.title}</p>
-
-                                        <p> {item.para2}</p>
+                                        <p className='relatedproduct-para1'>{item.para1.length > 30 ? item.para1.slice(0, 30) + "..." : item.para1}</p>
+                                        <p>{item.title.length > 25 ? item.title.slice(0, 25) + "..." : item.title}</p>
+                                        <p>{item.para2.length > 30 ? item.para2.slice(0, 30) + "..." : item.para2}</p>
                                     </Card.Body>
                                 </Card>
                             </div>

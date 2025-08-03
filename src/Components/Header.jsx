@@ -67,79 +67,86 @@ function Header() {
     }, []);
     const logout = () => {
         localStorage.clear();
-         setLogoutStatus(false);
+        setLogoutStatus(false);
         navigate('/');
     };
     return (
         <>
             {/* Navbar */}
-            <Navbar collapseOnSelect expand="lg">
-                <Link className='text-decoration-none' to={"/"}><Navbar.Brand className='brandname fw-bold'><b>EBrands</b></Navbar.Brand></Link>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="navsection  me-auto ">
-                        <Nav.Link><Link to={"/"} className='navsection'>Home</Link></Nav.Link>
-                        <NavDropdown title="Collection" id="basic-nav-dropdown" className="navsection">
-                            {homeList.map((category) => (
-                                <div key={category.id} className="dropdown-submenu px-2">
-                                    <NavDropdown title={category.name} drop="end" className="navsection-dropdown">
-                                        {category.subcategories && category.subcategories.map((sub) => (
+         <div className='pb-4 '>
+                <Navbar collapseOnSelect expand="lg">
+                    <Link className='text-decoration-none' to={"/"}><Navbar.Brand className='brandname fw-bold'><b>EBrands</b></Navbar.Brand></Link>
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                    <Navbar.Collapse id="responsive-navbar-nav">
+                        <Nav className="navsection  me-auto ">
+                            <Nav.Link><Link to={"/"} className='navsection'>Home</Link></Nav.Link>
+                            <NavDropdown title="Collection" id="basic-nav-dropdown" className="navsection">
+                                {homeList.map((category) => (
+                                    <div key={category.id} className="dropdown-submenu px-2">
+                                        <div className="d-flex justify-content-between align-items-center">
                                             <NavDropdown.Item
-                                                key={sub.id}
                                                 as={Link}
-                                                to={`/mobiletablet?page=1&category=${category.id}&subcategory=${sub.id}`}
-                                                className="navsection-dropdown"
-                                            >
-                                                {sub.name}
+                                                to={`/mobiletablet?page=1&category=${category.id}`}
+                                                className="fw-bold">
+                                                {category.name}
                                             </NavDropdown.Item>
-                                        ))}
-                                    </NavDropdown>
-                                </div>
-                            ))}
-                        </NavDropdown>
-
-
-                        <Nav.Link><Link to={"/sale"} className='navsection'>Sale</Link></Nav.Link>
-                        <Nav.Link><Link to={"/faq"} className='navsection'>FAQ</Link></Nav.Link>
-                    </Nav>
-                    <Nav className=''>
-                        <Nav.Link><Link to={"/shoppingCart"}><button className='cartbtn btn btn-outline-dark '><i className="fa-solid fa-cart-shopping me-2"></i>ShoppingCart</button></Link></Nav.Link>
-                        <Nav.Link><Link to={"/wishlist"}><button className='Whishlistbtn btn btn-outline-dark '>Wishlist</button></Link></Nav.Link>
-                    </Nav>
-                    <Nav>
-                        {logoutStatus ? (<Nav.Link><Link to={"/"}><button className='signUp-btn btn ' onClick={logout}> LogOut <i class="fa-solid fa-arrow-right"></i></button></Link></Nav.Link>) : (<Nav.Link><Link to={"/register"}><button className='signUp-btn btn '>Sign in <i class="fa-solid fa-arrow-right"></i></button></Link></Nav.Link>)}
-                    </Nav>
-                </Navbar.Collapse>
-
-            </Navbar>
-            {/* search bar */}
-
-            <div className='searchbarSection '>
-                <div className='search-wrapper '>
-                    <FaSearch id="search-icon" />
-                    <input
-                        type="text"
-                        placeholder="Search"
-                        value={searchText}
-                        onChange={handleSearch}
-                        className="searchbar mr-sm-2" />
+                                            <NavDropdown className="sub-dropdown">
+                                                {category.subcategories && category.subcategories.map((sub) => (
+                                                    <NavDropdown.Item  
+                                                        key={sub.id}
+                                                        as={Link}
+                                                        to={`/mobiletablet?page=1&category=${category.id}&subcategory=${sub.id}`}
+                                                    >
+                                                        {sub.name}
+                                                    </NavDropdown.Item>
+                                                ))}
+                                            </NavDropdown>
+                                        </div>
+                                    </div>
+                                ))}
+                            </NavDropdown>
+                            <Nav.Link><Link to={"/sale"} className='navsection'>Sale</Link></Nav.Link>
+                            <Nav.Link><Link to={"/faq"} className='navsection'>FAQ</Link></Nav.Link>
+                        </Nav>
+                        <Nav className=''>
+                            <Nav.Link><Link to={"/shoppingCart"}><button className='cartbtn btn btn-outline-dark '><i className="fa-solid fa-cart-shopping me-2"></i>ShoppingCart</button></Link></Nav.Link>
+                            <Nav.Link><Link to={"/wishlist"}><button className='Whishlistbtn btn btn-outline-dark '>Wishlist</button></Link></Nav.Link>
+                        </Nav>
+                        <Nav>
+                            {logoutStatus ? (<Nav.Link><Link to={"/"}><button className='signUp-btn btn ' onClick={logout}> LogOut <i class="fa-solid fa-arrow-right"></i></button></Link></Nav.Link>) : (<Nav.Link><Link to={"/register"}><button className='signUp-btn btn '>Sign in <i class="fa-solid fa-arrow-right"></i></button></Link></Nav.Link>)}
+                        </Nav>
+                    </Navbar.Collapse>
+    
+                </Navbar>
+                {/* search bar */}
+    
+                <div className='searchbarSection '>
+                    <div className='search-wrapper '>
+                        <FaSearch id="search-icon" />
+                        <input
+                            type="text"
+                            placeholder="Search"
+                            value={searchText}
+                            onChange={handleSearch}
+                            className="searchbar mr-sm-2" />
+                    </div>
+                    <button className='navbarbtns btn'><i className="fontBtnPopular fa-solid fa-fire me-2"></i> Most Popular</button>
+                    <button className='navbarbtns btn'><i class="fontBtnfilter fa-solid fa-sliders me-2"></i> Filters</button>
+    
                 </div>
-                <button className='navbarbtns btn'><i className="fontBtnPopular fa-solid fa-fire me-2"></i> Most Popular</button>
-                <button className='navbarbtns btn'><i class="fontBtnfilter fa-solid fa-sliders me-2"></i> Filters</button>
-
-            </div>
-
-            {/* category button */}
-
-            <div className='row'>
-                <div className='categoryButton  col-lg-6 '>
-                    <Link to={"/category1"}><button className='Categorybtn btn btn-outline-dark'>category</button></Link>
-                    <Link to={"/category2"}><button className='Categorybtn btn btn-outline-dark'>category</button></Link>
-                    <Link to={"/category3"}><button className='Categorybtn btn btn-outline-dark'>category</button></Link>
-                    <Link to={"/category4"}><button className='Categorybtn btn btn-outline-dark'>category</button></Link>
+    
+                {/* category button */}
+    
+                <div className='row'>
+                    <div className='categoryButton  col-lg-6 '>
+                        <Link to={"/category1"}><button className='Categorybtn btn btn-outline-dark'>category</button></Link>
+                        <Link to={"/category2"}><button className='Categorybtn btn btn-outline-dark'>category</button></Link>
+                        <Link to={"/category3"}><button className='Categorybtn btn btn-outline-dark'>category</button></Link>
+                        <Link to={"/category4"}><button className='Categorybtn btn btn-outline-dark'>category</button></Link>
+                    </div>
                 </div>
-            </div>
-
+    
+         </div>
         </>
     )
 }

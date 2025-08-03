@@ -278,10 +278,7 @@ function MobileProductCard({ filters, category, subcategory }) {
                                         </p>
 
 
-                                        <button
-                                            onClick={() => handleAddtocartClick(item)}
-                                            className="mobiletablet-btn btn btn-outline-dark"
-                                        >
+                                        <button onClick={() => handleAddtocartClick(item)} className="mobiletablet-btn btn btn-outline-dark">
                                             <i className="fa-solid fa-cart-shopping"></i> Add to Cart
                                         </button>
                                     </Card.Body>

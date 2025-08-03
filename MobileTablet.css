@@ -141,7 +141,6 @@
     border-radius: 0;
     padding: 0%;
 }
-
 .favbrand1 {
     width: 100%;
     height: fit-content;
@@ -216,6 +215,7 @@
     height: fit-content;
     border-radius: 5%;
     border: 0;
+    width: 100%;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 20px -5px, rgba(0, 0, 0, 0.1) 0px 0px 20px -5px;
 }
 
@@ -236,6 +236,7 @@
     background-color: rgb(237, 236, 236);
     border-radius: 5%;
     height: 28vh;
+    object-fit: contain;
     width: 100%;
     padding: 20px;
 
@@ -261,8 +262,11 @@
 }
 
 /* slider Fliter */
-
-.category-link {
+.category-link.selected a{
+    text-decoration: none;
+    color:  rgb(133, 2, 255);
+}
+.category-link a{
     text-decoration: none;
     color: black;
 }

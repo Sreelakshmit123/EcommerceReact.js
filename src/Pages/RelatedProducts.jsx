@@ -103,9 +103,8 @@ function RelatedProducts() {
                                         <Card.Body className='relatedproduct-cardbody text-center '>
 
                                             <p className='relatedproduct-price fs-5'> ${item.sku.price}</p>
-                                            <p className='relatedproduct-para1 '> {item.description}</p>
-                                            <p > {item.title}</p>
-
+                                            <p > {item.title.length > 20 ? item.title.slice(0, 20) + "..." : item.title}</p>
+                                            <p className='relatedproduct-para1 '> {item.description.length > 60 ? item.description.slice(0, 60) + "..." : item.description}</p>
                                             <p> {item.sku.discount}% off</p>
                                         </Card.Body>
                                     </Card>

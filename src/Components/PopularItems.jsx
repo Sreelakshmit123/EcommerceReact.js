@@ -6,6 +6,7 @@ import img3 from '../assets/images/earbuds.png';
 import img4 from '../assets/images/speaker.png';
 import { popularProductsAPI } from '../Services/allAPIs';
 import { SERVER_URL } from '../Services/serverUrl';
+import { Link } from 'react-router-dom';
 function PopularItems() {
     const [popularDeals, setpopularDeals] = useState([])
     const getPopularItems = async () => {
@@ -48,11 +49,9 @@ function PopularItems() {
                         <Col xs={12} sm={7} md={5} lg={4} key={item.id} className="mb-4">
                             <Card className="popularItemsCard text-center">
                                 <div className='offer-bar'>{item?.sku?.discount}%off</div>
-                                <Card.Img
-                                    variant="top"
-                                    src={item?.mainimage?.startsWith('http') ? item.mainimage : `${SERVER_URL}${item.mainimage}`}
-                                    style={{ height: '150px', objectFit: 'contain' }}
-                                />
+                                <Link to={`/product/${item.id}/${item.sku.id}`}>
+                                    <Card.Img variant="top" src={item?.mainimage?.startsWith('http') ? item.mainimage : `${SERVER_URL}${item.mainimage}`} style={{ height: '150px', objectFit: 'contain' }}/>
+                                </Link>
                                 <Card.Body>
 
                                     <div className="d-flex justify-content-between ">

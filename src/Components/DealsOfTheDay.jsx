@@ -6,14 +6,71 @@ import haedphone from '../assets/images/dealsOfDay-headphone.jpg';
 import WashingMachine from '../assets/images/dealsOfDay-machinejpg.jpg';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { dealsOfTheDayAPI } from '../Services/allAPIs';
+import { addToCartAPI, dealsOfTheDayAPI } from '../Services/allAPIs';
 import { SERVER_URL } from '../Services/serverUrl';
-
+import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 function DealsOfTheDay() {
     const sliderRef = useRef(null);
     const [deals, setdayDeals] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [cart, setCart] = useState(() => {
+        try {
+            const stored = JSON.parse(localStorage.getItem('cart'));
+            return Array.isArray(stored) ? stored : [];
+        } catch (e) {
+            return [];
+        }
+
+    });
+
+    // add to cart the produts
+    const handleAddtocartClick = async (product) => {
+        const token = localStorage.getItem('access_token');
+        if (token) {
+            const reqHeader = {
+                'Authorization': `Bearer ${token}`,
+            }
+
+            const formData = new FormData();
+            formData.append('product_id', product.id);
+            formData.append('skuid', product.sku.id);
+            formData.append('quantity', 1);
+
+            const alreadyInCart = cart.some((item) => {
+                const cartProductId = item?.product?.id || item?.id;
+                return cartProductId === product.id;
+            });
+            if (alreadyInCart) {
+                toast.info('Item is already in the cart');
+                return;
+            }
+            try {
+                const response = await addToCartAPI(formData, reqHeader);
+                if (response.status === 200 || response.status === 201) {
+                    const newCartItem = {
+                        ...response.data,
+                        product,
+                        sku: product.sku,
+                        quantity: 1,
+                    };
+                    const updatedCart = [...cart, newCartItem];
+                    setCart(updatedCart);
+                    localStorage.setItem('cart', JSON.stringify(updatedCart));
+                    toast.success('Added to shopping Cart');
+                } else {
+                    toast.error('Something went wrong while adding to shopping cart');
+                }
+            } catch (err) {
+                console.error(err);
+                toast.error('Cart action failed');
+            }
+        } else {
+            toast.warning('Please login to add your favourite!');
+            navigate('/login');
+        }
+    };
     const CustomNextArrow = ({ onClick }) => (
         <div className="custom-arrow new-next ms-4" onClick={onClick}>
             <i class="fa-solid fa-arrow-right"></i>
@@ -119,7 +176,9 @@ function DealsOfTheDay() {
                         return (
                             <div key={index}>
                                 <Card className='cardImg'>
-                                    <Card.Img className='image' variant="top" src={item?.mainimage?.startsWith('http') ? item.mainimage : `${SERVER_URL}${item.mainimage}`} alt='image not working' />
+                                    <Link to={`/product/${item.id}/${item.sku.id}`}>
+                                        <Card.Img className='image' variant="top" src={item?.mainimage?.startsWith('http') ? item.mainimage : `${SERVER_URL}${item.mainimage}`} alt='image not working' />
+                                    </Link>
                                     <Card.Body className='cardsText'>
                                         <div className="row">
                                             <div className="col-lg-9 bar">
@@ -131,8 +190,8 @@ function DealsOfTheDay() {
                                                 <span className='spantext ms-3'>sold: 12/{item.sku.stock}</span>
                                             </div>
                                         </div>
-                                        <Card.Text >       
-                                           {item.description.length > 50 ? item.description.slice(0, 50) + "..." : item.description}
+                                        <Card.Text >
+                                            {item.description.length > 50 ? item.description.slice(0, 50) + "..." : item.description}
                                         </Card.Text>
                                         <div className='d-flex '>
                                             <p className='bottomtag-para me-1 '>
@@ -157,8 +216,8 @@ function DealsOfTheDay() {
                                             <p style={{ color: 'rgba(223, 222, 222, 1)' }} className='text-rating ps-2 '>|{item.average_rating}|</p>
                                         </div>
                                         <div className='d-flex justify-content-between align-items-start '>
-                                        <p>₹{item.sku.sales_rate} <del className='actualprice '>₹{item.sku.price}</del></p>
-                                            <button className='shoppingcartbtn btn '><i class="fa-solid fa-cart-shopping"></i></button>
+                                            <p>₹{item.sku.sales_rate} <del className='actualprice '>₹{item.sku.price}</del></p>
+                                            <button onClick={() => handleAddtocartClick(item)} className='shoppingcartbtn btn '><i class="fa-solid fa-cart-shopping"></i></button>
                                         </div>
                                     </Card.Body>
                                 </Card>
@@ -172,6 +231,7 @@ function DealsOfTheDay() {
                 <CustomPrevArrow onClick={() => sliderRef.current?.slickPrev()} />
                 <CustomNextArrow onClick={() => sliderRef.current?.slickNext()} />
             </div>
+            <ToastContainer />
         </>
     )
 }

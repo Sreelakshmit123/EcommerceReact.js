@@ -7,9 +7,10 @@ import Gagets from '../assets/images/fridayGagets.jpg';
 import SaleOffer from '../assets/images/fridaySale.avif';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { spotlightedAPI } from '../Services/allAPIs';
+import { addToCartAPI, spotlightedAPI } from '../Services/allAPIs';
 import { SERVER_URL } from '../Services/serverUrl';
-
+import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 function SpotlightedItems() {
     const sliderRef = useRef(null);
@@ -25,6 +26,63 @@ function SpotlightedItems() {
             <i class="fa-solid fa-arrow-left"></i>
         </div>
     );
+
+    const [cart, setCart] = useState(() => {
+        try {
+            const stored = JSON.parse(localStorage.getItem('cart'));
+            return Array.isArray(stored) ? stored : [];
+        } catch (e) {
+            return [];
+        }
+
+    });
+
+    // add to cart the produts
+    const handleAddtocartClick = async (product) => {
+        const token = localStorage.getItem('access_token');
+        if (token) {
+            const reqHeader = {
+                'Authorization': `Bearer ${token}`,
+            }
+
+            const formData = new FormData();
+            formData.append('product_id', product.id);
+            formData.append('skuid', product.sku.id);
+            formData.append('quantity', 1);
+
+            const alreadyInCart = cart.some((item) => {
+                const cartProductId = item?.product?.id || item?.id;
+                return cartProductId === product.id;
+            });
+            if (alreadyInCart) {
+                toast.info('Item is already in the cart');
+                return;
+            }
+            try {
+                const response = await addToCartAPI(formData, reqHeader);
+                if (response.status === 200 || response.status === 201) {
+                    const newCartItem = {
+                        ...response.data,
+                        product,
+                        sku: product.sku,
+                        quantity: 1,
+                    };
+                    const updatedCart = [...cart, newCartItem];
+                    setCart(updatedCart);
+                    localStorage.setItem('cart', JSON.stringify(updatedCart));
+                    toast.success('Added to shopping Cart');
+                } else {
+                    toast.error('Something went wrong while adding to shopping cart');
+                }
+            } catch (err) {
+                console.error(err);
+                toast.error('Cart action failed');
+            }
+        } else {
+            toast.warning('Please login to add your favourite!');
+            navigate('/login');
+        }
+    };
     const getSpolightedItems = async () => {
         try {
             const result = await spotlightedAPI();
@@ -113,7 +171,9 @@ function SpotlightedItems() {
                     return (
                         <div key={index}>
                             <Card className='cardImg'>
-                                <Card.Img className='image' variant="top" src={item?.mainimage?.startsWith('http') ? item.mainimage : `${SERVER_URL}${item.mainimage}`} />
+                                <Link to={`/product/${item.id}/${item.sku.id}`}>
+                                    <Card.Img className='image' variant="top" src={item?.mainimage?.startsWith('http') ? item.mainimage : `${SERVER_URL}${item.mainimage}`} />
+                                </Link>
                                 <Card.Body className='cardsText'>
                                     <div className="row">
                                         <div className="col-lg-9 bar">
@@ -125,7 +185,7 @@ function SpotlightedItems() {
                                             <span className='spantext ms-3'>sold: 12/{item.sku.stock}</span>
                                         </div>
                                     </div>
-                                    <Card.Text > 
+                                    <Card.Text >
                                         {item.title.length > 50 ? item.title.slice(0, 50) + "..." : item.title}
                                     </Card.Text>
                                     <div className='d-flex '>
@@ -152,7 +212,7 @@ function SpotlightedItems() {
                                     </div>
                                     <div className='d-flex justify-content-between align-items-start mt-1'>
                                         <p>₹{item.sku.sales_rate} <del className='actualprice '>₹{item.sku.price}</del></p>
-                                        <button className='shoppingcartbtn btn '><i class="fa-solid fa-cart-shopping"></i></button>
+                                        <button onClick={() => handleAddtocartClick(item)} className='shoppingcartbtn btn '><i class="fa-solid fa-cart-shopping"></i></button>
                                     </div>
                                 </Card.Body>
                             </Card>

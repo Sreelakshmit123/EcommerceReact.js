@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Accordion } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import PriceFilter from './PriceFilter'
 import { filterPriceListAPI, HomeListAPI } from '../Services/allAPIs'
 
 function MobileSliderFilter({ selectedCategory, selectedSubcategory, onApplyFilter }) {
-
+    const navigate = useNavigate();
     const [values, setValues] = useState([0, 50000])
     const locations = ['Jagarta', 'Yogyakarta', 'Bandung', 'Semarang', 'Sarabaya'];
     const [checkedLocations, setCheckedLocations] = useState({});
@@ -32,8 +32,11 @@ function MobileSliderFilter({ selectedCategory, selectedSubcategory, onApplyFilt
         const resetValues = [0, 50000];
         setCheckedLocations({});
         setValues(resetValues);
+        setExpandedCategory(null);
+        navigate('/mobiletablet');
+
         onApplyFilter(resetValues, []);
-    }
+    };
     // price filter
     const getPriceList = async () => {
         try {
@@ -72,23 +75,17 @@ function MobileSliderFilter({ selectedCategory, selectedSubcategory, onApplyFilt
             <div className='All-categories d-block' id='style-1'>
                 {homeList.map(cat => (
                     <div key={cat.id} className="mb-2">
-                        <div
-                            onClick={() => toggleCategory(cat.id)}
-                            style={{ cursor: 'pointer' }}
-                            className={`category-link d-flex justify-content-between  align-items-center ${selectedCategory == cat.id ? 'selected' : ''}`}
-                        >
-                            <span>
-                                {cat.name}
-                            </span>
-                            <i className={`fa-solid me-3 ${expandedCategory === cat.id ? 'fa-chevron-up' : 'fa-chevron-down'}`} />
+                        <div className={`category-link d-flex justify-content-between align-items-center ${selectedCategory == cat.id ? 'selected' : ''}`}>
+                            <Link to={`/mobiletablet?category=${cat.id}`} className='category-color flex-grow-1 text-decoration-none'> {cat.name}</Link>
+                            <i className={`fa-solid me-3 ${expandedCategory === cat.id ? 'fa-chevron-up' : 'fa-chevron-down'}`} style={{ cursor: 'pointer' }} onClick={() => toggleCategory(cat.id)} />
                         </div>
 
-                        {/* Show subcategories only when expanded */}
+
                         {expandedCategory === cat.id && cat.subcategories?.length > 0 && (
                             <div className='ps-3 mt-1'>
                                 {cat.subcategories.map(sub => (
                                     <div key={sub.id} className="mb-1">
-                                        <Link 
+                                        <Link
                                             to={`/mobiletablet?category=${cat.id}&subcategory=${sub.id}`}
                                             className={`subcategory-link ${selectedSubcategory == sub.id ? 'selected' : ''}`}
                                         >
